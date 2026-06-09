@@ -1,39 +1,43 @@
 /* =============================================
-   _landing.css — Landing pages de propiedad
-   Rol: ajustes en la página de detalle de propiedad de Hostfully
-   Depende de: _variables.css, _typography.css
+   _landing.css — Landing de propiedad
+   Rol: specs, pestañas y reviews de la página de detalle
+   Depende de: _variables.css
    ---------------------------------------------
-   Tareas pactadas:
-     - Reducir tamaño y reubicar los specs (dormitorios, baños, camas)
-     - Eliminar la sección de reviews
-   ⚠ Antes de ocultar reviews por CSS, comprobar si Hostfully ofrece
-   un toggle nativo en el panel (preferible). Este display:none es el
-   plan B si no existe la opción nativa.
-
-   ⚠ Selectores PROVISIONALES. Verificar contra el DOM real. Si la
-   reubicación de specs no es posible solo con CSS (porque el HTML de
-   Hostfully no lo permite estructuralmente), comunicarlo y ofrecer
-   la alternativa más cercana — no forzar un hack frágil.
+   Selectores VERIFICADOS (ver docs/auditoria-selectores.md).
    ============================================= */
 
-/* ---- Specs (dormitorios / baños / camas): reducir tamaño ---- */
-[class*="property-specs"],
-[class*="PropertySpecs"],
-[data-testid*="specs"],
-[data-testid*="amenities-summary"] {
+/* ---- Specs (guests / bedrooms / beds / bathrooms): reducir tamaño ----
+   ⚠ "Reubicar" los specs no es viable solo con CSS sin reordenar el HTML
+   de Hostfully; se reduce tamaño y se compacta el espaciado (lo más
+   cercano posible dentro del límite del widget). */
+[data-testid="information-guests-tag"],
+[data-testid="information-bedrooms-tag"],
+[data-testid="information-beds-tag"],
+[data-testid="information-bathrooms-tag"] {
   font-size: 13px !important;
-  gap: 12px !important;
+  gap: 6px !important;
 }
-[class*="property-specs"] svg,
-[data-testid*="specs"] svg {
-  width: 18px !important;
-  height: 18px !important;
+[data-testid="information-guests-tag"] svg,
+[data-testid="information-bedrooms-tag"] svg,
+[data-testid="information-beds-tag"] svg,
+[data-testid="information-bathrooms-tag"] svg {
+  width: 16px !important;
+  height: 16px !important;
 }
 
-/* ---- Reviews: ocultar (plan B — preferir toggle nativo) ---- */
-[class*="reviews"],
-[class*="Reviews"],
-[data-testid*="reviews"],
-section[id*="reviews"] {
+/* ---- Pestañas: subrayado activo amarillo → teal ---- */
+[data-testid="page-links"] [aria-selected="true"],
+[data-testid="page-links"] .active,
+[data-testid^="page-link-"] {
+  border-color: var(--akora-teal) !important;
+  color: var(--akora-text-primary) !important;
+}
+
+/* ---- Reviews: ocultar ----
+   ⚠ Plan B vía CSS. Comprobar antes si Hostfully ofrece toggle nativo.
+   Se oculta el bloque, la pestaña y las reviews en tarjetas. */
+[data-testid="property-reviews"],
+[data-testid="page-link-reviews"],
+[data-testid="property-card-reviews"] {
   display: none !important;
 }

@@ -3,8 +3,11 @@
    Archivo principal: se carga en el panel de Hostfully
    (Configuración de Agencia → White Labelling → campo "CSS URL")
    ---------------------------------------------
-   Versión: v0.1.0
+   Versión: v0.2.0
    Fecha:   2026-06-09
+   Cambios v0.2.0: selectores reales verificados en vivo (data-testid),
+   anti-amarillo #FFD60A, override de fuente Source Sans 3, header/footer
+   por variables, reducción de Booking Note/Promo Code/specs, ocultar reviews.
 
    Hostfully solo admite UNA URL de CSS, así que este archivo agrega
    los parciales modulares de /partials/ con @import (sin build, sin

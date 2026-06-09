@@ -1,61 +1,39 @@
 /* =============================================
    _typography.css — Tipografía de marca
-   Rol: @font-face + reglas base de tipografía
+   Rol: @font-face + override de la fuente de Hostfully
    Depende de: _variables.css
    ---------------------------------------------
-   IMPORTANTE — Fuentes comerciales pendientes de licencia web:
-   URW Classico (URW Type Foundry) y Avenir Book son de pago y
-   requieren licencia web para servirse vía @font-face. Mientras
-   Akora no entregue los .woff2, los @font-face de abajo quedan
-   COMENTADOS y se usan los fallbacks definidos en --akora-font-*.
+   Hostfully usa "Source Sans 3" en toda la app. Como TODOS sus nodos
+   son styled-components (clase con prefijo estable `sc-`), barremos la
+   fuente del cuerpo con `[class*="sc-"]` y reservamos las cabeceras
+   por sus data-testid. El prefijo `sc-` es estable aunque el hash no.
 
-   Cuando lleguen los .woff2:
-     1. Súbelos a /fonts/
-     2. Descomenta los bloques @font-face correspondientes
-     3. Verifica la licencia web antes de publicar (no usar de relleno)
+   ⚠ Fuentes comerciales pendientes de licencia web (URW Classico,
+   Avenir Book). Mientras no estén, aplican los fallbacks. Cuando
+   lleguen los .woff2: súbelos a /fonts/ y descomenta los @font-face.
    ============================================= */
 
 /* ---- URW Classico (títulos) — DESCOMENTAR al recibir licencia ----
-@font-face {
-  font-family: 'URW Classico';
-  src: url('../fonts/urw-classico.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'URW Classico';
-  src: url('../fonts/urw-classico-bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+@font-face { font-family:'URW Classico'; src:url('../fonts/urw-classico.woff2') format('woff2'); font-weight:400; font-display:swap; }
+@font-face { font-family:'URW Classico'; src:url('../fonts/urw-classico-bold.woff2') format('woff2'); font-weight:700; font-display:swap; }
 */
-
 /* ---- Avenir Book (cuerpo) — DESCOMENTAR al recibir licencia ----
-   Alternativa: si Akora la tiene vía Adobe Fonts (Creative Cloud),
-   se inyecta el <link> del kit en el campo "Header HTML" del panel
-   en lugar de usar @font-face local.
-@font-face {
-  font-family: 'Avenir Book';
-  src: url('../fonts/avenir-book.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+   (Si viene por Adobe Fonts, inyectar el <link> del kit en Header HTML.)
+@font-face { font-family:'Avenir Book'; src:url('../fonts/avenir-book.woff2') format('woff2'); font-weight:400; font-display:swap; }
 */
 
-/* ---- Reglas base ---- */
+/* ---- Cuerpo: barrido sobre toda la app de Hostfully ---- */
 body,
-button,
-input,
-select,
-textarea {
-  font-family: var(--akora-font-body);
-  color: var(--akora-text-primary);
+[class*="sc-"] {
+  font-family: var(--akora-font-body) !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--akora-font-heading);
+/* ---- Títulos: heading font sobre cabeceras reales ---- */
+h1, h2, h3, h4, h5, h6,
+[data-testid="agency-headline"],
+[data-testid="information-name"],
+[data-testid="property-amenities-title"],
+[data-testid="property-card-public-name"] {
+  font-family: var(--akora-font-heading) !important;
   color: var(--akora-text-primary);
 }

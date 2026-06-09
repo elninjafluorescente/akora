@@ -1,60 +1,59 @@
 /* =============================================
    _booking-widget.css — Widget de reserva
-   Rol: estiliza el Booking Widget (motor de reserva de Hostfully)
-   Depende de: _variables.css, _typography.css
+   Rol: panel lateral de reserva en la landing de propiedad
+   Depende de: _variables.css
    ---------------------------------------------
-   Tareas pactadas sobre este widget:
-     - Aplicar paleta y fuentes de marca
-     - Reducir tamaño de "Booking Note" y "Promo Code"
-     - Esquinas a 5pt
-   El desglose de precio se mantiene NATIVO, solo estilado (sin
-   maquetación a medida — fuera de alcance).
-
-   ⚠ Selectores PROVISIONALES. Verificar el markup real del Booking
-   Widget con DevTools y ajustar los data-testid / clases.
+   Selectores VERIFICADOS (ver docs/auditoria-selectores.md).
+   Tareas pactadas: paleta de marca, radius 5pt, reducir Booking Note
+   (notes) y Promo Code (promoCode). El desglose de precio se mantiene
+   nativo, solo estilado.
    ============================================= */
 
-/* ---- Contenedor ---- */
-[class*="booking-widget"],
-[class*="BookingWidget"],
-[data-testid*="booking"] {
-  font-family: var(--akora-font-body) !important;
-  color: var(--akora-text-primary) !important;
+/* Contenedor (aside) — radius 15px → 5pt */
+[data-testid="property-details-widget"] {
+  border-radius: var(--akora-radius) !important;
 }
 
-/* ---- Botón primario (Reservar / Book) ---- */
-[class*="booking-widget"] button[type="submit"],
-[data-testid*="booking"] button[type="submit"],
-[data-testid="book-now-button"] {
-  background: var(--akora-teal) !important;
-  color: #fff !important;
+/* Botón Reservar (app-button): bg amarillo → teal, radius 20px → 5pt */
+[data-testid="app-button"] {
+  background: var(--akora-btn-bg) !important;
+  color: var(--akora-btn-fg) !important;
   border: none !important;
   border-radius: var(--akora-radius) !important;
-  font-family: var(--akora-font-body) !important;
 }
-[class*="booking-widget"] button[type="submit"]:hover,
-[data-testid*="booking"] button[type="submit"]:hover {
+[data-testid="app-button"]:hover {
   background: var(--akora-teal-dark) !important;
 }
 
-/* ---- Booking Note: reducir tamaño ---- */
-[data-testid*="booking-note"],
-[class*="booking-note"],
-[class*="BookingNote"] {
-  font-size: 12px !important;
-  line-height: 1.4 !important;
-  padding: 8px 10px !important;
+/* Total / precio en color de marca */
+[data-testid="booking-widget-total"] {
+  color: var(--akora-text-primary) !important;
 }
 
-/* ---- Promo Code: reducir tamaño ---- */
-[data-testid*="promo"],
-[class*="promo-code"],
-[class*="PromoCode"] {
+/* Campos de fecha y radios uniformes */
+[data-testid="from-field"],
+[data-testid="to-field"],
+[data-testid="property-details-widget"] input,
+[data-testid="property-details-widget"] textarea,
+[data-testid="property-details-widget"] select {
+  border-radius: var(--akora-radius) !important;
+}
+
+/* ---- Booking Note (textarea `notes`): reducir tamaño ---- */
+[data-testid="notes-field-container"] {
   font-size: 12px !important;
 }
-[data-testid*="promo"] input,
-[class*="promo-code"] input {
+[data-testid="notes"] {
+  font-size: 12px !important;
+  min-height: 60px !important;
+  padding: 6px 8px !important;
+}
+
+/* ---- Promo Code (`promoCode`): reducir tamaño ---- */
+[data-testid="promoCode-field-container"] {
+  font-size: 12px !important;
+}
+[data-testid="promoCode"] {
   font-size: 12px !important;
   padding: 6px 8px !important;
-  border-radius: var(--akora-radius) !important;
 }

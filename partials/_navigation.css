@@ -1,124 +1,60 @@
 /* =============================================
-   _navigation.css — Barra de navegación del subdominio
-   Rol: header + nav de booking.akora.com (coherencia con akora.com)
-   Depende de: _variables.css, _typography.css
+   _navigation.css — Header, nav y footer (site chrome)
+   Rol: barra superior + footer de booking.akora.com
+   Depende de: _variables.css
    ---------------------------------------------
-   Base portada del prototipo `cabecera.css.rtf` de Akora.
-   Selectores CONFIRMADOS contra el DOM real de Hostfully:
-     - header[data-testid="common-header"]
-     - a[data-testid="logo-link"]
-     - nav a[data-testid="home-link"]
-     - nav a[data-testid="book-now-link"]
-
-   ⚠ Los enlaces extra del menú (WHY AKORA, AKORA PROFESSIONAL,
-   THE AKORA GUIDE) se inyectan vía `content` de CSS porque la nav
-   nativa de Hostfully no los trae. Es un hack de presentación: NO
-   son clicables. Si Akora quiere enlaces reales, deben colocarse
-   en el campo "Header HTML" del panel (ver /header.html), no aquí.
-   Alcance pactado: solo coherencia visual, sin réplica de dropdowns.
+   Selectores VERIFICADOS en vivo (ver docs/auditoria-selectores.md).
+   Clases sc-* descartadas (hash inestable): todo por data-testid.
+   La nav real solo tiene: logo + Home + Book Now (+ menú móvil).
    ============================================= */
 
-/* ===== BARRA DEL HEADER ===== */
-header[data-testid="common-header"] {
-  background: var(--akora-cream) !important;
+/* ===== HEADER ===== */
+[data-testid="common-header"] {
+  background: var(--akora-header-bg) !important;
   box-shadow: none !important;
   border-bottom: none !important;
 }
-header[data-testid="common-header"] > div {
-  max-width: none !important;
-  margin: 0 !important;
-  width: 100% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  padding: 18px 64px !important;
-  box-sizing: border-box;
+
+/* Logo "AKORA" (estaba en amarillo) */
+[data-testid="logo-link"],
+[data-testid="logo-link"] * {
+  color: var(--akora-header-fg) !important;
+  letter-spacing: 2px;
 }
 
-/* ===== LOGO =====
-   El filtro recolorea el logo de Hostfully al teal de marca.
-   Si Akora entrega un SVG/PNG ya en teal, retirar el filter. */
-header[data-testid="common-header"] a[data-testid="logo-link"] {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-header[data-testid="common-header"] a[data-testid="logo-link"] img {
-  width: 48px !important;
-  height: 48px !important;
-  filter: brightness(0) saturate(100%) invert(45%) sepia(18%) saturate(746%) hue-rotate(135deg) brightness(91%) contrast(88%) !important;
-}
-header[data-testid="common-header"] a[data-testid="logo-link"] span {
-  color: var(--akora-teal) !important;
-  font-family: var(--akora-font-body);
-  font-size: 20px;
-  letter-spacing: 3px;
-  font-weight: 600;
+/* Enlace Home */
+[data-testid="home-link"],
+[data-testid="home-link"] * {
+  color: var(--akora-header-fg) !important;
 }
 
-/* ===== NAV (centrada) ===== */
-header[data-testid="common-header"] nav {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 52px !important;
-  flex: 1;
+/* Icono de menú móvil (estaba en amarillo) */
+[data-testid="mobile-menu-button"],
+[data-testid="mobile-menu-button"] * {
+  color: var(--akora-header-fg) !important;
 }
 
-/* ===== FIND YOUR HOME (enlace real, re-etiquetado) ===== */
-header[data-testid="common-header"] nav a[data-testid="home-link"] {
-  color: transparent !important;
-  font-size: 0 !important;
-  line-height: 0 !important;
-  letter-spacing: 0 !important;
-  text-shadow: none !important;
-  text-decoration: none;
-  position: relative;
-  order: 1;
-  padding: 0 !important;
-  display: inline-flex;
-  align-items: center;
-  overflow: hidden;
-}
-header[data-testid="common-header"] nav a[data-testid="home-link"]::before {
-  content: "FIND YOUR HOME";
-  font-family: var(--akora-font-body);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: 14px;
-  text-transform: uppercase;
-  color: var(--akora-teal);
-  white-space: nowrap;
-}
-
-/* ===== Enlaces extra (decorativos, no clicables — ver cabecera) ===== */
-header[data-testid="common-header"] nav::before {
-  content: "WHY AKORA                AKORA PROFESSIONAL \25BE                 THE AKORA GUIDE";
-  font-family: var(--akora-font-body);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: 14px;
-  text-transform: uppercase;
-  color: var(--akora-teal);
-  white-space: pre;
-  order: 2;
-}
-
-/* ===== Botón BOOK NOW ===== */
-header[data-testid="common-header"] nav a[data-testid="book-now-link"] {
-  order: 3;
-  background: var(--akora-teal) !important;
-  color: #fff !important;
-  font-family: var(--akora-font-body);
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0;
-  text-transform: capitalize;
-  line-height: 1;
-  border-radius: var(--akora-radius) !important;
-  padding: 15px 30px !important;
-  box-shadow: none !important;
+/* Botón Book Now (estaba en amarillo) */
+[data-testid="book-now-link"] {
+  background: var(--akora-btn-bg) !important;
+  color: var(--akora-btn-fg) !important;
   border: none !important;
+  border-radius: var(--akora-radius) !important;
+  box-shadow: none !important;
+}
+[data-testid="book-now-link"]:hover {
+  background: var(--akora-teal-dark) !important;
+}
+
+/* ===== FOOTER ===== */
+/* El fondo del footer venía en amarillo Hostfully → navy de marca. */
+[data-testid="common-footer"] {
+  background: var(--akora-footer-bg) !important;
+  color: var(--akora-footer-fg) !important;
+}
+[data-testid="common-footer"] a,
+[data-testid="common-footer-agency-email"],
+[data-testid="common-footer-agency-phone"],
+[data-testid="agency-info"] {
+  color: var(--akora-footer-fg) !important;
 }
