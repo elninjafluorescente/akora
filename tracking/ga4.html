@@ -1,0 +1,41 @@
+<!--
+  ga4.html — Snippet de Google Analytics 4 para booking.akora.com
+  Se pega en: Configuración de Agencia → White Labelling → Google Analytics
+  (o en el campo "Meta HTML" / "Header HTML" si el de Analytics no admite
+   el bloque completo de gtag.js — verificar en el panel).
+
+  ── Cross-domain akora.com ⇄ booking.akora.com ──────────────────────────
+  GA4 gestiona el cross-domain AUTOMÁTICAMENTE una vez que AMBOS dominios
+  están en la lista de dominios vinculados del Data Stream. NO basta con
+  este snippet: hay que configurar también, en GA4:
+
+    Admin → Data Streams → [stream de Akora] → Configure tag settings
+          → Configure your domains → añadir:
+            - akora.com
+            - booking.akora.com
+
+  Con eso GA4 preserva el client_id en el salto entre dominios y evita
+  contar sesiones nuevas. El mismo measurement ID (G-XXXXXXXXXX) debe
+  usarse en akora.com (WordPress) y aquí.
+
+  VALIDACIÓN obligatoria antes de entregar:
+    GA4 → Admin → DebugView. Navegar akora.com → booking.akora.com y
+    confirmar que la sesión y el client_id se mantienen (no hay doble
+    conteo de sesiones).
+
+  PENDIENTE de Akora: measurement ID real (sustituir G-XXXXXXXXXX).
+-->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  // El cross-domain se completa con la lista de dominios del panel GA4
+  // (ver cabecera). 'linker.domains' se deja explícito como refuerzo.
+  gtag('config', 'G-XXXXXXXXXX', {
+    linker: { domains: ['akora.com', 'booking.akora.com'] }
+  });
+</script>

@@ -1,0 +1,61 @@
+/* =============================================
+   _typography.css — Tipografía de marca
+   Rol: @font-face + reglas base de tipografía
+   Depende de: _variables.css
+   ---------------------------------------------
+   IMPORTANTE — Fuentes comerciales pendientes de licencia web:
+   URW Classico (URW Type Foundry) y Avenir Book son de pago y
+   requieren licencia web para servirse vía @font-face. Mientras
+   Akora no entregue los .woff2, los @font-face de abajo quedan
+   COMENTADOS y se usan los fallbacks definidos en --akora-font-*.
+
+   Cuando lleguen los .woff2:
+     1. Súbelos a /fonts/
+     2. Descomenta los bloques @font-face correspondientes
+     3. Verifica la licencia web antes de publicar (no usar de relleno)
+   ============================================= */
+
+/* ---- URW Classico (títulos) — DESCOMENTAR al recibir licencia ----
+@font-face {
+  font-family: 'URW Classico';
+  src: url('../fonts/urw-classico.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'URW Classico';
+  src: url('../fonts/urw-classico-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+/* ---- Avenir Book (cuerpo) — DESCOMENTAR al recibir licencia ----
+   Alternativa: si Akora la tiene vía Adobe Fonts (Creative Cloud),
+   se inyecta el <link> del kit en el campo "Header HTML" del panel
+   en lugar de usar @font-face local.
+@font-face {
+  font-family: 'Avenir Book';
+  src: url('../fonts/avenir-book.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+/* ---- Reglas base ---- */
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--akora-font-body);
+  color: var(--akora-text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--akora-font-heading);
+  color: var(--akora-text-primary);
+}

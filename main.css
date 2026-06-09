@@ -1,0 +1,30 @@
+/* =============================================
+   Akora — White-label CSS sobre Hostfully
+   Archivo principal: se carga en el panel de Hostfully
+   (Configuración de Agencia → White Labelling → campo "CSS URL")
+   ---------------------------------------------
+   Versión: v0.1.0
+   Fecha:   2026-06-09
+
+   Hostfully solo admite UNA URL de CSS, así que este archivo agrega
+   los parciales modulares de /partials/ con @import (sin build, sin
+   Node — cumple las reglas del proyecto).
+
+   ⚠ CACHÉ: el cache busting (?v=x.y.z) sobre la URL del panel solo
+   refresca este main.css, NO los parciales @import. Si cambias un
+   parcial y no se refleja, ver README → "Caché y versiones".
+
+   Orden de carga (la cascada depende de él):
+     1. variables  → tokens de marca
+     2. typography → fuentes y tipografía base
+     3. utilities  → resets globales (radius, anti-amarillo)
+     4. componentes específicos
+   ============================================= */
+
+@import url('partials/_variables.css');
+@import url('partials/_typography.css');
+@import url('partials/_utilities.css');
+@import url('partials/_navigation.css');
+@import url('partials/_search-widget.css');
+@import url('partials/_booking-widget.css');
+@import url('partials/_landing.css');

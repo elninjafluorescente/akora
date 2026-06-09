@@ -1,0 +1,44 @@
+/* =============================================
+   _utilities.css — Resets globales de marca
+   Rol: barridos transversales (radius, anti-amarillo)
+   Depende de: _variables.css
+   ---------------------------------------------
+   Selectores deliberadamente amplios. Los parciales de cada
+   componente, al ser más específicos, ganan sobre estos barridos
+   aunque ambos usen !important (la especificidad decide). Esto
+   permite afinar un componente concreto sin pelear con el reset.
+   ============================================= */
+
+/* ---- Radio de esquinas global a 5pt ----
+   Hostfully redondea botones, inputs y tarjetas más de la cuenta.
+   Unificamos a --akora-radius para un aspecto más refinado. */
+button,
+input,
+select,
+textarea,
+a[role="button"],
+[class*="button"],
+[class*="Button"],
+[class*="card"],
+[class*="Card"],
+[class*="radius"] {
+  border-radius: var(--akora-radius) !important;
+}
+
+/* ---- Anti-amarillo ----
+   Hostfully usa amarillo como acento por defecto en varios
+   componentes (bordes de foco, botones primarios, badges).
+   Lo sustituimos por el teal de marca.
+   NOTA: lista de partida basada en patrones habituales de Hostfully.
+   Verificar contra el DOM real y ampliar selectores si aparece
+   amarillo en algún componente no cubierto aquí. */
+[style*="#FFCC"],
+[style*="#ffcc"],
+[style*="#FFD"],
+[style*="#ffd"] {
+  background-color: var(--akora-teal) !important;
+  border-color: var(--akora-teal) !important;
+}
+
+/* ---- Helpers ---- */
+.akora-hidden { display: none !important; }

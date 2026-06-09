@@ -1,0 +1,46 @@
+/* =============================================
+   _search-widget.css — Widget de búsqueda
+   Rol: estiliza el Search Widget (embebido en akora.com y en booking)
+   Depende de: _variables.css, _typography.css
+   ---------------------------------------------
+   Objetivo: que la barra de búsqueda respire la marca Akora
+   (fuentes, paleta, esquinas a 5pt) y que la versión embebida en
+   WordPress se parezca a la de booking.akora.com.
+
+   ⚠ Selectores PROVISIONALES. El markup exacto del Search Widget de
+   Hostfully aún no está verificado contra el DOM real. Confirmar
+   clases/data-testid con DevTools sobre el widget en vivo y ajustar.
+   ============================================= */
+
+/* ---- Contenedor del buscador ---- */
+[class*="search-widget"],
+[class*="SearchWidget"],
+[data-testid*="search"] {
+  font-family: var(--akora-font-body) !important;
+  background: var(--akora-cream) !important;
+  border-radius: var(--akora-radius) !important;
+}
+
+/* ---- Campos (fechas, huéspedes, etc.) ---- */
+[class*="search-widget"] input,
+[class*="search-widget"] select,
+[data-testid*="search"] input,
+[data-testid*="search"] select {
+  font-family: var(--akora-font-body) !important;
+  color: var(--akora-text-primary) !important;
+  border-radius: var(--akora-radius) !important;
+}
+
+/* ---- Botón de buscar ---- */
+[class*="search-widget"] button,
+[data-testid*="search"] button {
+  background: var(--akora-teal) !important;
+  color: #fff !important;
+  font-family: var(--akora-font-body) !important;
+  border: none !important;
+  border-radius: var(--akora-radius) !important;
+}
+[class*="search-widget"] button:hover,
+[data-testid*="search"] button:hover {
+  background: var(--akora-teal-dark) !important;
+}

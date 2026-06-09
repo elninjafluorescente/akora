@@ -1,0 +1,39 @@
+/* =============================================
+   _landing.css — Landing pages de propiedad
+   Rol: ajustes en la página de detalle de propiedad de Hostfully
+   Depende de: _variables.css, _typography.css
+   ---------------------------------------------
+   Tareas pactadas:
+     - Reducir tamaño y reubicar los specs (dormitorios, baños, camas)
+     - Eliminar la sección de reviews
+   ⚠ Antes de ocultar reviews por CSS, comprobar si Hostfully ofrece
+   un toggle nativo en el panel (preferible). Este display:none es el
+   plan B si no existe la opción nativa.
+
+   ⚠ Selectores PROVISIONALES. Verificar contra el DOM real. Si la
+   reubicación de specs no es posible solo con CSS (porque el HTML de
+   Hostfully no lo permite estructuralmente), comunicarlo y ofrecer
+   la alternativa más cercana — no forzar un hack frágil.
+   ============================================= */
+
+/* ---- Specs (dormitorios / baños / camas): reducir tamaño ---- */
+[class*="property-specs"],
+[class*="PropertySpecs"],
+[data-testid*="specs"],
+[data-testid*="amenities-summary"] {
+  font-size: 13px !important;
+  gap: 12px !important;
+}
+[class*="property-specs"] svg,
+[data-testid*="specs"] svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* ---- Reviews: ocultar (plan B — preferir toggle nativo) ---- */
+[class*="reviews"],
+[class*="Reviews"],
+[data-testid*="reviews"],
+section[id*="reviews"] {
+  display: none !important;
+}

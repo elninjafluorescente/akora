@@ -1,0 +1,22 @@
+# Claude Code (ajustes locales de máquina, no se comparten)
+.claude/
+
+# macOS
+.DS_Store
+.AppleDouble
+Icon?
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Temporales
+*.log
+*.tmp
+
+# Originales de fuentes (no distribuir binarios con licencia en el repo
+# si la licencia lo prohíbe; servir solo .woff2 permitidos). Revisar
+# términos antes de commitear cualquier fuente.
+fonts/*.otf
+fonts/*.ttf
