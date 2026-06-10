@@ -26,8 +26,15 @@
   background: var(--akora-teal-dark) !important;
 }
 
-/* Botón "Buscar" rectangular (bg amarillo → teal) dentro del buscador */
-[data-testid="search-filter-component"] button:not([data-testid="icon-submit-button"]) {
+/* Botón "Buscar" rectangular (bg amarillo → teal).
+   ⚠ CLAVE: NO usar `button` a secas aquí. Los campos del buscador
+   (where-trigger, when, who) SON <button> con data-testid y deben
+   quedar transparentes; pintarlos tapaba los campos (bug v0.1/0.2.0).
+   El botón "Buscar" es el ÚNICO <button> SIN data-testid del buscador,
+   así que lo aislamos con :not([data-testid]). El calendario y demás
+   dropdowns se renderizan en portal (fuera del componente) → no les
+   afecta. Verificado en vivo contra el DOM. */
+[data-testid="search-filter-component"] button:not([data-testid]) {
   background: var(--akora-btn-bg) !important;
   color: var(--akora-btn-fg) !important;
   border: none !important;
