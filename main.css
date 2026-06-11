@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.6.0  ·  Fecha: 2026-06-11
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.6.0
+   Version: v0.7.0  ·  Fecha: 2026-06-11
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.7.0
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;500;600;700;800&family=Sacramento&display=swap');
 
@@ -620,5 +620,207 @@ body.hf-dbs > div { background: var(--cream) !important; }
 .hf-dbs [data-testid="page-link-reviews"],
 .hf-dbs [data-testid="property-card-reviews"] {
   display: none !important;
+}
+
+/* ===== _checkout ===== */
+/* =============================================
+   _checkout.css — Página de checkout (/payment/overview)
+   Depende de: _variables.css · scope: .hf-dbs
+   ---------------------------------------------
+   Maquetación según el mockup "Akora Checkout" (Secure your booking),
+   iterada EN VIVO contra la página real (2026-06-11). Selectores =
+   data-testid reales de Hostfully: payment-overview (raíz de página,
+   usada con :has() para reglas de página), overview-*, *-section,
+   total-amount-row, widget* (tarjeta confirm), widgetConfirmButton.
+   Las reglas de página (topbar solo-logo, footer centrado) van
+   scopeadas con .hf-dbs:has([data-testid="payment-overview"]) para no
+   afectar al resto del sitio.
+   ============================================= */
+
+/* ---- Contenedor 980px + columnas del mockup (1fr / 340, gap 32) ---- */
+.hf-dbs [data-testid="payment-overview"] {
+  max-width: 980px !important;
+  margin: 0 auto !important;
+}
+.hf-dbs [data-testid="payment-overview"] > div:not([data-testid]) {
+  grid-template-columns: minmax(0,1fr) 340px !important;
+  gap: 32px !important;
+  align-items: start !important;
+}
+
+/* ---- Topbar solo-logo y footer centrado (solo en esta página) ---- */
+.hf-dbs:has([data-testid="payment-overview"]) [data-testid="home-link"],
+.hf-dbs:has([data-testid="payment-overview"]) [data-testid="book-now-link"] {
+  display: none !important;
+}
+.hf-dbs:has([data-testid="payment-overview"]) [data-testid="common-header"] > div {
+  justify-content: center !important;
+}
+.hf-dbs:has([data-testid="payment-overview"]) [data-testid="common-footer"] > div {
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  gap: 10px !important;
+}
+.hf-dbs:has([data-testid="payment-overview"]) [data-testid="common-footer"] [data-testid="agency-info"] {
+  text-align: center !important;
+}
+/* el mockup no lleva nav en el pie de esta página */
+.hf-dbs:has([data-testid="payment-overview"]) [data-testid="common-footer"] nav {
+  display: none !important;
+}
+
+/* ---- Cabecera de página ---- */
+.hf-dbs [data-testid="overview-header"] { padding: 48px 0 0 !important; }
+.hf-dbs [data-testid="overview-header-title"],
+.hf-dbs [data-testid="overview-header-title"] * {
+  font-family: var(--font-display) !important;
+  font-size: clamp(32px, 4.2vw, 46px) !important;
+  line-height: 1.05 !important;
+  color: var(--navy) !important;
+  font-weight: 400 !important;
+}
+.hf-dbs [data-testid="overview-header-subtitle"] {
+  color: var(--ink-soft) !important;
+  font-size: 17px !important;
+  margin-top: 13px !important;
+}
+
+/* ---- Card resumen (columna izquierda) ---- */
+.hf-dbs [data-testid="payment-overview"] div:has(> [data-testid="overview-property-card"]) {
+  background: var(--surface) !important;
+  border: 1px solid var(--line-cool) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-card) !important;
+  overflow: hidden !important;
+}
+.hf-dbs [data-testid="overview-property-card"] {
+  padding: 26px 28px !important;
+  gap: 22px !important;
+  grid-template-columns: 172px 1fr !important;
+  align-items: center !important;
+}
+.hf-dbs [data-testid="overview-property-picture"],
+.hf-dbs [data-testid="overview-property-picture"] img {
+  width: 172px !important;
+  height: 132px !important;
+  border-radius: 6px !important;
+  object-fit: cover !important;
+}
+.hf-dbs [data-testid="overview-property-name"],
+.hf-dbs [data-testid="overview-property-name"] * {
+  font-family: var(--font-display) !important;
+  font-size: 28px !important;
+  color: var(--navy) !important;
+  line-height: 1.08 !important;
+  font-weight: 400 !important;
+}
+.hf-dbs [data-testid="overview-property-address"] {
+  color: var(--ink-soft) !important;
+  font-size: 15px !important;
+  letter-spacing: .02em !important;
+}
+
+/* ---- Filas de info y desglose ---- */
+.hf-dbs [data-testid="payment-order-details"] { padding: 0 28px 26px !important; }
+.hf-dbs [data-testid="booking-info-section"],
+.hf-dbs [data-testid="rent-section"],
+.hf-dbs [data-testid="taxes-section"],
+.hf-dbs [data-testid="fees-section"],
+.hf-dbs [data-testid="balance-payment-section"] { font-size: 15.5px !important; }
+.hf-dbs [data-testid="rent-section-header"],
+.hf-dbs [data-testid="taxes-section-header"],
+.hf-dbs [data-testid="fees-section-header"] {
+  font-weight: 700 !important;
+  color: var(--navy) !important;
+}
+/* subfilas (Rent tax, Cleaning fee): indentadas y atenuadas */
+.hf-dbs [data-testid="taxes-section-rent"],
+.hf-dbs [data-testid="fees-section-cleaning"] { color: var(--ink-soft) !important; }
+.hf-dbs [data-testid="taxes-section-rent"] > *:first-child,
+.hf-dbs [data-testid="fees-section-cleaning"] > *:first-child { padding-left: 16px !important; }
+
+/* TOTAL AMOUNT: banda dorada edge-to-edge dentro de la card (mockup) */
+.hf-dbs [data-testid="total-amount-row"] {
+  background: var(--gold) !important;
+  margin: 0 -28px !important;
+  padding: 12px 28px !important;
+}
+.hf-dbs [data-testid="total-amount-row"],
+.hf-dbs [data-testid="total-amount-row"] * {
+  color: var(--navy) !important;
+  font-weight: 700 !important;
+}
+
+/* Balance Payment */
+.hf-dbs [data-testid="balance-deposit-row"] > *:first-child {
+  font-weight: 700 !important;
+  color: var(--navy) !important;
+}
+
+/* ---- Tarjeta confirm (columna derecha, sticky) ---- */
+.hf-dbs [data-testid="payment-overview"] div:has(> [data-testid="widgetPropertyName"]) {
+  background: var(--surface) !important;
+  border: 1px solid var(--line-cool) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-card) !important;
+  padding: 24px 24px 26px !important;
+  position: sticky !important;
+  top: 24px !important;
+}
+.hf-dbs [data-testid="widgetPropertyName"] {
+  font-family: var(--font-display) !important;
+  font-size: 24px !important;
+  color: var(--navy) !important;
+  line-height: 1.1 !important;
+  font-weight: 400 !important;
+}
+.hf-dbs [data-testid="widgetDates"] {
+  color: var(--ink-soft) !important;
+  font-size: 14px !important;
+}
+.hf-dbs [data-testid="widgetTotalAmount-label"] { font-weight: 700 !important; color: var(--navy) !important; }
+.hf-dbs [data-testid="widgetTotalAmount-value"] { font-weight: 600 !important; color: var(--navy) !important; }
+
+/* PAY TODAY / PAGUE HOY: bloque dorado con importe en display */
+.hf-dbs div:has(> [data-testid="widgetPayToday-label"]) {
+  background: var(--gold) !important;
+  border-radius: 6px !important;
+  padding: 16px 18px !important;
+  margin: 16px 0 20px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+.hf-dbs [data-testid="widgetPayToday-label"] {
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase !important;
+  color: var(--navy) !important;
+}
+.hf-dbs [data-testid="widgetPayToday-value"] {
+  font-family: var(--font-display) !important;
+  font-size: 24px !important;
+  color: var(--navy) !important;
+}
+
+/* CTA Confirmar & continuar: teal full-width (el tema mete un gradient
+   amarillo vía background-image → hay que anularlo explícitamente) */
+.hf-dbs [data-testid="widgetConfirmButton"] {
+  background-image: none !important;
+  background-color: var(--teal) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--radius) !important;
+  width: 100% !important;
+  padding: 15px 26px !important;
+  font-weight: 600 !important;
+  letter-spacing: .03em !important;
+  font-size: 15px !important;
+  box-shadow: none !important;
+}
+.hf-dbs [data-testid="widgetConfirmButton"]:hover {
+  background-color: var(--teal-700) !important;
 }
 

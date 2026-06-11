@@ -23,6 +23,8 @@ docs/*.pdf
 # Mockups/refs de diseño pesados (NO header.html/footer.html, que sí se versionan)
 Akora Property Page.html
 *Property Page*.html
+Akora Checkout.html
+Akora *.html
 
 # Originales de fuentes (no distribuir binarios con licencia en el repo
 # si la licencia lo prohíbe; servir solo .woff2 permitidos). Revisar
