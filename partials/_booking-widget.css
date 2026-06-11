@@ -81,8 +81,85 @@
   color: var(--ink-soft) !important;
 }
 
-/* ---- Desglose de precio (RENT/TAXES/FEES + total) ----
-   ⚠ El desglose nativo aparece tras elegir fechas; sus data-testid se
-   auditan en vivo con fechas puestas. Estilo del total dorado del mockup
-   se aplicará cuando se confirmen esos selectores. Por ahora, el total
-   principal queda en navy display (arriba). */
+/* ---- Desglose de precio (mockup .breakdown) ----
+   Aparece tras elegir fechas. Selectores AUDITADOS en vivo con fechas
+   puestas (2026-06-11): price-details, rent/taxes/fees-section (h4 =
+   cabecera), nights-row / tax-row-* / fee-row-*, total-rent/taxes/fees,
+   grand-total, price-details-toggle. El tema de Hostfully pinta los
+   spans de totales en amarillo → hay que forzar color en los spans. */
+.hf-dbs [data-testid="price-details"] {
+  border-top: 1px solid var(--line) !important;
+  margin-top: 6px !important;
+  padding-top: 12px !important;
+}
+/* Cabeceras Rent/Taxes/Fees = eyebrow teal del mockup */
+.hf-dbs [data-testid="rent-section"] h4,
+.hf-dbs [data-testid="taxes-section"] h4,
+.hf-dbs [data-testid="fees-section"] h4 {
+  font-family: var(--font-body) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: .1em !important;
+  text-transform: uppercase !important;
+  color: var(--teal) !important;
+  margin: 12px 0 3px !important;
+}
+.hf-dbs [data-testid="rent-section"] h4 { margin-top: 0 !important; }
+/* Filas de concepto */
+.hf-dbs [data-testid="nights-row"],
+.hf-dbs [data-testid^="tax-row-"],
+.hf-dbs [data-testid^="fee-row-"] {
+  font-size: 13.5px !important;
+  padding: 3px 0 !important;
+}
+.hf-dbs [data-testid="nights-row"] span,
+.hf-dbs [data-testid^="tax-row-"] span,
+.hf-dbs [data-testid^="fee-row-"] span { color: var(--ink) !important; }
+/* Subtotales por sección: bold navy */
+.hf-dbs [data-testid="total-rent"],
+.hf-dbs [data-testid="total-taxes"],
+.hf-dbs [data-testid="total-fees"] {
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  padding: 3px 0 !important;
+}
+.hf-dbs [data-testid="total-rent"] span,
+.hf-dbs [data-testid="total-taxes"] span,
+.hf-dbs [data-testid="total-fees"] span { color: var(--navy) !important; }
+/* TOTAL: pill dorado del mockup, importe en display */
+.hf-dbs [data-testid="grand-total"] {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  background: var(--gold) !important;
+  border-radius: 5px !important;
+  padding: 11px 14px !important;
+  margin-top: 12px !important;
+}
+.hf-dbs [data-testid="grand-total"] span { color: var(--navy) !important; }
+.hf-dbs [data-testid="grand-total"] > *:first-child {
+  font-weight: 800 !important;
+  letter-spacing: .02em !important;
+}
+.hf-dbs [data-testid="grand-total"] > *:last-child {
+  font-family: var(--font-display) !important;
+  font-size: 18px !important;
+}
+/* Toggle Hide/Show details */
+.hf-dbs [data-testid="price-details-toggle"] {
+  color: var(--teal) !important;
+  font-size: 12.5px !important;
+}
+
+/* ---- Datepicker del widget (react-day-picker): selección teal ----
+   El tema marca check-in/checkout con círculo amarillo y el rango en
+   gris; se lleva a teal / teal-tint (clases .rdp-* estables). */
+.hf-dbs .rdp-range_start .rdp-day_button,
+.hf-dbs .rdp-range_end .rdp-day_button,
+.hf-dbs .rdp-selected:not(.rdp-range_middle) .rdp-day_button {
+  background: var(--teal) !important;
+  color: #fff !important;
+  border-color: var(--teal) !important;
+}
+.hf-dbs .rdp-range_middle { background: var(--teal-tint) !important; }
+.hf-dbs .rdp-range_middle .rdp-day_button { color: var(--navy) !important; }
