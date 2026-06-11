@@ -7,9 +7,17 @@
    deben quedar intactos (pintarlos rompía el formulario, fix v0.2.1).
    ============================================= */
 
-/* Contenedor del buscador */
+/* Contenedor del buscador: integrado en la franja crema del mockup
+   (sin sombra flotante, hairline cálido). El wrapper .is-sticky es la
+   franja que lo envuelve (clase estable de Hostfully). */
 .hf-dbs [data-testid="search-filter-component"] {
   border-radius: var(--akora-radius) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: none !important;
+}
+.hf-dbs .is-sticky {
+  background: var(--cream) !important;
+  box-shadow: none !important;
 }
 
 /* Botón circular de buscar: círculo teal, icono blanco (estaba amarillo) */

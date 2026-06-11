@@ -2,14 +2,27 @@
    _landing.css — Landing de propiedad (mockup Akora Property Page)
    Depende de: _variables.css · scope: .hf-dbs
    ---------------------------------------------
-   Título serif con subrayado dorado, specs con icono dorado y
-   separadores, tabs con subrayado activo, amenities en grid 2col,
-   gallery con radio. Selectores = data-testid reales.
+   Maquetación iterada EN VIVO contra el mockup (2026-06-11):
+   layout 1fr/372 gap 64 · card "dossier" simulada (las secciones son
+   hermanas en el grid de Hostfully, no hay wrapper: tabs = techo,
+   secciones = cuerpo, mapa = cierre) · tabs con subrayado dorado activo
+   vía :target (el click en las tabs pone el hash; sin JS) · calendario
+   react-day-picker (clases .rdp-* ESTABLES, no son styled-components).
    ============================================= */
 
-/* ---- Título de propiedad: display + subrayado dorado ---- */
+/* ---- Layout del grid como el mockup: 1fr + 372px, gap 64, centrado ---- */
+.hf-dbs main div:has(> nav[data-testid="page-links"]) {
+  grid-template-columns: minmax(0,1fr) 372px !important;
+  column-gap: 64px !important;
+  max-width: var(--maxw) !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+/* ---- Título de propiedad: display 40px + subrayado dorado ---- */
 .hf-dbs [data-testid="information-name"] {
   font-family: var(--font-display) !important;
+  font-size: 40px !important;
   color: var(--navy) !important;
   position: relative !important;
   display: inline-block !important;
@@ -22,7 +35,17 @@
   background: var(--gold);
 }
 
-/* ---- Specs (guests/bedrooms/beds/bathrooms): icono dorado + separadores ---- */
+/* ---- Galería: gap 10px, hero 1.5fr, radio 4px ---- */
+.hf-dbs [data-testid="desktop-images-grid"] > div { gap: 10px !important; }
+.hf-dbs [data-testid="desktop-images-grid"] > div > div:has(> [data-testid="main-image"]) { flex: 1.5 1 0 !important; }
+.hf-dbs [data-testid="desktop-images-grid"] > div > div:not(:has(> [data-testid="main-image"])) { flex: 1 1 0 !important; gap: 10px !important; }
+.hf-dbs [data-testid="desktop-images-grid"] img,
+.hf-dbs [data-testid="main-image"],
+.hf-dbs [data-testid^="image-"] {
+  border-radius: var(--radius) !important;
+}
+
+/* ---- Specs: icono dorado + separadores verticales ---- */
 .hf-dbs [data-testid="information-guests-tag"],
 .hf-dbs [data-testid="information-bedrooms-tag"],
 .hf-dbs [data-testid="information-beds-tag"],
@@ -39,7 +62,6 @@
   color: var(--gold-ico) !important;
   width: 17px !important; height: 17px !important;
 }
-/* Separador vertical entre specs */
 .hf-dbs [data-testid="information-bedrooms-tag"],
 .hf-dbs [data-testid="information-beds-tag"],
 .hf-dbs [data-testid="information-bathrooms-tag"] {
@@ -48,51 +70,108 @@
   border-left: 1px solid var(--line) !important;
 }
 
-/* ---- Tabs (page-links): banda crema + subrayado dorado activo ---- */
+/* ================= CARD "DOSSIER" SIMULADA ================= */
+
+/* Techo: tabs en banda crema-2 con bordes y radio superior.
+   El margin-top separa el bloque info/specs de la card (mockup). */
 .hf-dbs [data-testid="page-links"] {
+  margin-top: 34px !important;
   background: var(--cream-2) !important;
-  border-bottom: 1px solid var(--line-cool) !important;
+  border: 1px solid var(--line-cool) !important;
+  border-radius: 8px 8px 0 0 !important;
+  padding: 14px 20px 0 !important;
+  box-shadow: var(--shadow-soft) !important;
 }
+.hf-dbs [data-testid="page-links"] ul {
+  display: flex !important; gap: 4px !important;
+  margin: 0 !important; padding: 0 !important; list-style: none !important;
+}
+.hf-dbs [data-testid="page-links"] li { list-style: none !important; margin: 0 !important; }
 .hf-dbs [data-testid^="page-link-"] {
+  display: inline-block !important;
   font-family: var(--font-body) !important;
-  font-weight: 700 !important;
-  letter-spacing: .04em !important;
-  color: var(--ink-soft) !important;
-  border-bottom: 2.5px solid transparent !important;
+  font-size: 13.5px !important; font-weight: 700 !important; letter-spacing: .04em !important;
+  padding: 13px 18px !important; margin-bottom: -1px !important;
+  background: none !important;
+  border-bottom: 2.5px solid transparent;
+  text-decoration: none !important;
 }
-.hf-dbs [data-testid^="page-link-"][aria-selected="true"],
-.hf-dbs [data-testid^="page-link-"].active {
+.hf-dbs [data-testid^="page-link-"]:hover { color: var(--navy) !important; }
+
+/* Tab activa: el click pone el hash (#information...) y las secciones
+   tienen ese id → :target + :has(), sin JS. Subrayado DORADO del mockup. */
+.hf-dbs:has(#information:target) [data-testid="page-link-information"],
+.hf-dbs:has(#amenities:target) [data-testid="page-link-amenities"],
+.hf-dbs:has(#calendar:target) [data-testid="page-link-calendar"],
+.hf-dbs:has(#map:target) [data-testid="page-link-map"] {
   color: var(--navy) !important;
-  border-bottom-color: var(--gold) !important;
+  border-bottom: 2.5px solid var(--gold) !important;
 }
 
-/* ---- Amenities: grid 2col + icono dorado ---- */
-.hf-dbs [data-testid="property-amenities"] [class*="amenity"],
-.hf-dbs [class*="amenities-grid"],
-.hf-dbs [class*="amenitiesGrid"] {
-  /* contenedor: intento de grid 2col (verificar selector real en vivo) */
+/* Cuerpo: secciones blancas con bordes laterales, sin márgenes
+   (la card debe leerse continua) */
+.hf-dbs [data-testid="property-description"],
+.hf-dbs [data-testid="property-amenities"],
+.hf-dbs [data-testid="property-calendar"],
+.hf-dbs [data-testid="property-map"] {
+  background: var(--surface) !important;
+  border-left: 1px solid var(--line-cool) !important;
+  border-right: 1px solid var(--line-cool) !important;
+  margin: 0 !important;
+  padding: 30px 44px !important;
+  max-width: none !important;
+  box-shadow: var(--shadow-soft) !important;
 }
-.hf-dbs [data-testid^="amenity-"] svg { color: var(--gold-ico) !important; }
-.hf-dbs [data-testid="property-amenities-title"] {
-  font-family: var(--font-display) !important;
-  color: var(--navy) !important;
+.hf-dbs [data-testid="property-description"] { padding-top: 38px !important; }
+.hf-dbs [data-testid="property-amenities"],
+.hf-dbs [data-testid="property-calendar"],
+.hf-dbs [data-testid="property-map"] {
+  border-top: 1px solid var(--line-2) !important;
+}
+/* Cierre: el mapa redondea y cierra la card */
+.hf-dbs [data-testid="property-map"] {
+  border-bottom: 1px solid var(--line-cool) !important;
+  border-radius: 0 0 8px 8px !important;
+  padding-bottom: 44px !important;
+  margin-bottom: 64px !important;
 }
 
-/* ---- Eyebrows / secciones (los headings ya usan display via _typography) ---- */
+/* Títulos de sección: display navy 25px (Resumen, Descripción...) */
+.hf-dbs [data-testid="property-description"] h1,
 .hf-dbs [data-testid="property-description"] h2,
-.hf-dbs [data-testid="information-description"] h2,
-.hf-dbs [data-testid="information-short-summary"] h2 {
+.hf-dbs [data-testid="property-description"] h3,
+.hf-dbs [data-testid="property-amenities"] h1,
+.hf-dbs [data-testid="property-amenities"] h2,
+.hf-dbs [data-testid="property-amenities"] h3,
+.hf-dbs [data-testid="property-calendar"] h2,
+.hf-dbs [data-testid="property-calendar"] h3,
+.hf-dbs [data-testid="property-map"] h2,
+.hf-dbs [data-testid="property-map"] h3 {
+  font-family: var(--font-display) !important;
+  font-size: 25px !important;
   color: var(--navy) !important;
+  font-weight: 400 !important;
+}
+.hf-dbs [data-testid="property-description"] p { color: var(--ink) !important; max-width: 62ch; }
+
+/* Amenities: iconos y triggers de categoría */
+.hf-dbs [data-testid^="amenity-"] svg { color: var(--gold-ico) !important; }
+.hf-dbs [data-testid^="amenity-category-trigger-"] svg,
+.hf-dbs [data-testid^="amenity-category-trigger-"] path {
+  color: var(--teal) !important;
 }
 
-/* ---- Gallery: radio 4px en imágenes ---- */
-.hf-dbs [data-testid="desktop-images-grid"] img,
-.hf-dbs [data-testid="main-image"],
-.hf-dbs [data-testid^="image-"] {
-  border-radius: var(--radius) !important;
+/* Calendario (react-day-picker, clases estables): matar amarillos */
+.hf-dbs .rdp-today { color: var(--teal) !important; font-weight: 700 !important; }
+.hf-dbs [data-testid="property-calendar"] svg,
+.hf-dbs [data-testid="property-calendar"] polygon,
+.hf-dbs [data-testid="property-calendar"] path {
+  fill: var(--teal) !important;
+  color: var(--teal) !important;
 }
 
-/* ---- Reviews: ocultas (pactado) ---- */
+/* ---- Reviews: ocultas (pactado). Va al FINAL para ganar a la regla
+   display:inline-block de las tabs (mismo origen, mismo peso → orden). */
 .hf-dbs [data-testid="property-reviews"],
 .hf-dbs [data-testid="page-link-reviews"],
 .hf-dbs [data-testid="property-card-reviews"] {

@@ -7,6 +7,11 @@
    Red de seguridad; los ajustes finos van en cada partial.
    ============================================= */
 
+/* ---- Fondo de página crema (mockup) ----
+   El blanco lo pintan el body Y un div anónimo hijo directo del body. */
+body.hf-dbs,
+body.hf-dbs > div { background: var(--cream) !important; }
+
 /* ---- Anti-amarillo: nodos confirmados con #FFD60A ---- */
 .hf-dbs [data-testid="book-now-link"],
 .hf-dbs [data-testid="app-button"] {

@@ -27,6 +27,14 @@
 .hf-dbs [data-testid="logo-link"] path {
   fill: var(--akora-header-fg) !important;
 }
+/* El logo subido al panel es un <img> amarillo: se tiñe de teal con
+   filter (mismo truco del prototipo). Si Akora sube un logo ya teal,
+   retirar estas dos reglas. Aplica a header y footer (agency-logo). */
+.hf-dbs [data-testid="logo-link"] img,
+.hf-dbs [data-testid="agency-logo"] img,
+.hf-dbs img[data-testid="agency-logo"] {
+  filter: brightness(0) saturate(100%) invert(45%) sepia(18%) saturate(746%) hue-rotate(135deg) brightness(91%) contrast(88%) !important;
+}
 
 /* Enlace Home */
 .hf-dbs [data-testid="home-link"],
