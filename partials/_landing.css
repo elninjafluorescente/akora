@@ -1,37 +1,98 @@
 /* =============================================
-   _landing.css — Landing de propiedad
+   _landing.css — Landing de propiedad (mockup Akora Property Page)
    Depende de: _variables.css · scope: .hf-dbs
    ---------------------------------------------
-   Selectores VERIFICADOS (ver docs/auditoria-selectores.md).
+   Título serif con subrayado dorado, specs con icono dorado y
+   separadores, tabs con subrayado activo, amenities en grid 2col,
+   gallery con radio. Selectores = data-testid reales.
    ============================================= */
 
-/* ---- Specs (guests/bedrooms/beds/bathrooms): reducir tamaño ----
-   ⚠ "Reubicar" no es viable solo con CSS sin reordenar el HTML de
-   Hostfully; se reduce y compacta (lo más cercano posible). */
+/* ---- Título de propiedad: display + subrayado dorado ---- */
+.hf-dbs [data-testid="information-name"] {
+  font-family: var(--font-display) !important;
+  color: var(--navy) !important;
+  position: relative !important;
+  display: inline-block !important;
+  padding-bottom: 10px !important;
+}
+.hf-dbs [data-testid="information-name"]::after {
+  content: "" !important;
+  position: absolute; left: 0; bottom: 0;
+  width: 50px; height: 3px; border-radius: 2px;
+  background: var(--gold);
+}
+
+/* ---- Specs (guests/bedrooms/beds/bathrooms): icono dorado + separadores ---- */
 .hf-dbs [data-testid="information-guests-tag"],
 .hf-dbs [data-testid="information-bedrooms-tag"],
 .hf-dbs [data-testid="information-beds-tag"],
 .hf-dbs [data-testid="information-bathrooms-tag"] {
-  font-size: 13px !important;
-  gap: 6px !important;
+  font-size: 14.5px !important;
+  font-weight: 500 !important;
+  color: var(--ink) !important;
+  gap: 8px !important;
 }
 .hf-dbs [data-testid="information-guests-tag"] svg,
 .hf-dbs [data-testid="information-bedrooms-tag"] svg,
 .hf-dbs [data-testid="information-beds-tag"] svg,
 .hf-dbs [data-testid="information-bathrooms-tag"] svg {
-  width: 16px !important;
-  height: 16px !important;
+  color: var(--gold-ico) !important;
+  width: 17px !important; height: 17px !important;
+}
+/* Separador vertical entre specs */
+.hf-dbs [data-testid="information-bedrooms-tag"],
+.hf-dbs [data-testid="information-beds-tag"],
+.hf-dbs [data-testid="information-bathrooms-tag"] {
+  margin-left: 22px !important;
+  padding-left: 22px !important;
+  border-left: 1px solid var(--line) !important;
 }
 
-/* ---- Pestañas: subrayado activo amarillo → teal ---- */
-.hf-dbs [data-testid="page-links"] [aria-selected="true"],
-.hf-dbs [data-testid="page-links"] .active,
+/* ---- Tabs (page-links): banda crema + subrayado dorado activo ---- */
+.hf-dbs [data-testid="page-links"] {
+  background: var(--cream-2) !important;
+  border-bottom: 1px solid var(--line-cool) !important;
+}
 .hf-dbs [data-testid^="page-link-"] {
-  border-color: var(--akora-teal) !important;
-  color: var(--akora-text-primary) !important;
+  font-family: var(--font-body) !important;
+  font-weight: 700 !important;
+  letter-spacing: .04em !important;
+  color: var(--ink-soft) !important;
+  border-bottom: 2.5px solid transparent !important;
+}
+.hf-dbs [data-testid^="page-link-"][aria-selected="true"],
+.hf-dbs [data-testid^="page-link-"].active {
+  color: var(--navy) !important;
+  border-bottom-color: var(--gold) !important;
 }
 
-/* ---- Reviews: ocultar (plan B; comprobar toggle nativo antes) ---- */
+/* ---- Amenities: grid 2col + icono dorado ---- */
+.hf-dbs [data-testid="property-amenities"] [class*="amenity"],
+.hf-dbs [class*="amenities-grid"],
+.hf-dbs [class*="amenitiesGrid"] {
+  /* contenedor: intento de grid 2col (verificar selector real en vivo) */
+}
+.hf-dbs [data-testid^="amenity-"] svg { color: var(--gold-ico) !important; }
+.hf-dbs [data-testid="property-amenities-title"] {
+  font-family: var(--font-display) !important;
+  color: var(--navy) !important;
+}
+
+/* ---- Eyebrows / secciones (los headings ya usan display via _typography) ---- */
+.hf-dbs [data-testid="property-description"] h2,
+.hf-dbs [data-testid="information-description"] h2,
+.hf-dbs [data-testid="information-short-summary"] h2 {
+  color: var(--navy) !important;
+}
+
+/* ---- Gallery: radio 4px en imágenes ---- */
+.hf-dbs [data-testid="desktop-images-grid"] img,
+.hf-dbs [data-testid="main-image"],
+.hf-dbs [data-testid^="image-"] {
+  border-radius: var(--radius) !important;
+}
+
+/* ---- Reviews: ocultas (pactado) ---- */
 .hf-dbs [data-testid="property-reviews"],
 .hf-dbs [data-testid="page-link-reviews"],
 .hf-dbs [data-testid="property-card-reviews"] {

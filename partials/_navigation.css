@@ -13,7 +13,7 @@
 .hf-dbs [data-testid="common-header"] {
   background: var(--akora-header-bg) !important;
   box-shadow: none !important;
-  border-bottom: none !important;
+  border-bottom: 1px solid var(--line) !important;
 }
 
 /* Logo "AKORA" (estaba en amarillo) */

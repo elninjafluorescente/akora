@@ -1,48 +1,60 @@
 /* =============================================
    _variables.css — Tokens de marca Akora
-   Rol: CSS custom properties (colores, tipografía, radius, roles)
-   Cargado por: main.css (primer @import, antes que el resto)
+   Rol: CSS custom properties (del mockup "Akora Property Page")
+   Cargado por: main.css (primer @import tras las fuentes)
    ---------------------------------------------
-   Fuente de verdad de la identidad visual. Cualquier color o medida
-   de marca se referencia con var(--…), nunca con literales sueltos.
+   Tokens tomados del mockup de referencia. Las fuentes Marcellus /
+   Mulish / Sacramento son los stand-ins del mockup (Marcellus≈URW
+   Classico/Optima, Mulish≈Avenir Book); se cargan de Google Fonts en
+   main.css. Al llegar las licencias, anteponer URW Classico/Avenir.
    ============================================= */
 
 :root {
-  /* ---- Paleta Akora ---- */
-  --akora-teal: #468186;   /* principal / acento */
-  --akora-navy: #181e3a;   /* oscuro / texto */
-  --akora-cream: #fdf8ec;  /* fondos */
+  /* ---- Paleta (mockup) ---- */
+  --cream:     #FDF8EC;   /* página / header */
+  --cream-2:   #F7EFDD;   /* bandas, tabs, footer */
+  --cream-3:   #F2E8D2;   /* relleno cálido / hover */
+  --surface:   #FFFFFF;   /* dossier y tarjetas */
+  --teal:      #468186;   /* principal */
+  --teal-700:  #386A6E;   /* hover / deep */
+  --teal-800:  #2C5458;
+  --teal-tint: #E7EEEC;
+  --navy:      #181E3A;   /* títulos */
+  --gold:      #FFD60A;   /* acento discreto (total/subrayado) */
+  --gold-ico:  #C49600;   /* iconos de specs/amenities */
+  --ink:       #2E3346;   /* texto cuerpo */
+  --ink-soft:  #5B6072;   /* texto secundario */
+  --line:      #E7DDC6;   /* hairline cálido sobre crema */
+  --line-2:    #EAE2D2;
+  --line-cool: #E3E7E9;   /* hairline sobre blanco */
 
-  --akora-teal-dark: #3a6c70;
-  --akora-teal-soft: rgba(70, 129, 134, 0.12);
+  --shadow-card: 0 18px 48px -22px rgba(24,30,58,.30), 0 4px 14px -8px rgba(24,30,58,.18);
+  --shadow-soft: 0 10px 30px -18px rgba(24,30,58,.22);
+  --radius: 4px;
+  --maxw:   1320px;
 
-  /* Amarillo por defecto de Hostfully que hay que sobreescribir
-     (color de tema, aplicado vía styled-components, no inline). */
+  /* ---- Tipografía (stand-ins del mockup) ---- */
+  --font-display: 'Marcellus','URW Classico','Optima','Optima Nova',Palatino,serif;
+  --font-body:    'Mulish','Avenir','Avenir Next','Segoe UI',system-ui,sans-serif;
+  --font-script:  'Sacramento','Oliver Quin',cursive;
+
+  /* ---- Alias compatibles con los partials existentes ---- */
+  --akora-teal: var(--teal);
+  --akora-teal-dark: var(--teal-700);
+  --akora-teal-soft: rgba(70,129,134,.12);
+  --akora-navy: var(--navy);
+  --akora-cream: var(--cream);
   --hostfully-yellow: #ffd60a;
-
-  /* ---- Roles de texto ---- */
-  --akora-text-primary: var(--akora-navy);
-  --akora-text-on-dark: var(--akora-cream);
-  --akora-accent: var(--akora-teal);
-
-  /* ---- Roles de chrome (header / footer / botones) ----
-     DECISIÓN DE DISEÑO (confirmable con Akora). Por defecto seguimos
-     la dirección del prototipo `cabecera.css`: header CREMA con texto
-     teal, botón teal, footer NAVY. Para volver al header teal actual
-     de Hostfully, cambia las 3 variables marcadas con [HEADER].       */
-  --akora-header-bg: var(--akora-cream);   /* [HEADER] poner var(--akora-teal) para header teal */
-  --akora-header-fg: var(--akora-teal);    /* [HEADER] poner var(--akora-cream) si header teal */
-  --akora-btn-bg: var(--akora-teal);       /* botón Book Now / Reservar */
+  --akora-text-primary: var(--navy);
+  --akora-text-on-dark: var(--cream);
+  --akora-accent: var(--teal);
+  --akora-radius: var(--radius);
+  --akora-font-heading: var(--font-display);
+  --akora-font-body: var(--font-body);
+  --akora-header-bg: var(--cream);
+  --akora-header-fg: var(--teal);
+  --akora-btn-bg: var(--teal);
   --akora-btn-fg: #ffffff;
-  --akora-footer-bg: var(--akora-navy);
-  --akora-footer-fg: var(--akora-cream);
-
-  /* ---- Tipografía ----
-     Fuentes comerciales (URW Classico, Avenir Book) vía @font-face en
-     _typography.css. Hasta tener licencias web, aplican los fallbacks. */
-  --akora-font-heading: 'URW Classico', 'TeX Gyre Bonum', Georgia, serif;
-  --akora-font-body: 'Avenir Book', 'Avenir', 'Nunito Sans', 'Helvetica Neue', Arial, sans-serif;
-
-  /* ---- Radio de esquinas (5pt ≈ 5px) ---- */
-  --akora-radius: 5px;
+  --akora-footer-bg: var(--cream-2);
+  --akora-footer-fg: var(--ink);
 }

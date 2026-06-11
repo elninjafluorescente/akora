@@ -3,8 +3,11 @@
    Archivo principal: se carga en el panel de Hostfully
    (Configuración de Agencia → White Labelling → campo "CSS URL")
    ---------------------------------------------
-   Versión: v0.3.0
-   Fecha:   2026-06-10
+   Versión: v0.4.0
+   Fecha:   2026-06-11
+   Cambios v0.4.0: maquetación según el mockup "Akora Property Page"
+   (tokens, fuentes Marcellus/Mulish/Sacramento, booking widget plano,
+   título con subrayado, tabs/eyebrows, specs/amenities con icono dorado).
    Cambios v0.3.0: TODO scopeado con `.hf-dbs` (clase del <body> del Direct
    Booking Site) según el doc de Hostfully — el CSS afecta solo al sitio de
    reservas, no a la página de login/PMP. Fix del icono del logo (fill SVG);
@@ -28,6 +31,10 @@
      3. utilities  → resets globales (radius, anti-amarillo)
      4. componentes específicos
    ============================================= */
+
+/* Fuentes del mockup (stand-ins de URW Classico / Avenir Book). Debe ir
+   como primer @import. Sustituir por @font-face propios al tener licencias. */
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;500;600;700;800&family=Sacramento&display=swap');
 
 @import url('partials/_variables.css');
 @import url('partials/_typography.css');

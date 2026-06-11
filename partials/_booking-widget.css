@@ -1,52 +1,88 @@
 /* =============================================
-   _booking-widget.css — Widget de reserva
+   _booking-widget.css — Widget de reserva (mockup Akora Property Page)
    Depende de: _variables.css · scope: .hf-dbs
    ---------------------------------------------
-   Selectores VERIFICADOS. Paleta de marca, radius 5pt, reducción de
-   Booking Note (notes) y Promo Code (promoCode). Desglose nativo.
+   Diseño: rectángulo PLANO (sin sombra), borde cálido, sticky,
+   precio en tipografía display, campos crema con radio 3px,
+   botón "Book now" teal. Selectores = data-testid reales.
    ============================================= */
 
-/* Contenedor (aside) — radius 15px → 5pt */
+/* Contenedor: rectángulo plano sticky */
 .hf-dbs [data-testid="property-details-widget"] {
-  border-radius: var(--akora-radius) !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: none !important;
+  padding: 26px 26px 28px !important;
+  position: sticky !important;
+  top: 24px !important;
 }
 
-/* Botón Reservar (app-button): bg amarillo → teal, radius 20px → 5pt */
-.hf-dbs [data-testid="app-button"] {
-  background: var(--akora-btn-bg) !important;
-  color: var(--akora-btn-fg) !important;
-  border: none !important;
-  border-radius: var(--akora-radius) !important;
-}
-.hf-dbs [data-testid="app-button"]:hover {
-  background: var(--akora-teal-dark) !important;
-}
-
-/* Total / precio en color de marca */
+/* Precio en tipografía display */
 .hf-dbs [data-testid="booking-widget-total"] {
-  color: var(--akora-text-primary) !important;
+  font-family: var(--font-display) !important;
+  font-size: 34px !important;
+  line-height: 1.1 !important;
+  color: var(--navy) !important;
+}
+.hf-dbs [data-testid="booking-widget-total-currency"],
+.hf-dbs [data-testid="booking-widget-nights-length"],
+.hf-dbs [data-testid="booking-widget-min-stay"] {
+  font-size: 13px !important;
+  color: var(--ink-soft) !important;
+  font-weight: 400 !important;
 }
 
-/* Campos de fecha y radios uniformes */
-.hf-dbs [data-testid="from-field"],
-.hf-dbs [data-testid="to-field"],
+/* Campos del formulario: fondo crema, hairline, radio 3px */
 .hf-dbs [data-testid="property-details-widget"] input,
+.hf-dbs [data-testid="property-details-widget"] select,
 .hf-dbs [data-testid="property-details-widget"] textarea,
-.hf-dbs [data-testid="property-details-widget"] select {
-  border-radius: var(--akora-radius) !important;
+.hf-dbs [data-testid="from-field"],
+.hf-dbs [data-testid="to-field"] {
+  background: var(--cream) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 3px !important;
+  color: var(--navy) !important;
+  font-family: var(--font-body) !important;
 }
 
-/* ---- Booking Note (textarea `notes`): reducir tamaño ---- */
-.hf-dbs [data-testid="notes-field-container"] { font-size: 12px !important; }
-.hf-dbs [data-testid="notes"] {
-  font-size: 12px !important;
-  min-height: 60px !important;
-  padding: 6px 8px !important;
+/* Iconos de fecha en teal */
+.hf-dbs [data-testid="from-field"] svg,
+.hf-dbs [data-testid="to-field"] svg {
+  color: var(--teal) !important;
 }
 
-/* ---- Promo Code (`promoCode`): reducir tamaño ---- */
+/* Booking Note y Promo Code: reducidos (pactado) */
+.hf-dbs [data-testid="notes-field-container"],
 .hf-dbs [data-testid="promoCode-field-container"] { font-size: 12px !important; }
-.hf-dbs [data-testid="promoCode"] {
-  font-size: 12px !important;
-  padding: 6px 8px !important;
+.hf-dbs [data-testid="notes"] {
+  font-size: 12px !important; min-height: 56px !important; padding: 8px 10px !important;
 }
+.hf-dbs [data-testid="promoCode"] { font-size: 12px !important; padding: 8px 10px !important; }
+
+/* Botón "Book now": teal, ancho completo */
+.hf-dbs [data-testid="app-button"] {
+  background: var(--teal) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--radius) !important;
+  font-family: var(--font-body) !important;
+  font-weight: 700 !important;
+  letter-spacing: .02em !important;
+  padding: 13px 18px !important;
+  width: 100% !important;
+}
+.hf-dbs [data-testid="app-button"]:hover { background: var(--teal-700) !important; }
+
+/* Ayuda bajo el botón */
+.hf-dbs [data-testid="submit-help-text"] {
+  text-align: center !important;
+  font-size: 12.5px !important;
+  color: var(--ink-soft) !important;
+}
+
+/* ---- Desglose de precio (RENT/TAXES/FEES + total) ----
+   ⚠ El desglose nativo aparece tras elegir fechas; sus data-testid se
+   auditan en vivo con fechas puestas. Estilo del total dorado del mockup
+   se aplicará cuando se confirmen esos selectores. Por ahora, el total
+   principal queda en navy display (arriba). */
