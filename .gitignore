@@ -15,6 +15,11 @@ Icon?
 *.log
 *.tmp
 
+# Assets del cliente que NO deben publicarse en el repo público
+# (brand guidelines, documentos internos). Se conservan en local.
+docs/*.pdf
+*.pdf
+
 # Originales de fuentes (no distribuir binarios con licencia en el repo
 # si la licencia lo prohíbe; servir solo .woff2 permitidos). Revisar
 # términos antes de commitear cualquier fuente.
