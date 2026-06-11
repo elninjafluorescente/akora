@@ -1,56 +1,22 @@
-<!--
-  ============================================================
-  HEADER HTML  ·  Configuración de Agencia → White Labelling → "Header HTML"
-  ============================================================
-  Requiere Custom Domain configurado (Akora: booking.akora.com ✓).
-  ⚠ El contenido NO es restaurable: este archivo es la copia de seguridad.
-     Archívalo antes de borrar/editar en el panel.
-
-  Qué va aquí (según el doc de Hostfully):
-   - Scripts de tracking: Meta Pixel (ver tracking/meta-pixel.html) y, si
-     no usas el campo "Google Analytics ID", el snippet GA4
-     (ver tracking/ga4.html). El Pixel de Meta se coloca en Header HTML.
-   - Carga de fuentes externas (p. ej. <link> del kit de Adobe Fonts si
-     Avenir/URW vienen por Creative Cloud).
-   - (Opcional) Enlaces de menú reales coherentes con akora.com. La nav
-     nativa solo trae Home + Book Now; estos serían enlaces REALES y
-     clicables (a diferencia de los falsos vía CSS del prototipo).
-
-  ⚠ El contenido se AÑADE a la página. La posición exacta donde Hostfully
-     lo inyecta hay que comprobarla en vivo tras pegarlo (podemos
-     inspeccionarla y, si hace falta, ocultar/duplicados con CSS .hf-dbs).
-  PENDIENTE de Akora: lista definitiva de enlaces del menú de akora.com.
--->
-
-<!-- (1) Kit de fuentes externo (ejemplo, descomentar con el ID real):
-<link rel="stylesheet" href="https://use.typekit.net/XXXXXXX.css">
--->
-
-<!-- (2) Menú real coherente con akora.com (placeholders, ajustar URLs).
-     Patrón del doc: clase propia + scope .hf-dbs. -->
 <style>
-  .hf-dbs .akora-nav-extra {
-    display: flex;
-    gap: 40px;
-    justify-content: center;
-    padding: 10px 0;
-    font-family: var(--akora-font-body, sans-serif);
-    text-transform: uppercase;
-    font-size: 14px;
-    letter-spacing: .5px;
+  .hf-dbs .akora-nav-extra{
+    display:flex;
+    gap:36px;
+    justify-content:center;
+    align-items:center;
+    padding:10px 16px;
+    background:#fdf8ec;
+    font-family:'Avenir Book','Nunito Sans',Arial,sans-serif;
+    text-transform:uppercase;
+    font-size:14px;
+    letter-spacing:.5px;
   }
-  .hf-dbs .akora-nav-extra a {
-    color: var(--akora-teal, #468186);
-    text-decoration: none;
-    font-weight: 600;
-  }
+  .hf-dbs .akora-nav-extra a{color:#468186;text-decoration:none;font-weight:600;}
+  .hf-dbs .akora-nav-extra a:hover{color:#3a6c70;}
 </style>
 <nav class="akora-nav-extra">
-  <a href="https://akora.com/find-your-home">Find your home</a>
-  <a href="https://akora.com/why-akora">Why Akora</a>
-  <a href="https://akora.com/professional">Akora Professional</a>
-  <a href="https://akora.com/guide">The Akora Guide</a>
+  <a href="https://akora.com">Find your home</a>
+  <a href="https://akora.com">Why Akora</a>
+  <a href="https://akora.com">Akora Professional</a>
+  <a href="https://akora.com">The Akora Guide</a>
 </nav>
-
-<!-- (3) Meta Pixel / GA4: pega aquí el contenido de tracking/meta-pixel.html
-     (y tracking/ga4.html si no usas el campo "Google Analytics ID"). -->

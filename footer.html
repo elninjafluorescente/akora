@@ -1,45 +1,19 @@
-<!--
-  ============================================================
-  FOOTER HTML  ·  Configuración de Agencia → White Labelling → "Footer HTML"
-  ============================================================
-  Requiere Custom Domain configurado (Akora: booking.akora.com ✓).
-  ⚠ El contenido NO es restaurable: este archivo es la copia de seguridad.
-     Archívalo antes de borrar/editar en el panel.
-
-  Cómo funciona (según el doc de Hostfully "Set up custom CSS"):
-   - Footer HTML acepta HTML: <style>, <p>, <a>, etc.
-   - El contenido se AÑADE a la página (no reemplaza el footer nativo).
-   - Scope con `.hf-dbs` para afectar SOLO al Direct Booking Site
-     (no a la página de login/PMP, que también recibe estos estilos).
-
-  USO EN ESTE PROYECTO:
-   1) Canal de CSS "instantáneo" (esquiva la caché de GitHub Pages): mete
-      aquí cualquier override crítico que necesites ver YA, scopeado a .hf-dbs.
-      El grueso de los estilos sigue viniendo del CSS URL (main.css).
-   2) (Opcional) Contenido extra de footer (legales, redes) si el footer
-      nativo no lo trae. El footer nativo ya se estila desde main.css.
--->
-
-<!-- (1) Overrides CSS instantáneos / cache-proof (ejemplo, vacío por defecto) -->
 <style>
-  /* .hf-dbs [data-testid="..."] { ... !important; } */
-</style>
-
-<!-- (2) Contenido de footer adicional (opcional). Descomenta y ajusta.
-     Patrón del doc: clase propia + scope .hf-dbs.
-<style>
-  .hf-dbs .akora-footer-extra {
-    background: var(--akora-footer-bg, #181e3a);
-    color: var(--akora-footer-fg, #fdf8ec);
-    text-align: center;
-    padding: 16px;
-    font-size: 14px;
+  .hf-dbs .akora-footer-extra{
+    background:#181e3a;
+    color:#fdf8ec;
+    text-align:center;
+    padding:24px 16px;
+    font-family:'Avenir Book','Nunito Sans',Arial,sans-serif;
+    font-size:14px;
+    line-height:1.7;
   }
+  .hf-dbs .akora-footer-extra a{color:#fdf8ec;text-decoration:none;margin:0 8px;}
+  .hf-dbs .akora-footer-extra a:hover{text-decoration:underline;}
 </style>
 <div class="akora-footer-extra">
-  <a href="https://akora.com/legal">Aviso legal</a> ·
-  <a href="https://akora.com/privacidad">Privacidad</a> ·
+  <a href="https://akora.com/aviso-legal">Aviso legal</a>·
+  <a href="https://akora.com/privacidad">Privacidad</a>·
   <a href="https://akora.com/cookies">Cookies</a>
-  <p>© Akora · Madrid</p>
+  <p>© Akora · Apartamentos de lujo en Madrid</p>
 </div>
--->
