@@ -60,7 +60,7 @@ docs/notas.md             ← cuaderno interno (selectores, decisiones abiertas)
    `https://elninjafluorescente.github.io/akora/main.css`
 2. **Hostfully:** Configuración de Agencia → **White Labelling** y rellenar:
    - **Custom Domain Name:** `booking.akora.com`
-   - **CSS URL:** la URL de Pages **con versión** → `…/main.css?v=0.3.0`
+   - **CSS URL:** la URL de Pages **con versión** → `…/main.css?v=0.4.1`
    - **Favicon**, **Header HTML** ([`header.html`](header.html)),
      **Footer HTML** ([`footer.html`](footer.html)),
      **Google Analytics** ([`tracking/ga4.html`](tracking/ga4.html)),
@@ -99,37 +99,29 @@ selectores van prefijados con `.hf-dbs`** para tocar solo el sitio público.
 
 ## Caché y versiones (importante)
 
-Hostfully **cachea** el CSS. Tras cada cambio visible:
+`main.css` es **un único archivo generado** por [`build.sh`](build.sh) (concatena
+los `partials/`). Al no haber `@import` de parciales, **el `?v=` del panel
+invalida TODO de golpe** (antes el `?v=` no refrescaba los parciales `@import`
+y se veían estilos viejos).
 
-1. Sube **`Versión`** en la cabecera de `main.css` y en este README.
+Tras cada cambio visible:
+1. Sube `VER` en [`build.sh`](build.sh).
 2. Actualiza el query string del campo **CSS URL** del panel:
-   `…/main.css?v=0.1.1`, `?v=0.1.2`, etc.
+   `…/main.css?v=0.4.2`, etc.
 
-⚠ **Aviso de caché de parciales:** el `?v=` del panel solo refresca
-`main.css`, **no** los archivos `@import`. Si tocas un parcial y no se ve
-el cambio (porque el navegador/CDN cachea el parcial), tienes dos opciones:
-
-- **A (rápido):** forzar un hard-refresh / esperar a que expire la caché.
-- **B (robusto):** concatenar los parciales en un único `main.css` con un
-  paso `cat` (bash puro, sin Node) y servir un solo archivo. Así el `?v=`
-  del panel basta. Recomendado si Hostfully cachea de forma agresiva.
-  ```bash
-  # build.sh (opcional) — concatena partials a main.css
-  cat partials/_variables.css partials/_typography.css \
-      partials/_utilities.css partials/_navigation.css \
-      partials/_search-widget.css partials/_booking-widget.css \
-      partials/_landing.css > main.css
-  ```
+> Las fuentes (Marcellus/Mulish/Sacramento de Google) sí entran por `@import`
+> en `main.css`, pero son estáticas y no necesitan versionado.
 
 ---
 
 ## Cómo iterar el CSS
 
-1. Edita el parcial correspondiente en `partials/`.
+1. Edita el parcial correspondiente en `partials/` (**no** `main.css`, que es generado).
 2. Verifica los selectores ⚠ contra el DOM real con DevTools sobre
    `booking.akora.com` (ver [`docs/notas.md`](docs/notas.md)).
-3. Sube versión + commit + push → Pages se actualiza solo.
-4. Bump del `?v=` en el panel y refresca `booking.akora.com`.
+3. **Ejecuta `./build.sh`** para regenerar `main.css`.
+4. Commit + push → Pages se actualiza solo.
+5. Bump del `?v=` en el panel y refresca `booking.akora.com`.
 
 **Ajustes menores que Akora puede hacer sin volver a nosotros:** cambiar un
 color o el radius editando solo [`partials/_variables.css`](partials/_variables.css),
