@@ -1,59 +1,52 @@
 /* =============================================
    _booking-widget.css — Widget de reserva
-   Rol: panel lateral de reserva en la landing de propiedad
-   Depende de: _variables.css
+   Depende de: _variables.css · scope: .hf-dbs
    ---------------------------------------------
-   Selectores VERIFICADOS (ver docs/auditoria-selectores.md).
-   Tareas pactadas: paleta de marca, radius 5pt, reducir Booking Note
-   (notes) y Promo Code (promoCode). El desglose de precio se mantiene
-   nativo, solo estilado.
+   Selectores VERIFICADOS. Paleta de marca, radius 5pt, reducción de
+   Booking Note (notes) y Promo Code (promoCode). Desglose nativo.
    ============================================= */
 
 /* Contenedor (aside) — radius 15px → 5pt */
-[data-testid="property-details-widget"] {
+.hf-dbs [data-testid="property-details-widget"] {
   border-radius: var(--akora-radius) !important;
 }
 
 /* Botón Reservar (app-button): bg amarillo → teal, radius 20px → 5pt */
-[data-testid="app-button"] {
+.hf-dbs [data-testid="app-button"] {
   background: var(--akora-btn-bg) !important;
   color: var(--akora-btn-fg) !important;
   border: none !important;
   border-radius: var(--akora-radius) !important;
 }
-[data-testid="app-button"]:hover {
+.hf-dbs [data-testid="app-button"]:hover {
   background: var(--akora-teal-dark) !important;
 }
 
 /* Total / precio en color de marca */
-[data-testid="booking-widget-total"] {
+.hf-dbs [data-testid="booking-widget-total"] {
   color: var(--akora-text-primary) !important;
 }
 
 /* Campos de fecha y radios uniformes */
-[data-testid="from-field"],
-[data-testid="to-field"],
-[data-testid="property-details-widget"] input,
-[data-testid="property-details-widget"] textarea,
-[data-testid="property-details-widget"] select {
+.hf-dbs [data-testid="from-field"],
+.hf-dbs [data-testid="to-field"],
+.hf-dbs [data-testid="property-details-widget"] input,
+.hf-dbs [data-testid="property-details-widget"] textarea,
+.hf-dbs [data-testid="property-details-widget"] select {
   border-radius: var(--akora-radius) !important;
 }
 
 /* ---- Booking Note (textarea `notes`): reducir tamaño ---- */
-[data-testid="notes-field-container"] {
-  font-size: 12px !important;
-}
-[data-testid="notes"] {
+.hf-dbs [data-testid="notes-field-container"] { font-size: 12px !important; }
+.hf-dbs [data-testid="notes"] {
   font-size: 12px !important;
   min-height: 60px !important;
   padding: 6px 8px !important;
 }
 
 /* ---- Promo Code (`promoCode`): reducir tamaño ---- */
-[data-testid="promoCode-field-container"] {
-  font-size: 12px !important;
-}
-[data-testid="promoCode"] {
+.hf-dbs [data-testid="promoCode-field-container"] { font-size: 12px !important; }
+.hf-dbs [data-testid="promoCode"] {
   font-size: 12px !important;
   padding: 6px 8px !important;
 }

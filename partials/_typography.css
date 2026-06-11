@@ -3,14 +3,16 @@
    Rol: @font-face + override de la fuente de Hostfully
    Depende de: _variables.css
    ---------------------------------------------
-   Hostfully usa "Source Sans 3" en toda la app. Como TODOS sus nodos
-   son styled-components (clase con prefijo estable `sc-`), barremos la
-   fuente del cuerpo con `[class*="sc-"]` y reservamos las cabeceras
-   por sus data-testid. El prefijo `sc-` es estable aunque el hash no.
+   SCOPING: todo bajo `.hf-dbs` (clase del <body> del Direct Booking
+   Site, verificada en vivo). Así NO afectamos a la página de login/PMP
+   que también recibe el CSS URL. Es el método recomendado por Hostfully.
 
-   ⚠ Fuentes comerciales pendientes de licencia web (URW Classico,
-   Avenir Book). Mientras no estén, aplican los fallbacks. Cuando
-   lleguen los .woff2: súbelos a /fonts/ y descomenta los @font-face.
+   Hostfully usa "Source Sans 3"; barremos el cuerpo con
+   `.hf-dbs [class*="sc-"]` (todos sus nodos son styled-components con
+   prefijo estable `sc-`) y reservamos las cabeceras por data-testid.
+
+   ⚠ Fuentes comerciales pendientes de licencia (URW Classico, Avenir
+   Book) → @font-face comentados, aplican fallbacks hasta tenerlas.
    ============================================= */
 
 /* ---- URW Classico (títulos) — DESCOMENTAR al recibir licencia ----
@@ -18,22 +20,20 @@
 @font-face { font-family:'URW Classico'; src:url('../fonts/urw-classico-bold.woff2') format('woff2'); font-weight:700; font-display:swap; }
 */
 /* ---- Avenir Book (cuerpo) — DESCOMENTAR al recibir licencia ----
-   (Si viene por Adobe Fonts, inyectar el <link> del kit en Header HTML.)
 @font-face { font-family:'Avenir Book'; src:url('../fonts/avenir-book.woff2') format('woff2'); font-weight:400; font-display:swap; }
 */
 
-/* ---- Cuerpo: barrido sobre toda la app de Hostfully ---- */
-body,
-[class*="sc-"] {
+/* ---- Cuerpo (el propio body es .hf-dbs) ---- */
+.hf-dbs,
+.hf-dbs [class*="sc-"] {
   font-family: var(--akora-font-body) !important;
 }
 
-/* ---- Títulos: heading font sobre cabeceras reales ---- */
-h1, h2, h3, h4, h5, h6,
-[data-testid="agency-headline"],
-[data-testid="information-name"],
-[data-testid="property-amenities-title"],
-[data-testid="property-card-public-name"] {
+/* ---- Títulos ---- */
+.hf-dbs h1, .hf-dbs h2, .hf-dbs h3, .hf-dbs h4, .hf-dbs h5, .hf-dbs h6,
+.hf-dbs [data-testid="agency-headline"],
+.hf-dbs [data-testid="information-name"],
+.hf-dbs [data-testid="property-amenities-title"],
+.hf-dbs [data-testid="property-card-public-name"] {
   font-family: var(--akora-font-heading) !important;
-  color: var(--akora-text-primary);
 }

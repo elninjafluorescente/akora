@@ -1,43 +1,39 @@
 /* =============================================
    _landing.css — Landing de propiedad
-   Rol: specs, pestañas y reviews de la página de detalle
-   Depende de: _variables.css
+   Depende de: _variables.css · scope: .hf-dbs
    ---------------------------------------------
    Selectores VERIFICADOS (ver docs/auditoria-selectores.md).
    ============================================= */
 
-/* ---- Specs (guests / bedrooms / beds / bathrooms): reducir tamaño ----
-   ⚠ "Reubicar" los specs no es viable solo con CSS sin reordenar el HTML
-   de Hostfully; se reduce tamaño y se compacta el espaciado (lo más
-   cercano posible dentro del límite del widget). */
-[data-testid="information-guests-tag"],
-[data-testid="information-bedrooms-tag"],
-[data-testid="information-beds-tag"],
-[data-testid="information-bathrooms-tag"] {
+/* ---- Specs (guests/bedrooms/beds/bathrooms): reducir tamaño ----
+   ⚠ "Reubicar" no es viable solo con CSS sin reordenar el HTML de
+   Hostfully; se reduce y compacta (lo más cercano posible). */
+.hf-dbs [data-testid="information-guests-tag"],
+.hf-dbs [data-testid="information-bedrooms-tag"],
+.hf-dbs [data-testid="information-beds-tag"],
+.hf-dbs [data-testid="information-bathrooms-tag"] {
   font-size: 13px !important;
   gap: 6px !important;
 }
-[data-testid="information-guests-tag"] svg,
-[data-testid="information-bedrooms-tag"] svg,
-[data-testid="information-beds-tag"] svg,
-[data-testid="information-bathrooms-tag"] svg {
+.hf-dbs [data-testid="information-guests-tag"] svg,
+.hf-dbs [data-testid="information-bedrooms-tag"] svg,
+.hf-dbs [data-testid="information-beds-tag"] svg,
+.hf-dbs [data-testid="information-bathrooms-tag"] svg {
   width: 16px !important;
   height: 16px !important;
 }
 
 /* ---- Pestañas: subrayado activo amarillo → teal ---- */
-[data-testid="page-links"] [aria-selected="true"],
-[data-testid="page-links"] .active,
-[data-testid^="page-link-"] {
+.hf-dbs [data-testid="page-links"] [aria-selected="true"],
+.hf-dbs [data-testid="page-links"] .active,
+.hf-dbs [data-testid^="page-link-"] {
   border-color: var(--akora-teal) !important;
   color: var(--akora-text-primary) !important;
 }
 
-/* ---- Reviews: ocultar ----
-   ⚠ Plan B vía CSS. Comprobar antes si Hostfully ofrece toggle nativo.
-   Se oculta el bloque, la pestaña y las reviews en tarjetas. */
-[data-testid="property-reviews"],
-[data-testid="page-link-reviews"],
-[data-testid="property-card-reviews"] {
+/* ---- Reviews: ocultar (plan B; comprobar toggle nativo antes) ---- */
+.hf-dbs [data-testid="property-reviews"],
+.hf-dbs [data-testid="page-link-reviews"],
+.hf-dbs [data-testid="property-card-reviews"] {
   display: none !important;
 }

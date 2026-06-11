@@ -1,40 +1,34 @@
 /* =============================================
    _search-widget.css — Widget de búsqueda
-   Rol: barra Where / When / Who + botón de buscar
-   Depende de: _variables.css
+   Depende de: _variables.css · scope: .hf-dbs
    ---------------------------------------------
-   Selectores VERIFICADOS (ver docs/auditoria-selectores.md).
-   El botón circular de buscar (icon-submit-button) se MANTIENE redondo;
-   solo se recolorea. El botón "Buscar" rectangular venía en amarillo.
+   Selectores VERIFICADOS. El círculo de buscar se mantiene redondo;
+   los CAMPOS where-trigger/when/who SON <button> con data-testid y
+   deben quedar intactos (pintarlos rompía el formulario, fix v0.2.1).
    ============================================= */
 
 /* Contenedor del buscador */
-[data-testid="search-filter-component"] {
+.hf-dbs [data-testid="search-filter-component"] {
   border-radius: var(--akora-radius) !important;
 }
 
-/* Botón circular de buscar: círculo teal, icono en blanco (estaba amarillo) */
-[data-testid="icon-submit-button"] {
+/* Botón circular de buscar: círculo teal, icono blanco (estaba amarillo) */
+.hf-dbs [data-testid="icon-submit-button"] {
   background: var(--akora-teal) !important;
 }
-[data-testid="icon-submit-button"] svg,
-[data-testid="icon-submit-button"] path {
+.hf-dbs [data-testid="icon-submit-button"] svg,
+.hf-dbs [data-testid="icon-submit-button"] path {
   color: #fff !important;
   fill: currentColor !important;
 }
-[data-testid="icon-submit-button"]:hover {
+.hf-dbs [data-testid="icon-submit-button"]:hover {
   background: var(--akora-teal-dark) !important;
 }
 
-/* Botón "Buscar" rectangular (bg amarillo → teal).
-   ⚠ CLAVE: NO usar `button` a secas aquí. Los campos del buscador
-   (where-trigger, when, who) SON <button> con data-testid y deben
-   quedar transparentes; pintarlos tapaba los campos (bug v0.1/0.2.0).
-   El botón "Buscar" es el ÚNICO <button> SIN data-testid del buscador,
-   así que lo aislamos con :not([data-testid]). El calendario y demás
-   dropdowns se renderizan en portal (fuera del componente) → no les
-   afecta. Verificado en vivo contra el DOM. */
-[data-testid="search-filter-component"] button:not([data-testid]) {
+/* Botón "Buscar" (bg amarillo → teal): ÚNICO <button> SIN data-testid
+   del buscador. NO usar `button` a secas (taparía los campos). El
+   calendario va en portal (fuera del componente) → no afectado. */
+.hf-dbs [data-testid="search-filter-component"] button:not([data-testid]) {
   background: var(--akora-btn-bg) !important;
   color: var(--akora-btn-fg) !important;
   border: none !important;

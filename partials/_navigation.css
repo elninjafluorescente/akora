@@ -1,60 +1,65 @@
 /* =============================================
    _navigation.css — Header, nav y footer (site chrome)
-   Rol: barra superior + footer de booking.akora.com
    Depende de: _variables.css
    ---------------------------------------------
-   Selectores VERIFICADOS en vivo (ver docs/auditoria-selectores.md).
-   Clases sc-* descartadas (hash inestable): todo por data-testid.
-   La nav real solo tiene: logo + Home + Book Now (+ menú móvil).
+   Selectores VERIFICADOS en vivo (ver docs/auditoria-selectores.md),
+   scopeados con `.hf-dbs` (Direct Booking Site). Solo data-testid
+   (las clases sc-* son hashes inestables). La nav real tiene: logo +
+   Home + Book Now (+ menú móvil); para enlaces de menú adicionales,
+   usar Header HTML (ver ../header.html), no CSS.
    ============================================= */
 
 /* ===== HEADER ===== */
-[data-testid="common-header"] {
+.hf-dbs [data-testid="common-header"] {
   background: var(--akora-header-bg) !important;
   box-shadow: none !important;
   border-bottom: none !important;
 }
 
 /* Logo "AKORA" (estaba en amarillo) */
-[data-testid="logo-link"],
-[data-testid="logo-link"] * {
+.hf-dbs [data-testid="logo-link"],
+.hf-dbs [data-testid="logo-link"] * {
   color: var(--akora-header-fg) !important;
   letter-spacing: 2px;
 }
+/* El icono del logo puede ser un SVG con fill propio (color no basta) */
+.hf-dbs [data-testid="logo-link"] svg,
+.hf-dbs [data-testid="logo-link"] path {
+  fill: var(--akora-header-fg) !important;
+}
 
 /* Enlace Home */
-[data-testid="home-link"],
-[data-testid="home-link"] * {
+.hf-dbs [data-testid="home-link"],
+.hf-dbs [data-testid="home-link"] * {
   color: var(--akora-header-fg) !important;
 }
 
 /* Icono de menú móvil (estaba en amarillo) */
-[data-testid="mobile-menu-button"],
-[data-testid="mobile-menu-button"] * {
+.hf-dbs [data-testid="mobile-menu-button"],
+.hf-dbs [data-testid="mobile-menu-button"] * {
   color: var(--akora-header-fg) !important;
 }
 
 /* Botón Book Now (estaba en amarillo) */
-[data-testid="book-now-link"] {
+.hf-dbs [data-testid="book-now-link"] {
   background: var(--akora-btn-bg) !important;
   color: var(--akora-btn-fg) !important;
   border: none !important;
   border-radius: var(--akora-radius) !important;
   box-shadow: none !important;
 }
-[data-testid="book-now-link"]:hover {
+.hf-dbs [data-testid="book-now-link"]:hover {
   background: var(--akora-teal-dark) !important;
 }
 
-/* ===== FOOTER ===== */
-/* El fondo del footer venía en amarillo Hostfully → navy de marca. */
-[data-testid="common-footer"] {
+/* ===== FOOTER (fondo amarillo Hostfully → navy de marca) ===== */
+.hf-dbs [data-testid="common-footer"] {
   background: var(--akora-footer-bg) !important;
   color: var(--akora-footer-fg) !important;
 }
-[data-testid="common-footer"] a,
-[data-testid="common-footer-agency-email"],
-[data-testid="common-footer-agency-phone"],
-[data-testid="agency-info"] {
+.hf-dbs [data-testid="common-footer"] a,
+.hf-dbs [data-testid="common-footer-agency-email"],
+.hf-dbs [data-testid="common-footer-agency-phone"],
+.hf-dbs [data-testid="agency-info"] {
   color: var(--akora-footer-fg) !important;
 }

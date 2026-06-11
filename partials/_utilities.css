@@ -1,39 +1,37 @@
 /* =============================================
    _utilities.css — Resets globales de marca
-   Rol: anti-amarillo transversal + radius general + helpers
-   Depende de: _variables.css
+   Depende de: _variables.css · scope: .hf-dbs
    ---------------------------------------------
    El amarillo de Hostfully (#FFD60A) es color de tema vía
-   styled-components: NO se puede cazar por color en CSS, solo por los
-   data-testid de los nodos afectados (ver docs/auditoria-selectores.md).
-   Aquí va la red de seguridad; los ajustes finos están en cada partial.
+   styled-components: solo se mata por data-testid (no por color/inline).
+   Red de seguridad; los ajustes finos van en cada partial.
    ============================================= */
 
 /* ---- Anti-amarillo: nodos confirmados con #FFD60A ---- */
-[data-testid="book-now-link"],
-[data-testid="app-button"] {
+.hf-dbs [data-testid="book-now-link"],
+.hf-dbs [data-testid="app-button"] {
   background-color: var(--akora-btn-bg) !important;
   color: var(--akora-btn-fg) !important;
 }
-[data-testid="logo-link"],
-[data-testid="mobile-menu-button"] {
+.hf-dbs [data-testid="logo-link"],
+.hf-dbs [data-testid="mobile-menu-button"] {
   color: var(--akora-header-fg) !important;
 }
-[data-testid="common-footer"] {
+.hf-dbs [data-testid="common-footer"] {
   background-color: var(--akora-footer-bg) !important;
 }
 
-/* ---- Radio de esquinas a 5pt en los contenedores rectangulares ----
-   Targeted: NO tocamos el botón circular de buscar (icon-submit-button). */
-[data-testid="property-details-widget"],
-[data-testid="search-filter-component"],
-[data-testid="property-card"],
-[data-testid="book-now-link"],
-[data-testid="app-button"],
-[data-testid="property-details-widget"] input,
-[data-testid="property-details-widget"] textarea {
+/* ---- Radio 5pt en contenedores rectangulares ----
+   (NO tocamos el botón circular de buscar icon-submit-button.) */
+.hf-dbs [data-testid="property-details-widget"],
+.hf-dbs [data-testid="search-filter-component"],
+.hf-dbs [data-testid="property-card"],
+.hf-dbs [data-testid="book-now-link"],
+.hf-dbs [data-testid="app-button"],
+.hf-dbs [data-testid="property-details-widget"] input,
+.hf-dbs [data-testid="property-details-widget"] textarea {
   border-radius: var(--akora-radius) !important;
 }
 
 /* ---- Helpers ---- */
-.akora-hidden { display: none !important; }
+.hf-dbs .akora-hidden { display: none !important; }

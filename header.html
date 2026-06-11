@@ -1,27 +1,56 @@
 <!--
-  header.html — Contenido para el campo "Header HTML" de Hostfully
-  (Configuración de Agencia → White Labelling → Header HTML)
+  ============================================================
+  HEADER HTML  ·  Configuración de Agencia → White Labelling → "Header HTML"
+  ============================================================
+  Requiere Custom Domain configurado (Akora: booking.akora.com ✓).
+  ⚠ El contenido NO es restaurable: este archivo es la copia de seguridad.
+     Archívalo antes de borrar/editar en el panel.
 
-  Úsalo para:
-    - Enlaces REALES del menú coherentes con akora.com (la nav nativa
-      de Hostfully no los trae; el partial _navigation.css solo simula
-      etiquetas decorativas vía CSS, que NO son clicables).
-    - Cargar un kit de fuentes externo (p. ej. Adobe Fonts) si Akora
-      tiene Avenir/URW por Creative Cloud en lugar de .woff2 locales.
+  Qué va aquí (según el doc de Hostfully):
+   - Scripts de tracking: Meta Pixel (ver tracking/meta-pixel.html) y, si
+     no usas el campo "Google Analytics ID", el snippet GA4
+     (ver tracking/ga4.html). El Pixel de Meta se coloca en Header HTML.
+   - Carga de fuentes externas (p. ej. <link> del kit de Adobe Fonts si
+     Avenir/URW vienen por Creative Cloud).
+   - (Opcional) Enlaces de menú reales coherentes con akora.com. La nav
+     nativa solo trae Home + Book Now; estos serían enlaces REALES y
+     clicables (a diferencia de los falsos vía CSS del prototipo).
 
-  PENDIENTE de Akora:
-    - Lista definitiva de enlaces del menú de akora.com a replicar.
-    - URL del kit de Adobe Fonts (si aplica).
-
-  Sustituye los href="#" por las URLs reales antes de publicar.
+  ⚠ El contenido se AÑADE a la página. La posición exacta donde Hostfully
+     lo inyecta hay que comprobarla en vivo tras pegarlo (podemos
+     inspeccionarla y, si hace falta, ocultar/duplicados con CSS .hf-dbs).
+  PENDIENTE de Akora: lista definitiva de enlaces del menú de akora.com.
 -->
 
-<!-- Ejemplo de kit de Adobe Fonts (descomentar y poner el ID real):
+<!-- (1) Kit de fuentes externo (ejemplo, descomentar con el ID real):
 <link rel="stylesheet" href="https://use.typekit.net/XXXXXXX.css">
 -->
 
-<nav class="akora-extra-nav">
+<!-- (2) Menú real coherente con akora.com (placeholders, ajustar URLs).
+     Patrón del doc: clase propia + scope .hf-dbs. -->
+<style>
+  .hf-dbs .akora-nav-extra {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    padding: 10px 0;
+    font-family: var(--akora-font-body, sans-serif);
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: .5px;
+  }
+  .hf-dbs .akora-nav-extra a {
+    color: var(--akora-teal, #468186);
+    text-decoration: none;
+    font-weight: 600;
+  }
+</style>
+<nav class="akora-nav-extra">
+  <a href="https://akora.com/find-your-home">Find your home</a>
   <a href="https://akora.com/why-akora">Why Akora</a>
   <a href="https://akora.com/professional">Akora Professional</a>
   <a href="https://akora.com/guide">The Akora Guide</a>
 </nav>
+
+<!-- (3) Meta Pixel / GA4: pega aquí el contenido de tracking/meta-pixel.html
+     (y tracking/ga4.html si no usas el campo "Google Analytics ID"). -->

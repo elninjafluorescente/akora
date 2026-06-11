@@ -60,13 +60,40 @@ docs/notas.md             ← cuaderno interno (selectores, decisiones abiertas)
    `https://elninjafluorescente.github.io/akora/main.css`
 2. **Hostfully:** Configuración de Agencia → **White Labelling** y rellenar:
    - **Custom Domain Name:** `booking.akora.com`
-   - **CSS URL:** la URL de Pages **con versión** → `…/main.css?v=0.2.1`
+   - **CSS URL:** la URL de Pages **con versión** → `…/main.css?v=0.3.0`
    - **Favicon**, **Header HTML** ([`header.html`](header.html)),
      **Footer HTML** ([`footer.html`](footer.html)),
      **Google Analytics** ([`tracking/ga4.html`](tracking/ga4.html)),
      **Meta HTML / Header HTML** ([`tracking/meta-pixel.html`](tracking/meta-pixel.html))
 3. **Widgets embebidos** (Search / Booking / Calendar): Herramientas de
    Publicación. Ya van incrustados en `akora.com`; el repo solo los estiliza.
+
+---
+
+## Cómo aplica Hostfully el CSS y el contenido (header/footer)
+
+Basado en la doc de Hostfully ([custom CSS](https://help.hostfully.com/en/articles/8860821-set-up-custom-css) · [custom branding](https://help.hostfully.com/en/articles/8744751-set-up-your-custom-branding)).
+
+**Scope `.hf-dbs` (obligatorio).** El sitio de reservas lleva
+`<body class="hf-dbs">` (verificado en vivo). El CSS URL se aplica TANTO al
+Direct Booking Site COMO a la página de login/PMP, así que **todos nuestros
+selectores van prefijados con `.hf-dbs`** para tocar solo el sitio público.
+
+**Dos vías para aplicar CSS:**
+- **CSS URL** → nuestro `main.css` en Pages. Para la hoja completa.
+- **`<style>` inline en Footer HTML** → para overrides pequeños/críticos.
+  Ventaja: **instantáneo, esquiva la caché** de Pages. Ver [`footer.html`](footer.html).
+
+**Modificar el contenido de header/footer:**
+- Campos **Header HTML** / **Footer HTML** (requieren Custom Domain ✓).
+  Aceptan HTML (`<style>`, `<script>`, `<nav>`, `<a>`…). El contenido se
+  **añade** a la página (no reemplaza el header/footer nativo); se estila con
+  clases propias scopeadas a `.hf-dbs`. Plantillas: [`header.html`](header.html),
+  [`footer.html`](footer.html).
+- El **Meta Pixel** va en Header HTML; GA4 puede ir en el campo
+  **Google Analytics ID** o como snippet en Header HTML.
+- ⚠ **El código de Header/Footer NO es restaurable** en Hostfully: el repo
+  (`header.html`/`footer.html`) es la copia de seguridad. Archiva antes de borrar.
 
 ---
 
