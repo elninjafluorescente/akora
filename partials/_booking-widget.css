@@ -15,7 +15,7 @@
   box-shadow: none !important;
   padding: 26px 26px 28px !important;
   position: sticky !important;
-  top: 24px !important;
+  top: 104px !important;   /* mockup v2: libra la barra de búsqueda sticky */
 }
 
 /* Precio en tipografía display */
@@ -50,6 +50,14 @@
 .hf-dbs [data-testid="from-field"] svg,
 .hf-dbs [data-testid="to-field"] svg {
   color: var(--teal) !important;
+}
+
+/* Prefijo de teléfono "+34" (.ccode del mockup): pill crema con hairline */
+.hf-dbs [data-testid="countryCode"] {
+  background: var(--cream) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 3px !important;
+  color: var(--navy) !important;
 }
 
 /* Booking Note y Promo Code: reducidos (pactado) */

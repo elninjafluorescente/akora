@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.7.0  ·  Fecha: 2026-06-11
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.7.0
+   Version: v0.8.0  ·  Fecha: 2026-06-15
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.8.0
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;500;600;700;800&family=Sacramento&display=swap');
 
@@ -30,7 +30,8 @@
   --teal-tint: #E7EEEC;
   --navy:      #181E3A;   /* títulos */
   --gold:      #FFD60A;   /* acento discreto (total/subrayado) */
-  --gold-ico:  #C49600;   /* iconos de specs/amenities */
+  --gold-ico:  #C49600;   /* (retirado del mockup v2: iconos ahora en navy) */
+  --mint:      #EDF3F1;   /* lienzo de sección (teal pálido) */
   --ink:       #2E3346;   /* texto cuerpo */
   --ink-soft:  #5B6072;   /* texto secundario */
   --line:      #E7DDC6;   /* hairline cálido sobre crema */
@@ -43,9 +44,9 @@
   --maxw:   1320px;
 
   /* ---- Tipografía (stand-ins del mockup) ---- */
-  --font-display: 'Marcellus','URW Classico','Optima','Optima Nova',Palatino,serif;
+  --font-display: 'URW Classico','Marcellus','Optima','Optima Nova',Palatino,serif;
   --font-body:    'Mulish','Avenir','Avenir Next','Segoe UI',system-ui,sans-serif;
-  --font-script:  'Sacramento','Oliver Quin',cursive;
+  --font-script:  'Oliver Quin','Sacramento',cursive;
 
   /* ---- Alias compatibles con los partials existentes ---- */
   --akora-teal: var(--teal);
@@ -292,7 +293,7 @@ body.hf-dbs > div { background: var(--cream) !important; }
   box-shadow: none !important;
   padding: 26px 26px 28px !important;
   position: sticky !important;
-  top: 24px !important;
+  top: 104px !important;   /* mockup v2: libra la barra de búsqueda sticky */
 }
 
 /* Precio en tipografía display */
@@ -327,6 +328,14 @@ body.hf-dbs > div { background: var(--cream) !important; }
 .hf-dbs [data-testid="from-field"] svg,
 .hf-dbs [data-testid="to-field"] svg {
   color: var(--teal) !important;
+}
+
+/* Prefijo de teléfono "+34" (.ccode del mockup): pill crema con hairline */
+.hf-dbs [data-testid="countryCode"] {
+  background: var(--cream) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 3px !important;
+  color: var(--navy) !important;
 }
 
 /* Booking Note y Promo Code: reducidos (pactado) */
@@ -488,6 +497,18 @@ body.hf-dbs > div { background: var(--cream) !important; }
 .hf-dbs [data-testid^="image-"] {
   border-radius: var(--radius) !important;
 }
+/* Botón "View all" como overlay del mockup (cream translúcido, navy) */
+.hf-dbs [data-testid="view-all-button"] {
+  background: rgba(253, 248, 236, .94) !important;
+  color: var(--navy) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius) !important;
+  font-family: var(--font-body) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  backdrop-filter: blur(2px) !important;
+}
+.hf-dbs [data-testid="view-all-button"]:hover { background: #fff !important; }
 
 /* ---- Specs: icono dorado + separadores verticales ---- */
 .hf-dbs [data-testid="information-guests-tag"],
@@ -503,7 +524,7 @@ body.hf-dbs > div { background: var(--cream) !important; }
 .hf-dbs [data-testid="information-bedrooms-tag"] svg,
 .hf-dbs [data-testid="information-beds-tag"] svg,
 .hf-dbs [data-testid="information-bathrooms-tag"] svg {
-  color: var(--gold-ico) !important;
+  color: var(--navy) !important;   /* mockup v2: iconos en navy (antes dorado) */
   width: 17px !important; height: 17px !important;
 }
 .hf-dbs [data-testid="information-bedrooms-tag"],
@@ -598,8 +619,8 @@ body.hf-dbs > div { background: var(--cream) !important; }
 }
 .hf-dbs [data-testid="property-description"] p { color: var(--ink) !important; max-width: 62ch; }
 
-/* Amenities: iconos y triggers de categoría */
-.hf-dbs [data-testid^="amenity-"] svg { color: var(--gold-ico) !important; }
+/* Amenities: iconos y triggers de categoría (mockup v2: navy, antes dorado) */
+.hf-dbs [data-testid^="amenity-"] svg { color: var(--navy) !important; }
 .hf-dbs [data-testid^="amenity-category-trigger-"] svg,
 .hf-dbs [data-testid^="amenity-category-trigger-"] path {
   color: var(--teal) !important;

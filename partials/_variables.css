@@ -21,7 +21,8 @@
   --teal-tint: #E7EEEC;
   --navy:      #181E3A;   /* títulos */
   --gold:      #FFD60A;   /* acento discreto (total/subrayado) */
-  --gold-ico:  #C49600;   /* iconos de specs/amenities */
+  --gold-ico:  #C49600;   /* (retirado del mockup v2: iconos ahora en navy) */
+  --mint:      #EDF3F1;   /* lienzo de sección (teal pálido) */
   --ink:       #2E3346;   /* texto cuerpo */
   --ink-soft:  #5B6072;   /* texto secundario */
   --line:      #E7DDC6;   /* hairline cálido sobre crema */
@@ -34,9 +35,9 @@
   --maxw:   1320px;
 
   /* ---- Tipografía (stand-ins del mockup) ---- */
-  --font-display: 'Marcellus','URW Classico','Optima','Optima Nova',Palatino,serif;
+  --font-display: 'URW Classico','Marcellus','Optima','Optima Nova',Palatino,serif;
   --font-body:    'Mulish','Avenir','Avenir Next','Segoe UI',system-ui,sans-serif;
-  --font-script:  'Sacramento','Oliver Quin',cursive;
+  --font-script:  'Oliver Quin','Sacramento',cursive;
 
   /* ---- Alias compatibles con los partials existentes ---- */
   --akora-teal: var(--teal);

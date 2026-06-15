@@ -44,6 +44,18 @@
 .hf-dbs [data-testid^="image-"] {
   border-radius: var(--radius) !important;
 }
+/* Botón "View all" como overlay del mockup (cream translúcido, navy) */
+.hf-dbs [data-testid="view-all-button"] {
+  background: rgba(253, 248, 236, .94) !important;
+  color: var(--navy) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius) !important;
+  font-family: var(--font-body) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  backdrop-filter: blur(2px) !important;
+}
+.hf-dbs [data-testid="view-all-button"]:hover { background: #fff !important; }
 
 /* ---- Specs: icono dorado + separadores verticales ---- */
 .hf-dbs [data-testid="information-guests-tag"],
@@ -59,7 +71,7 @@
 .hf-dbs [data-testid="information-bedrooms-tag"] svg,
 .hf-dbs [data-testid="information-beds-tag"] svg,
 .hf-dbs [data-testid="information-bathrooms-tag"] svg {
-  color: var(--gold-ico) !important;
+  color: var(--navy) !important;   /* mockup v2: iconos en navy (antes dorado) */
   width: 17px !important; height: 17px !important;
 }
 .hf-dbs [data-testid="information-bedrooms-tag"],
@@ -154,8 +166,8 @@
 }
 .hf-dbs [data-testid="property-description"] p { color: var(--ink) !important; max-width: 62ch; }
 
-/* Amenities: iconos y triggers de categoría */
-.hf-dbs [data-testid^="amenity-"] svg { color: var(--gold-ico) !important; }
+/* Amenities: iconos y triggers de categoría (mockup v2: navy, antes dorado) */
+.hf-dbs [data-testid^="amenity-"] svg { color: var(--navy) !important; }
 .hf-dbs [data-testid^="amenity-category-trigger-"] svg,
 .hf-dbs [data-testid^="amenity-category-trigger-"] path {
   color: var(--teal) !important;
