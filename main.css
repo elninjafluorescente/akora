@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.9.0  ·  Fecha: 2026-06-16
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.9.0
+   Version: v0.9.1  ·  Fecha: 2026-06-16
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.9.1
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;500;600;700;800&family=Sacramento&display=swap');
 
@@ -879,6 +879,11 @@ body.hf-dbs > div { background: var(--cream) !important; }
 .hf-dbs:has([data-testid="hero-container"]) [data-testid="search-filter-component"] {
   position: relative !important;
   z-index: 1 !important;
+  /* quitar el marco del wrapper (viene de _search-widget); el pill blanco
+     interior (form) es lo único que debe verse en el hero de la home */
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 .hf-dbs:has([data-testid="hero-container"]) [data-testid="search-filter-component"] form {
   border: none !important;
