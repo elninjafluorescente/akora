@@ -82,7 +82,47 @@
   color: var(--ink-soft) !important;
   font-size: 13px !important;
 }
-.hf-dbs:has([data-testid="hero-container"]) [data-testid$="-tag"] svg { color: var(--navy) !important; }
+/* ---- Specs de tarjeta: Hostfully los pinta como texto suelto SIN icono.
+   El mockup lleva icono de línea + texto (13px ink-soft). Añadimos el
+   icono por CSS (::before con SVG inline navy) ya que el DOM no lo trae. */
+.hf-dbs:has([data-testid="hero-container"]) *:has(> [data-testid="property-card-guests-tag"]) {
+  gap: 6px 14px !important;
+  flex-wrap: wrap !important;
+}
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-guests-tag"],
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-bedrooms-tag"],
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-beds-tag"],
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-bathrooms-tag"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 13px !important;
+  color: var(--ink-soft) !important;
+}
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-guests-tag"]::before,
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-bedrooms-tag"]::before,
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-beds-tag"]::before,
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-bathrooms-tag"]::before {
+  content: "" !important;
+  width: 15px !important;
+  height: 15px !important;
+  flex: none !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+}
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-guests-tag"]::before {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23181E3A' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='8' r='3.5'/><path d='M5 20v-1a7 7 0 0 1 14 0v1'/></svg>") !important;
+}
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-bedrooms-tag"]::before {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23181E3A' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><path d='M3 19v-5h18v5'/><path d='M5 14v-3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3'/><path d='M3 20v-1M21 20v-1'/></svg>") !important;
+}
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-beds-tag"]::before {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23181E3A' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><path d='M2 18v-4h20v4'/><path d='M4 14v-2h7v2M13 14v-2h7v2'/></svg>") !important;
+}
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-bathrooms-tag"]::before {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23181E3A' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><path d='M4 13h16v2a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z'/><path d='M7 13V6.8a1.4 1.4 0 0 1 2.8 0'/><path d='M6 19.5 5 21M18 19.5 19 21'/></svg>") !important;
+}
 
 /* ---- Heading "Propiedades destacadas": serif navy + subrayado dorado ----
    `:not([data-testid])` EXCLUYE agency-sub-headline (que también es <h2>,
