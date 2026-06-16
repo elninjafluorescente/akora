@@ -1,0 +1,93 @@
+/* =============================================
+   _home.css — Home / buscador (mockup Akora Booking Home)
+   Depende de: _variables.css · scope: .hf-dbs
+   ---------------------------------------------
+   Maquetación según el mockup "Akora Booking Home", iterada EN VIVO
+   contra la home real (2026-06-15). hero-container, agency-headline y
+   agency-sub-headline son exclusivos de la home → se targetean directo;
+   los componentes COMPARTIDOS (search-filter-component, property-card,
+   h2) se scopean con `:has([data-testid="hero-container"])` para no
+   tocar la página de propiedad ni la de resultados.
+   ============================================= */
+
+/* ---- HERO: scrim + text-shadow para que el titular blanco lea ----
+   La foto del hero es background-image del propio hero-container. */
+.hf-dbs [data-testid="hero-container"] { position: relative !important; }
+.hf-dbs [data-testid="hero-container"]::after {
+  content: "" !important;
+  position: absolute !important; inset: 0 !important;
+  background: linear-gradient(180deg, rgba(24,24,22,.30) 0%, rgba(24,24,22,.30) 40%, rgba(24,24,22,.46) 100%) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+.hf-dbs [data-testid="agency-headline"],
+.hf-dbs [data-testid="agency-sub-headline"] {
+  position: relative !important;
+  z-index: 1 !important;
+  text-shadow: 0 2px 24px rgba(0,0,0,.32) !important;
+}
+
+/* ---- BUSCADOR: pill blanco flotante con sombra (solo home) ---- */
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="search-filter-component"] {
+  position: relative !important;
+  z-index: 1 !important;
+}
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="search-filter-component"] form {
+  border: none !important;
+  border-radius: 999px !important;
+  box-shadow: 0 22px 48px -20px rgba(24,30,58,.5), 0 6px 18px -10px rgba(24,30,58,.32) !important;
+}
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="where-field-container"] { border-radius: 999px 0 0 999px !important; }
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="who-field-container"]   { border-radius: 0 999px 999px 0 !important; }
+/* Labels Where/When/Who → teal uppercase. El label es el PRIMER hijo del
+   contenedor, pero a veces es <div> y a veces <label> (misma clase sc-*),
+   así que se usa `> :first-child` (cualquier tag). */
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="where-field-container"] > :first-child,
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="when-field-container"] > :first-child,
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="who-field-container"] > :first-child {
+  color: var(--teal) !important;
+  text-transform: uppercase !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: .10em !important;
+}
+
+/* ---- TARJETAS de propiedad (mockup: sin borde, imagen 5px,
+   nombre y precio en navy serif, iconos navy) ---- */
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-banner"],
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-banner"] img {
+  border-radius: 5px !important;
+}
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-public-name"] {
+  font-family: var(--font-display) !important;
+  font-size: 21px !important;
+  color: var(--navy) !important;
+  font-weight: 400 !important;
+}
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-price"] {
+  font-family: var(--font-display) !important;
+  font-size: 21px !important;
+  color: var(--navy) !important;
+}
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-price"] * { color: var(--navy) !important; }
+.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-price-line"] {
+  color: var(--ink-soft) !important;
+  font-size: 13px !important;
+}
+.hf-dbs:has([data-testid="hero-container"]) [data-testid$="-tag"] svg { color: var(--navy) !important; }
+
+/* ---- Heading "Propiedades destacadas": serif navy + subrayado dorado ---- */
+.hf-dbs:has([data-testid="hero-container"]) h2 {
+  font-family: var(--font-display) !important;
+  color: var(--navy) !important;
+  font-weight: 400 !important;
+}
+.hf-dbs:has([data-testid="hero-container"]) h2::after {
+  content: "" !important;
+  display: block !important;
+  width: 54px !important;
+  height: 3px !important;
+  background: var(--gold) !important;
+  border-radius: 2px !important;
+  margin-top: 14px !important;
+}
