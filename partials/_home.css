@@ -24,6 +24,7 @@
 .hf-dbs [data-testid="agency-sub-headline"] {
   position: relative !important;
   z-index: 1 !important;
+  color: #fff !important;   /* ambos en blanco sobre el scrim (mockup) */
   text-shadow: 0 2px 24px rgba(0,0,0,.32) !important;
 }
 
@@ -41,6 +42,8 @@
   border: none !important;
   border-radius: 999px !important;
   box-shadow: 0 22px 48px -20px rgba(24,30,58,.5), 0 6px 18px -10px rgba(24,30,58,.32) !important;
+  max-width: 880px !important;   /* form más compacto, centrado (mockup) */
+  margin: 0 auto !important;
 }
 .hf-dbs:has([data-testid="hero-container"]) [data-testid="where-field-container"] { border-radius: 999px 0 0 999px !important; }
 .hf-dbs:has([data-testid="hero-container"]) [data-testid="who-field-container"]   { border-radius: 0 999px 999px 0 !important; }
@@ -81,13 +84,15 @@
 }
 .hf-dbs:has([data-testid="hero-container"]) [data-testid$="-tag"] svg { color: var(--navy) !important; }
 
-/* ---- Heading "Propiedades destacadas": serif navy + subrayado dorado ---- */
-.hf-dbs:has([data-testid="hero-container"]) h2 {
+/* ---- Heading "Propiedades destacadas": serif navy + subrayado dorado ----
+   `:not([data-testid])` EXCLUYE agency-sub-headline (que también es <h2>,
+   pero sí tiene testid): si no, le caía el color navy y la línea dorada. */
+.hf-dbs:has([data-testid="hero-container"]) h2:not([data-testid]) {
   font-family: var(--font-display) !important;
   color: var(--navy) !important;
   font-weight: 400 !important;
 }
-.hf-dbs:has([data-testid="hero-container"]) h2::after {
+.hf-dbs:has([data-testid="hero-container"]) h2:not([data-testid])::after {
   content: "" !important;
   display: block !important;
   width: 54px !important;
