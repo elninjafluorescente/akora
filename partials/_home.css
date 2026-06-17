@@ -81,6 +81,7 @@
 .hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-price-line"] {
   color: var(--ink-soft) !important;
   font-size: 13px !important;
+  justify-content: flex-start !important;   /* precio a la izquierda (venía con justify-content:end) */
 }
 /* ---- Specs de tarjeta: Hostfully los pinta como texto suelto SIN icono.
    El mockup lleva icono de línea + texto (13px ink-soft). Añadimos el

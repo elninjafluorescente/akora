@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.9.3  ·  Fecha: 2026-06-16
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.9.3
+   Version: v0.9.4  ·  Fecha: 2026-06-17
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.9.4
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;500;600;700;800&family=Sacramento&display=swap');
 
@@ -929,6 +929,7 @@ body.hf-dbs > div { background: var(--cream) !important; }
 .hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-price-line"] {
   color: var(--ink-soft) !important;
   font-size: 13px !important;
+  justify-content: flex-start !important;   /* precio a la izquierda (venía con justify-content:end) */
 }
 /* ---- Specs de tarjeta: Hostfully los pinta como texto suelto SIN icono.
    El mockup lleva icono de línea + texto (13px ink-soft). Añadimos el
