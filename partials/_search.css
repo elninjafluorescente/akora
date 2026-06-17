@@ -13,8 +13,10 @@
 /* ---- Buscador: pill blanco (igual que la home) ---- */
 .hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="search-filter-component"] {
   border: none !important;
-  background: transparent !important;
+  border-bottom: 1px solid var(--line) !important;
+  background: var(--cream) !important;
   box-shadow: none !important;
+  padding: 26px 0 !important;   /* aire arriba/abajo del pill (banda del mockup) */
 }
 .hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="search-filter-component"] form {
   border: none !important;
@@ -48,7 +50,7 @@
   box-shadow: var(--shadow-soft) !important;
   overflow: hidden !important;
   position: sticky !important;
-  top: 100px !important;
+  top: 130px !important;   /* libra la banda del buscador (sticky, ~130px) */
 }
 
 /* ---- Botón toggle lista/mapa: teal de marca ---- */
