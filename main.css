@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.9.4  ·  Fecha: 2026-06-17
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.9.4
+   Version: v0.9.5  ·  Fecha: 2026-06-17
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.9.5
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;500;600;700;800&family=Sacramento&display=swap');
 
@@ -910,23 +910,23 @@ body.hf-dbs > div { background: var(--cream) !important; }
 
 /* ---- TARJETAS de propiedad (mockup: sin borde, imagen 5px,
    nombre y precio en navy serif, iconos navy) ---- */
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-banner"],
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-banner"] img {
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-banner"],
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-banner"] img {
   border-radius: 5px !important;
 }
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-public-name"] {
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-public-name"] {
   font-family: var(--font-display) !important;
   font-size: 21px !important;
   color: var(--navy) !important;
   font-weight: 400 !important;
 }
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-price"] {
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-price"] {
   font-family: var(--font-display) !important;
   font-size: 21px !important;
   color: var(--navy) !important;
 }
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-price"] * { color: var(--navy) !important; }
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-price-line"] {
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-price"] * { color: var(--navy) !important; }
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-price-line"] {
   color: var(--ink-soft) !important;
   font-size: 13px !important;
   justify-content: flex-start !important;   /* precio a la izquierda (venía con justify-content:end) */
@@ -934,24 +934,24 @@ body.hf-dbs > div { background: var(--cream) !important; }
 /* ---- Specs de tarjeta: Hostfully los pinta como texto suelto SIN icono.
    El mockup lleva icono de línea + texto (13px ink-soft). Añadimos el
    icono por CSS (::before con SVG inline navy) ya que el DOM no lo trae. */
-.hf-dbs:has([data-testid="hero-container"]) *:has(> [data-testid="property-card-guests-tag"]) {
+.hf-dbs:has([data-testid="property-card"]) *:has(> [data-testid="property-card-guests-tag"]) {
   gap: 6px 14px !important;
   flex-wrap: wrap !important;
 }
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-guests-tag"],
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-bedrooms-tag"],
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-beds-tag"],
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-bathrooms-tag"] {
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-guests-tag"],
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-bedrooms-tag"],
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-beds-tag"],
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-bathrooms-tag"] {
   display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
   font-size: 13px !important;
   color: var(--ink-soft) !important;
 }
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-guests-tag"]::before,
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-bedrooms-tag"]::before,
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-beds-tag"]::before,
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-bathrooms-tag"]::before {
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-guests-tag"]::before,
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-bedrooms-tag"]::before,
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-beds-tag"]::before,
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-bathrooms-tag"]::before {
   content: "" !important;
   width: 15px !important;
   height: 15px !important;
@@ -960,16 +960,16 @@ body.hf-dbs > div { background: var(--cream) !important; }
   background-position: center !important;
   background-size: contain !important;
 }
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-guests-tag"]::before {
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-guests-tag"]::before {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23181E3A' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='8' r='3.5'/><path d='M5 20v-1a7 7 0 0 1 14 0v1'/></svg>") !important;
 }
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-bedrooms-tag"]::before {
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-bedrooms-tag"]::before {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23181E3A' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><path d='M3 19v-5h18v5'/><path d='M5 14v-3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3'/><path d='M3 20v-1M21 20v-1'/></svg>") !important;
 }
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-beds-tag"]::before {
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-beds-tag"]::before {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23181E3A' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><path d='M2 18v-4h20v4'/><path d='M4 14v-2h7v2M13 14v-2h7v2'/></svg>") !important;
 }
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="property-card-bathrooms-tag"]::before {
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-bathrooms-tag"]::before {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23181E3A' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><path d='M4 13h16v2a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z'/><path d='M7 13V6.8a1.4 1.4 0 0 1 2.8 0'/><path d='M6 19.5 5 21M18 19.5 19 21'/></svg>") !important;
 }
 
@@ -990,4 +990,67 @@ body.hf-dbs > div { background: var(--cream) !important; }
   border-radius: 2px !important;
   margin-top: 14px !important;
 }
+
+/* ===== _search ===== */
+/* =============================================
+   _search.css — Resultados de búsqueda (/search) (mockup Akora Booking Search)
+   Depende de: _variables.css · scope: .hf-dbs
+   ---------------------------------------------
+   La /search ya es un split nativo: contenedor grid (lista | mapa),
+   search-properties-grid (tarjetas) a la izquierda y map (Google real)
+   a la derecha. Las TARJETAS se estilan en _home.css con scope
+   `:has(property-card)` (compartido home+search). Aquí va lo propio de
+   esta página: buscador pill, grid 2col, mapa redondeado/sticky, toggle.
+   Scope: `:has([data-testid="search-properties-grid"])` (solo /search).
+   ============================================= */
+
+/* ---- Buscador: pill blanco (igual que la home) ---- */
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="search-filter-component"] {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="search-filter-component"] form {
+  border: none !important;
+  border-radius: 999px !important;
+  box-shadow: 0 10px 28px -18px rgba(24,30,58,.4) !important;
+  max-width: 920px !important;
+  margin: 0 auto !important;
+}
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="where-field-container"] { border-radius: 999px 0 0 999px !important; }
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="who-field-container"]   { border-radius: 0 999px 999px 0 !important; }
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="where-field-container"] > :first-child,
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="when-field-container"] > :first-child,
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="who-field-container"] > :first-child {
+  color: var(--teal) !important;
+  text-transform: uppercase !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: .10em !important;
+}
+
+/* ---- Grid de resultados: 2 columnas (tarjetas más grandes, como el mockup) ---- */
+.hf-dbs [data-testid="search-properties-grid"] {
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 34px 26px !important;
+}
+
+/* ---- Mapa real: redondeado, hairline, sombra suave, sticky ---- */
+.hf-dbs [data-testid="map"] {
+  border-radius: 8px !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: var(--shadow-soft) !important;
+  overflow: hidden !important;
+  position: sticky !important;
+  top: 100px !important;
+}
+
+/* ---- Botón toggle lista/mapa: teal de marca ---- */
+.hf-dbs [data-testid="toggle-view-button"] {
+  background: var(--teal) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--radius) !important;
+}
+.hf-dbs [data-testid="toggle-view-button"]:hover { background: var(--teal-700) !important; }
 

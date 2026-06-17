@@ -1,0 +1,61 @@
+/* =============================================
+   _search.css — Resultados de búsqueda (/search) (mockup Akora Booking Search)
+   Depende de: _variables.css · scope: .hf-dbs
+   ---------------------------------------------
+   La /search ya es un split nativo: contenedor grid (lista | mapa),
+   search-properties-grid (tarjetas) a la izquierda y map (Google real)
+   a la derecha. Las TARJETAS se estilan en _home.css con scope
+   `:has(property-card)` (compartido home+search). Aquí va lo propio de
+   esta página: buscador pill, grid 2col, mapa redondeado/sticky, toggle.
+   Scope: `:has([data-testid="search-properties-grid"])` (solo /search).
+   ============================================= */
+
+/* ---- Buscador: pill blanco (igual que la home) ---- */
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="search-filter-component"] {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="search-filter-component"] form {
+  border: none !important;
+  border-radius: 999px !important;
+  box-shadow: 0 10px 28px -18px rgba(24,30,58,.4) !important;
+  max-width: 920px !important;
+  margin: 0 auto !important;
+}
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="where-field-container"] { border-radius: 999px 0 0 999px !important; }
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="who-field-container"]   { border-radius: 0 999px 999px 0 !important; }
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="where-field-container"] > :first-child,
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="when-field-container"] > :first-child,
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="who-field-container"] > :first-child {
+  color: var(--teal) !important;
+  text-transform: uppercase !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: .10em !important;
+}
+
+/* ---- Grid de resultados: 2 columnas (tarjetas más grandes, como el mockup) ---- */
+.hf-dbs [data-testid="search-properties-grid"] {
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 34px 26px !important;
+}
+
+/* ---- Mapa real: redondeado, hairline, sombra suave, sticky ---- */
+.hf-dbs [data-testid="map"] {
+  border-radius: 8px !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: var(--shadow-soft) !important;
+  overflow: hidden !important;
+  position: sticky !important;
+  top: 100px !important;
+}
+
+/* ---- Botón toggle lista/mapa: teal de marca ---- */
+.hf-dbs [data-testid="toggle-view-button"] {
+  background: var(--teal) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--radius) !important;
+}
+.hf-dbs [data-testid="toggle-view-button"]:hover { background: var(--teal-700) !important; }
