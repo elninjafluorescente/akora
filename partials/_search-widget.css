@@ -30,6 +30,20 @@
   margin: 0 auto !important;
   border: none !important;
   border-radius: 999px !important;
+  /* cápsula FINA (mockup .bk-search: 64px, campos de 50px centrados) */
+  height: 64px !important;
+  align-items: center !important;
+  padding: 0 7px 0 5px !important;
+}
+.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="where-field-container"],
+.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"],
+.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="who-field-container"] {
+  height: 50px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 1px !important;
+  padding: 0 24px !important;
 }
 .hf-dbs [data-testid="search-filter-component"] [data-testid="where-field-container"] > :first-child,
 .hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"] > :first-child,

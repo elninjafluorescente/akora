@@ -49,11 +49,15 @@
 .hf-dbs [data-testid="desktop-images-grid"] > div { gap: 10px !important; }
 .hf-dbs [data-testid="desktop-images-grid"] > div > div:has(> [data-testid="main-image"]) { flex: 1.5 1 0 !important; }
 .hf-dbs [data-testid="desktop-images-grid"] > div > div:not(:has(> [data-testid="main-image"])) { flex: 1 1 0 !important; gap: 10px !important; }
-.hf-dbs [data-testid="desktop-images-grid"] img,
-.hf-dbs [data-testid="main-image"],
-.hf-dbs [data-testid^="image-"],
-.hf-dbs [data-testid="desktop-images-grid"] div:has(> img) {
-  border-radius: 5px !important;
+.hf-dbs.hf-dbs.hf-dbs [data-testid="desktop-images-grid"] img,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="main-image"],
+.hf-dbs.hf-dbs.hf-dbs [data-testid^="image-"],
+.hf-dbs.hf-dbs.hf-dbs [data-testid="desktop-images-grid"] div:has(> img) {
+  /* longhands: el nativo redondea por-esquina las exteriores con radios grandes */
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+  border-bottom-left-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
   overflow: hidden !important;
 }
 /* Botón "View all" como overlay del mockup (cream translúcido, navy) */

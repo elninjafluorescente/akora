@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.11.1  ·  Fecha: 2026-07-07
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.11.1
+   Version: v0.11.2  ·  Fecha: 2026-07-07
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.11.2
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;500;600;700;800&family=Sacramento&display=swap');
 
@@ -264,6 +264,20 @@ body.hf-dbs > div { background: var(--cream) !important; }
   margin: 0 auto !important;
   border: none !important;
   border-radius: 999px !important;
+  /* cápsula FINA (mockup .bk-search: 64px, campos de 50px centrados) */
+  height: 64px !important;
+  align-items: center !important;
+  padding: 0 7px 0 5px !important;
+}
+.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="where-field-container"],
+.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"],
+.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="who-field-container"] {
+  height: 50px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 1px !important;
+  padding: 0 24px !important;
 }
 .hf-dbs [data-testid="search-filter-component"] [data-testid="where-field-container"] > :first-child,
 .hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"] > :first-child,
@@ -574,11 +588,15 @@ body.hf-dbs > div { background: var(--cream) !important; }
 .hf-dbs [data-testid="desktop-images-grid"] > div { gap: 10px !important; }
 .hf-dbs [data-testid="desktop-images-grid"] > div > div:has(> [data-testid="main-image"]) { flex: 1.5 1 0 !important; }
 .hf-dbs [data-testid="desktop-images-grid"] > div > div:not(:has(> [data-testid="main-image"])) { flex: 1 1 0 !important; gap: 10px !important; }
-.hf-dbs [data-testid="desktop-images-grid"] img,
-.hf-dbs [data-testid="main-image"],
-.hf-dbs [data-testid^="image-"],
-.hf-dbs [data-testid="desktop-images-grid"] div:has(> img) {
-  border-radius: 5px !important;
+.hf-dbs.hf-dbs.hf-dbs [data-testid="desktop-images-grid"] img,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="main-image"],
+.hf-dbs.hf-dbs.hf-dbs [data-testid^="image-"],
+.hf-dbs.hf-dbs.hf-dbs [data-testid="desktop-images-grid"] div:has(> img) {
+  /* longhands: el nativo redondea por-esquina las exteriores con radios grandes */
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+  border-bottom-left-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
   overflow: hidden !important;
 }
 /* Botón "View all" como overlay del mockup (cream translúcido, navy) */
