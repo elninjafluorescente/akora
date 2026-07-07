@@ -20,36 +20,77 @@
   box-shadow: none !important;
 }
 
-/* Botón de buscar → CTA dorado "Find your home" (revisión jul-2026 .bk-cta:
-   pill dorado, texto navy 13px/700, lupa navy). El texto se inyecta con
-   ::after porque el botón nativo solo trae el icono. */
-.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] {
-  width: auto !important;
-  height: 44px !important;
+/* ---- Cápsula del buscador (revisión jul-2026 .bk-search) ----
+   Pill blanco 880px centrado; labels teal 9.5px uppercase; separadores
+   finos entre campos; lupa TEAL suelta + CTA pill DORADO "Find your
+   home →" (texto inyectado con ::after — el botón nativo solo trae la
+   lupa). Especificidad x4: el tema nativo gana a selectores menores. */
+.hf-dbs [data-testid="search-filter-component"] form {
+  max-width: 880px !important;
+  margin: 0 auto !important;
+  border: none !important;
   border-radius: 999px !important;
-  background: var(--gold) !important;
+}
+.hf-dbs [data-testid="search-filter-component"] [data-testid="where-field-container"] > :first-child,
+.hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"] > :first-child,
+.hf-dbs [data-testid="search-filter-component"] [data-testid="who-field-container"] > :first-child {
+  color: var(--teal) !important;
+  text-transform: uppercase !important;
+  font-size: 9.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: .15em !important;
+}
+.hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"],
+.hf-dbs [data-testid="search-filter-component"] [data-testid="who-field-container"] { position: relative !important; }
+.hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"]::before,
+.hf-dbs [data-testid="search-filter-component"] [data-testid="who-field-container"]::before {
+  content: "" !important;
+  position: absolute !important; left: 0 !important; top: 13px !important; bottom: 13px !important;
+  width: 1px !important;
+  background: var(--line-2) !important;
+}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] {
+  width: auto !important;
+  height: auto !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 8px !important;
-  padding: 0 18px !important;
-  box-shadow: 0 6px 16px -8px rgba(24,30,58,.34) !important;
+  gap: 14px !important;
+  padding: 0 10px 0 6px !important;
+  margin-left: 6px !important;
 }
-.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] svg,
-.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] path {
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]:focus,
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+/* La lupa nativa es de FILL (no stroke): pintarla teal en ambos */
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] svg,
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] path {
+  fill: var(--teal) !important;
+  stroke: var(--teal) !important;
+  color: var(--teal) !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]::after {
+  content: "Find your home  \2192" !important;
+  background: var(--gold) !important;
   color: var(--navy) !important;
-  stroke: var(--navy) !important;
-  fill: none !important;
-}
-.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]::after {
-  content: "Find your home" !important;
   font-family: var(--font-body) !important;
   font-weight: 700 !important;
   font-size: 13px !important;
   letter-spacing: .01em !important;
-  color: var(--navy) !important;
+  padding: 13px 18px !important;
+  border-radius: 999px !important;
   white-space: nowrap !important;
+  box-shadow: 0 6px 16px -8px rgba(24,30,58,.34) !important;
 }
-.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]:hover { background: #EAC400 !important; }
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]:hover::after { background: #EAC400 !important; }
 
 /* Botón "Buscar" (bg amarillo → teal): ÚNICO <button> SIN data-testid
    del buscador. NO usar `button` a secas (taparía los campos). El

@@ -35,12 +35,22 @@
 .hf-dbs img[data-testid="agency-logo"] {
   filter: brightness(0) saturate(100%) invert(45%) sepia(18%) saturate(746%) hue-rotate(135deg) brightness(91%) contrast(88%) !important;
 }
-
-/* Enlace Home */
-.hf-dbs [data-testid="home-link"],
-.hf-dbs [data-testid="home-link"] * {
-  color: var(--akora-header-fg) !important;
+/* Lockup a 50px (revisión jul-2026 .bk-brand img) */
+.hf-dbs [data-testid="logo-link"] img {
+  width: 50px !important;
+  height: 50px !important;
 }
+
+/* Enlace Home: navy compacto (revisión jul-2026 .bk-nav a) */
+.hf-dbs.hf-dbs.hf-dbs [data-testid="home-link"],
+.hf-dbs.hf-dbs.hf-dbs [data-testid="home-link"] * {
+  color: var(--navy) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: .06em !important;
+}
+.hf-dbs.hf-dbs.hf-dbs [data-testid="home-link"]:hover,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="home-link"]:hover * { color: var(--teal) !important; }
 
 /* Icono de menú móvil (estaba en amarillo) */
 .hf-dbs [data-testid="mobile-menu-button"],
@@ -48,17 +58,9 @@
   color: var(--akora-header-fg) !important;
 }
 
-/* Botón Book Now (estaba en amarillo) — pill (revisión jul-2026) */
-.hf-dbs.hf-dbs.hf-dbs [data-testid="book-now-link"] {
-  background: var(--akora-btn-bg) !important;
-  color: var(--akora-btn-fg) !important;
-  border: none !important;
-  border-radius: 999px !important;
-  box-shadow: none !important;
-}
-.hf-dbs.hf-dbs.hf-dbs [data-testid="book-now-link"]:hover {
-  background: var(--akora-teal-dark) !important;
-}
+/* Botón Book Now del header: OCULTO (revisión jul-2026: la cabecera del
+   booking lleva solo logo + Home; la reserva vive en el widget/CTA). */
+.hf-dbs.hf-dbs.hf-dbs [data-testid="book-now-link"] { display: none !important; }
 
 /* ===== FOOTER (fondo amarillo Hostfully → navy de marca) ===== */
 .hf-dbs [data-testid="common-footer"] {

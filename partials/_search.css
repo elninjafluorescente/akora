@@ -22,20 +22,11 @@
   border: none !important;
   border-radius: 999px !important;
   box-shadow: 0 10px 28px -18px rgba(24,30,58,.4) !important;
-  max-width: 920px !important;
+  max-width: 880px !important;
   margin: 0 auto !important;
 }
 .hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="where-field-container"] { border-radius: 999px 0 0 999px !important; }
 .hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="who-field-container"]   { border-radius: 0 999px 999px 0 !important; }
-.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="where-field-container"] > :first-child,
-.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="when-field-container"] > :first-child,
-.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="who-field-container"] > :first-child {
-  color: var(--teal) !important;
-  text-transform: uppercase !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  letter-spacing: .10em !important;
-}
 
 /* ---- Grid de resultados: 2 columnas (tarjetas más grandes, como el mockup) ---- */
 .hf-dbs [data-testid="search-properties-grid"] {

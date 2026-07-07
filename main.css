@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.10.2  ·  Fecha: 2026-07-07
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.10.2
+   Version: v0.11.0  ·  Fecha: 2026-07-07
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.11.0
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;500;600;700;800&family=Sacramento&display=swap');
 
@@ -192,12 +192,22 @@ body.hf-dbs > div { background: var(--cream) !important; }
 .hf-dbs img[data-testid="agency-logo"] {
   filter: brightness(0) saturate(100%) invert(45%) sepia(18%) saturate(746%) hue-rotate(135deg) brightness(91%) contrast(88%) !important;
 }
-
-/* Enlace Home */
-.hf-dbs [data-testid="home-link"],
-.hf-dbs [data-testid="home-link"] * {
-  color: var(--akora-header-fg) !important;
+/* Lockup a 50px (revisión jul-2026 .bk-brand img) */
+.hf-dbs [data-testid="logo-link"] img {
+  width: 50px !important;
+  height: 50px !important;
 }
+
+/* Enlace Home: navy compacto (revisión jul-2026 .bk-nav a) */
+.hf-dbs.hf-dbs.hf-dbs [data-testid="home-link"],
+.hf-dbs.hf-dbs.hf-dbs [data-testid="home-link"] * {
+  color: var(--navy) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: .06em !important;
+}
+.hf-dbs.hf-dbs.hf-dbs [data-testid="home-link"]:hover,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="home-link"]:hover * { color: var(--teal) !important; }
 
 /* Icono de menú móvil (estaba en amarillo) */
 .hf-dbs [data-testid="mobile-menu-button"],
@@ -205,17 +215,9 @@ body.hf-dbs > div { background: var(--cream) !important; }
   color: var(--akora-header-fg) !important;
 }
 
-/* Botón Book Now (estaba en amarillo) — pill (revisión jul-2026) */
-.hf-dbs.hf-dbs.hf-dbs [data-testid="book-now-link"] {
-  background: var(--akora-btn-bg) !important;
-  color: var(--akora-btn-fg) !important;
-  border: none !important;
-  border-radius: 999px !important;
-  box-shadow: none !important;
-}
-.hf-dbs.hf-dbs.hf-dbs [data-testid="book-now-link"]:hover {
-  background: var(--akora-teal-dark) !important;
-}
+/* Botón Book Now del header: OCULTO (revisión jul-2026: la cabecera del
+   booking lleva solo logo + Home; la reserva vive en el widget/CTA). */
+.hf-dbs.hf-dbs.hf-dbs [data-testid="book-now-link"] { display: none !important; }
 
 /* ===== FOOTER (fondo amarillo Hostfully → navy de marca) ===== */
 .hf-dbs [data-testid="common-footer"] {
@@ -252,36 +254,77 @@ body.hf-dbs > div { background: var(--cream) !important; }
   box-shadow: none !important;
 }
 
-/* Botón de buscar → CTA dorado "Find your home" (revisión jul-2026 .bk-cta:
-   pill dorado, texto navy 13px/700, lupa navy). El texto se inyecta con
-   ::after porque el botón nativo solo trae el icono. */
-.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] {
-  width: auto !important;
-  height: 44px !important;
+/* ---- Cápsula del buscador (revisión jul-2026 .bk-search) ----
+   Pill blanco 880px centrado; labels teal 9.5px uppercase; separadores
+   finos entre campos; lupa TEAL suelta + CTA pill DORADO "Find your
+   home →" (texto inyectado con ::after — el botón nativo solo trae la
+   lupa). Especificidad x4: el tema nativo gana a selectores menores. */
+.hf-dbs [data-testid="search-filter-component"] form {
+  max-width: 880px !important;
+  margin: 0 auto !important;
+  border: none !important;
   border-radius: 999px !important;
-  background: var(--gold) !important;
+}
+.hf-dbs [data-testid="search-filter-component"] [data-testid="where-field-container"] > :first-child,
+.hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"] > :first-child,
+.hf-dbs [data-testid="search-filter-component"] [data-testid="who-field-container"] > :first-child {
+  color: var(--teal) !important;
+  text-transform: uppercase !important;
+  font-size: 9.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: .15em !important;
+}
+.hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"],
+.hf-dbs [data-testid="search-filter-component"] [data-testid="who-field-container"] { position: relative !important; }
+.hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"]::before,
+.hf-dbs [data-testid="search-filter-component"] [data-testid="who-field-container"]::before {
+  content: "" !important;
+  position: absolute !important; left: 0 !important; top: 13px !important; bottom: 13px !important;
+  width: 1px !important;
+  background: var(--line-2) !important;
+}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] {
+  width: auto !important;
+  height: auto !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 8px !important;
-  padding: 0 18px !important;
-  box-shadow: 0 6px 16px -8px rgba(24,30,58,.34) !important;
+  gap: 14px !important;
+  padding: 0 10px 0 6px !important;
+  margin-left: 6px !important;
 }
-.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] svg,
-.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] path {
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]:focus,
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+/* La lupa nativa es de FILL (no stroke): pintarla teal en ambos */
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] svg,
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] path {
+  fill: var(--teal) !important;
+  stroke: var(--teal) !important;
+  color: var(--teal) !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]::after {
+  content: "Find your home  \2192" !important;
+  background: var(--gold) !important;
   color: var(--navy) !important;
-  stroke: var(--navy) !important;
-  fill: none !important;
-}
-.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]::after {
-  content: "Find your home" !important;
   font-family: var(--font-body) !important;
   font-weight: 700 !important;
   font-size: 13px !important;
   letter-spacing: .01em !important;
-  color: var(--navy) !important;
+  padding: 13px 18px !important;
+  border-radius: 999px !important;
   white-space: nowrap !important;
+  box-shadow: 0 6px 16px -8px rgba(24,30,58,.34) !important;
 }
-.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]:hover { background: #EAC400 !important; }
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]:hover::after { background: #EAC400 !important; }
 
 /* Botón "Buscar" (bg amarillo → teal): ÚNICO <button> SIN data-testid
    del buscador. NO usar `button` a secas (taparía los campos). El
@@ -585,7 +628,7 @@ body.hf-dbs > div { background: var(--cream) !important; }
   border-bottom: 1px solid var(--line) !important;
   border-radius: 5px 5px 0 0 !important;
   padding: 0 22px !important;
-  box-shadow: var(--shadow-soft) !important;
+  box-shadow: none !important;   /* fino: sin sombra, solo hairlines */
 }
 .hf-dbs [data-testid="page-links"] ul {
   display: flex !important; gap: 6px !important;
@@ -641,7 +684,7 @@ body.hf-dbs > div { background: var(--cream) !important; }
   margin: 0 !important;
   padding: 30px 44px !important;
   max-width: none !important;
-  box-shadow: var(--shadow-soft) !important;
+  box-shadow: none !important;
 }
 .hf-dbs [data-testid="property-description"] { padding-top: 38px !important; }
 .hf-dbs [data-testid="property-amenities"],
@@ -952,18 +995,6 @@ body.hf-dbs > div { background: var(--cream) !important; }
 }
 .hf-dbs:has([data-testid="hero-container"]) [data-testid="where-field-container"] { border-radius: 999px 0 0 999px !important; }
 .hf-dbs:has([data-testid="hero-container"]) [data-testid="who-field-container"]   { border-radius: 0 999px 999px 0 !important; }
-/* Labels Where/When/Who → teal uppercase. El label es el PRIMER hijo del
-   contenedor, pero a veces es <div> y a veces <label> (misma clase sc-*),
-   así que se usa `> :first-child` (cualquier tag). */
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="where-field-container"] > :first-child,
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="when-field-container"] > :first-child,
-.hf-dbs:has([data-testid="hero-container"]) [data-testid="who-field-container"] > :first-child {
-  color: var(--teal) !important;
-  text-transform: uppercase !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  letter-spacing: .10em !important;
-}
 
 /* ---- TARJETAS de propiedad (mockup: sin borde, imagen 5px,
    nombre y precio en navy serif, iconos navy) ---- */
@@ -1073,20 +1104,11 @@ body.hf-dbs > div { background: var(--cream) !important; }
   border: none !important;
   border-radius: 999px !important;
   box-shadow: 0 10px 28px -18px rgba(24,30,58,.4) !important;
-  max-width: 920px !important;
+  max-width: 880px !important;
   margin: 0 auto !important;
 }
 .hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="where-field-container"] { border-radius: 999px 0 0 999px !important; }
 .hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="who-field-container"]   { border-radius: 0 999px 999px 0 !important; }
-.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="where-field-container"] > :first-child,
-.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="when-field-container"] > :first-child,
-.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="who-field-container"] > :first-child {
-  color: var(--teal) !important;
-  text-transform: uppercase !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  letter-spacing: .10em !important;
-}
 
 /* ---- Grid de resultados: 2 columnas (tarjetas más grandes, como el mockup) ---- */
 .hf-dbs [data-testid="search-properties-grid"] {
