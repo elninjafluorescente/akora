@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.11.2  ·  Fecha: 2026-07-07
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.11.2
+   Version: v0.11.3  ·  Fecha: 2026-07-07
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.11.3
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;500;600;700;800&family=Sacramento&display=swap');
 
@@ -598,6 +598,12 @@ body.hf-dbs > div { background: var(--cream) !important; }
   border-bottom-left-radius: 5px !important;
   border-bottom-right-radius: 5px !important;
   overflow: hidden !important;
+}
+/* El wrapper SOBRE la galeria (sin testid) recorta el collage con
+   border-radius:16px + overflow:hidden -> esquinas EXTERIORES mas
+   redondas que las interiores. Se iguala a 5px. */
+.hf-dbs.hf-dbs.hf-dbs div:has(> [data-testid="desktop-images-grid"]) {
+  border-radius: 5px !important;
 }
 /* Botón "View all" como overlay del mockup (cream translúcido, navy) */
 .hf-dbs [data-testid="view-all-button"] {

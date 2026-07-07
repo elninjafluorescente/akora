@@ -60,6 +60,12 @@
   border-bottom-right-radius: 5px !important;
   overflow: hidden !important;
 }
+/* El wrapper SOBRE la galeria (sin testid) recorta el collage con
+   border-radius:16px + overflow:hidden -> esquinas EXTERIORES mas
+   redondas que las interiores. Se iguala a 5px. */
+.hf-dbs.hf-dbs.hf-dbs div:has(> [data-testid="desktop-images-grid"]) {
+  border-radius: 5px !important;
+}
 /* Botón "View all" como overlay del mockup (cream translúcido, navy) */
 .hf-dbs [data-testid="view-all-button"] {
   background: rgba(253, 248, 236, .94) !important;
