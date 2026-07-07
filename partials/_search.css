@@ -16,7 +16,7 @@
   border-bottom: 1px solid var(--line) !important;
   background: var(--cream) !important;
   box-shadow: none !important;
-  padding: 26px 0 !important;   /* aire arriba/abajo del pill (banda del mockup) */
+  padding: 18px 0 !important;   /* aire arriba/abajo del pill (banda del mockup) */
 }
 .hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="search-filter-component"] form {
   border: none !important;

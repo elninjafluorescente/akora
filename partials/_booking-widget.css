@@ -15,7 +15,7 @@
   box-shadow: none !important;
   padding: 26px 26px 28px !important;
   position: sticky !important;
-  top: 104px !important;   /* mockup v2: libra la barra de búsqueda sticky */
+  top: 120px !important;   /* libra la banda del buscador con aire (18px x2) */
 }
 
 /* Precio en tipografía display */
