@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regueros I — Akora</title>
+<link rel="stylesheet" href="akora.css">
+<link rel="stylesheet" href="booking.css">
+<template id="__bundler_thumbnail" data-bg-color="#FDF8EC">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#FDF8EC"/>
+    <g fill="none" stroke="#468186" stroke-width="14" stroke-linejoin="round">
+      <path d="M600 300 L690 470 L510 470 Z"/>
+      <path d="M600 300 L600 470 M555 385 L645 385"/>
+    </g>
+    <text x="600" y="560" text-anchor="middle" font-family="Georgia, serif" font-size="60" letter-spacing="14" fill="#181E3A">AKORA</text>
+  </svg>
+</template>
+<style>
+  /* ============ PROPERTY PAGE ============ */
+  .page{padding-bottom:8px;}
+
+  /* breadcrumb */
+  .crumb{max-width:var(--maxw);margin:0 auto;padding:22px 32px 0;
+    font-size:13px;color:var(--ink-soft);display:flex;align-items:center;gap:9px;}
+  .crumb a{color:var(--ink-soft);}
+  .crumb a:hover{color:var(--teal);}
+  .crumb .sep{opacity:.5;}
+
+  /* gallery */
+  .gallery{
+    max-width:var(--maxw);margin:24px auto 0;padding:0 32px;
+    display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:1fr 1fr;
+    gap:10px;height:476px;
+  }
+  .gallery figure{margin:0;overflow:hidden;border-radius:4px;position:relative;background:var(--cream-3);}
+  .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .gallery figure:hover img{transform:scale(1.035);}
+  .gallery .g-hero{grid-row:1 / 3;}
+  .show-all{
+    position:absolute;right:14px;bottom:14px;
+    background:rgba(253,248,236,.94);color:var(--navy);
+    font-family:var(--font-body);font-size:13px;font-weight:700;
+    border:1px solid var(--line);border-radius:4px;padding:9px 15px;cursor:pointer;
+    display:flex;align-items:center;gap:8px;backdrop-filter:blur(2px);
+  }
+  .show-all:hover{background:#fff;}
+
+  /* title block */
+  .titleblock{max-width:var(--maxw);margin:22px auto 0;padding:0 32px;}
+  .titleblock .eyebrow{margin-bottom:11px;}
+  .titleblock h1{font-size:clamp(40px,5vw,56px);line-height:1.02;}
+
+  /* align booking header + search band to the property container width */
+  .bk-header__in,.bk-searchband__in{max-width:var(--maxw);}
+
+  /* location + features row, sitting just under the gallery */
+  .loc-row{
+    max-width:var(--maxw);margin:18px auto 0;padding:0 32px;
+    display:flex;align-items:center;justify-content:space-between;gap:18px 28px;flex-wrap:wrap;
+  }
+  .loc{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+    font-size:13px;font-weight:600;color:var(--ink-soft);letter-spacing:.01em;}
+  .loc svg{width:15px;height:15px;color:var(--teal);fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none;}
+  .features{
+    display:flex;align-items:center;gap:0;flex-wrap:wrap;
+  }
+  .loc-row .features{margin-top:0;}
+  .feat{display:flex;align-items:center;gap:8px;color:var(--ink);font-size:14.5px;font-weight:500;white-space:nowrap;}
+  .feat .icon{width:17px;height:17px;color:var(--navy);stroke-width:1.9;}
+  .feat + .feat{margin-left:22px;padding-left:22px;border-left:1px solid var(--line);}
+
+  /* layout */
+  .layout{
+    max-width:var(--maxw);margin:34px auto 0;padding:0 32px;
+    display:grid;grid-template-columns:minmax(0,1fr) 372px;gap:64px;align-items:start;
+  }
+
+  /* DOSSIER — bordered card with drop shadow */
+  .dossier{
+    background:var(--surface);
+    border:1px solid var(--line-cool);
+    border-radius:5px;
+    box-shadow:var(--shadow-card);
+    overflow:hidden;
+  }
+  .tabs{
+    display:flex;gap:6px;padding:0 22px;
+    border-bottom:1px solid var(--line);
+  }
+  .tab{
+    font-family:var(--font-body);font-size:13.5px;font-weight:700;letter-spacing:.04em;
+    color:var(--ink-soft);background:none;border:none;cursor:pointer;
+    padding:15px 12px;position:relative;
+    transition:color .15s;
+  }
+  .tab::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:1.5px;background:var(--teal);opacity:0;transition:opacity .15s;}
+  .tab:hover{color:var(--navy);}
+  .tab.active{color:var(--teal);}
+  .tab.active::after{opacity:1;}
+
+  .tabpanel{display:none;padding:38px 44px 44px;}
+  .tabpanel.active{display:block;}
+
+  .sect + .sect{margin-top:30px;padding-top:30px;border-top:1px solid var(--line-2);}
+  .sect .eyebrow{margin-bottom:9px;}
+  .sect h2{font-size:25px;line-height:1.1;margin-bottom:14px;}
+  .sect p{margin:0 0 14px;color:var(--ink);max-width:62ch;}
+  .sect p:last-child{margin-bottom:0;}
+  .sect .lead{color:var(--ink);font-size:16.5px;}
+
+  /* amenities grid */
+  .amen-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 34px;}
+  .amen{display:flex;align-items:center;gap:13px;font-size:15px;color:var(--ink);}
+  .amen .icon{color:var(--navy);width:19px;height:19px;stroke-width:1.8;}
+
+  /* reviews */
+  .rating-row{display:flex;align-items:center;gap:18px;margin-bottom:26px;}
+  .rating-num{font-family:var(--font-display);font-size:46px;color:var(--teal);line-height:1;}
+  .stars{display:flex;gap:3px;color:var(--teal);}
+  .stars .icon{width:18px;height:18px;fill:var(--teal);stroke:var(--teal);}
+  .rating-sub{font-size:13px;color:var(--ink-soft);}
+  .review{padding:20px 0;border-top:1px solid var(--line-2);}
+  .review p{font-style:italic;color:var(--ink);margin:0 0 9px;}
+  .review .who{font-size:13px;font-weight:700;color:var(--navy);letter-spacing:.02em;}
+  .review .who span{font-weight:400;color:var(--ink-soft);}
+
+  /* map / calendar placeholders */
+  .placeholder{
+    border:1px solid var(--line-cool);border-radius:5px;background:
+      repeating-linear-gradient(135deg,var(--cream-2) 0 14px,var(--cream) 14px 28px);
+    height:300px;display:flex;align-items:center;justify-content:center;
+    font-family:ui-monospace,monospace;font-size:12.5px;color:var(--ink-soft);letter-spacing:.04em;
+    text-align:center;
+  }
+  .cal-note{display:flex;gap:14px;align-items:flex-start;margin-top:18px;font-size:14.5px;color:var(--ink-soft);}
+  .cal-note .icon{color:var(--teal);margin-top:2px;}
+
+  /* ===== BOOKING WIDGET — flat rectangle, no shadow ===== */
+  .booking{
+    position:sticky;top:104px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:4px;            /* flat rectangle */
+    box-shadow:none;
+    padding:26px 26px 28px;
+  }
+  .booking__price{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+  .booking__amount{font-family:var(--font-display);font-size:34px;color:var(--navy);line-height:1.1;white-space:nowrap;}
+  .booking__min{display:none;}  /* CSS-only hide (Hostfully) */
+  .booking__sub{font-size:13px;color:var(--ink-soft);margin-top:6px;}
+  .booking__rule{border:none;border-top:1px solid var(--line);margin:20px 0;}
+
+  .fieldlabel{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin:0 0 7px;display:block;}
+  .field{
+    width:100%;font-family:var(--font-body);font-size:14.5px;color:var(--navy);
+    background:var(--cream);border:1px solid var(--line);border-radius:3px;
+    padding:12px 13px;outline:none;transition:border-color .15s,background .15s;
+  }
+  .field::placeholder{color:#9a9684;}
+  .field:focus{border-color:var(--teal);background:#fff;}
+  select.field{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23468186' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px;}
+  textarea.field{resize:none;min-height:74px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .fgroup{margin-bottom:14px;}
+  .fgroup:last-of-type{margin-bottom:0;}
+  .booking .btn{margin-top:20px;}
+  .booking__note{display:flex;align-items:center;gap:8px;justify-content:center;
+    font-size:12px;color:var(--ink-soft);margin-top:13px;}
+  .booking__note .icon{width:14px;height:14px;color:var(--teal);}
+  .recaptcha{display:flex;align-items:center;gap:12px;border:1px solid #d3d3d3;border-radius:3px;
+    background:#f9f9f9;padding:11px 13px;margin-top:14px;font-size:14px;color:#3a3a3a;}
+  .recaptcha .box{width:24px;height:24px;border:2px solid #c1c1c1;border-radius:2px;background:#fff;flex:none;}
+  .recaptcha .rc{margin-left:auto;text-align:center;font-size:8px;color:#9aa0a6;line-height:1.3;letter-spacing:.02em;}
+  .datefield{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:3px;background:var(--cream);padding:8px 11px;}
+  .datefield .icon{color:var(--teal);width:16px;height:16px;flex:none;}
+  .datefield span{display:block;font-size:10px;letter-spacing:.04em;color:var(--ink-soft);}
+  .datefield b{font-size:13px;color:var(--navy);font-weight:600;}
+  .phonegrp{display:flex;gap:8px;}
+  .ccode{display:flex;align-items:center;padding:0 12px;border:1px solid var(--line);border-radius:3px;background:var(--cream);font-size:13.5px;color:var(--navy);white-space:nowrap;}
+  .phonegrp .field{flex:1;}
+  .breakdown{margin-top:6px;border-top:1px solid var(--line);padding-top:12px;}
+  .bd-head{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:12px 0 3px;}
+  .bd-head:first-child{margin-top:0;}
+  .bd-row{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:var(--ink);padding:3px 0;}
+  .bd-row span:last-child{font-variant-numeric:tabular-nums;}
+  .bd-row.tot{font-weight:700;color:var(--navy);}
+  .bd-total{display:flex;justify-content:space-between;align-items:center;background:var(--gold);color:var(--navy);border-radius:5px;padding:11px 14px;margin-top:12px;}
+  .bd-total span:first-child{font-weight:800;letter-spacing:.02em;}
+  .bd-total span:last-child{font-family:var(--font-display);font-size:18px;font-variant-numeric:tabular-nums;}
+  .bd-toggle{background:none;border:none;color:var(--teal);font-size:12.5px;font-weight:600;margin-top:10px;cursor:pointer;padding:0;}
+  .bd-toggle:hover{color:var(--teal-700);}
+  .review-continue{text-align:center;font-size:12.5px;color:var(--ink-soft);margin-top:11px;}
+  .booking__amount small{font-size:13px;color:var(--ink-soft);font-weight:400;letter-spacing:.04em;}
+
+  @media(max-width:980px){
+    .layout{grid-template-columns:1fr;gap:36px;}
+    .booking{position:static;}
+    .gallery{grid-template-columns:1fr 1fr;height:auto;}
+    .gallery .g-hero{grid-column:1 / 3;height:300px;}
+    .gallery figure{height:150px;}
+  }
+  @media(max-width:560px){
+    .ak-header nav{display:none;}
+    .gallery{grid-template-columns:1fr;}
+    .gallery .g-hero{grid-column:1;}
+    .feat + .feat{margin-left:16px;padding-left:16px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ICON SPRITE -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-guests" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.7-5 5.5-5s4.9 1.8 5.5 5"/><path d="M16 6.2a3 3 0 0 1 0 5.6M17.5 19c-.3-2-1.2-3.6-2.6-4.6"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 8v9M21 17v-4a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2"/><path d="M3 17h18"/><path d="M7.5 11V9.5a1 1 0 0 1 1-1H11"/></symbol>
+  <symbol id="i-bath" viewBox="0 0 24 24"><path d="M4 12h16v2a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M6 12V6.5A1.8 1.8 0 0 1 7.8 4.7a1.8 1.8 0 0 1 1.7 1.2"/><circle cx="9.3" cy="6.1" r=".4"/><path d="M7 18l-1 2M17 18l1 2"/></symbol>
+  <symbol id="i-area" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0M8 15.5a6 6 0 0 1 8 0"/><circle cx="12" cy="18.5" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-kitchen" viewBox="0 0 24 24"><path d="M6 3v6a2 2 0 0 0 4 0V3M8 9v12"/><path d="M16 3c-1.5 0-2.5 1.6-2.5 4s1 4 2.5 4M16 3v18"/></symbol>
+  <symbol id="i-ac" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="7" rx="1.5"/><path d="M6 9h7"/><path d="M7 15v1.5M7 19c0-1 1-1.4 1-2.5M12 15v2M16 15v1.5M16 19c0-1 1-1.4 1-2.5"/></symbol>
+  <symbol id="i-tv" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-washer" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1.5"/><circle cx="12" cy="14" r="4"/><path d="M8 6h.01M11 6h.01"/></symbol>
+  <symbol id="i-desk" viewBox="0 0 24 24"><path d="M3 8h18M4 8l1 12M20 8l-1 12M6 8V5h7v3"/></symbol>
+  <symbol id="i-elevator" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M12 3v18M9 9l-1.3-1.6L6.4 9M15 15l1.3 1.6L18 15"/></symbol>
+  <symbol id="i-balcony" viewBox="0 0 24 24"><path d="M4 21V11h16v10M4 16h16M9 11V7h6v4M12 11v5"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .7-4.5 4.2 1.2 6L12 16.8 6.7 19.5l1.2-6L3.4 9.3l6-.7z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+</svg>
+
+<!-- HEADER (matches the booking pages: full lockup + Home) -->
+<header class="bk-header">
+  <div class="bk-header__in">
+    <a class="bk-brand" href="Akora Booking Home.html" aria-label="Akora home"><img src="assets/akora-logo.svg" alt="Akora"></a>
+    <nav class="bk-nav">
+      <a href="Homepage.html">Home</a>
+    </nav>
+  </div>
+</header>
+
+<!-- SEARCH BAND (same floating capsule as the other sections) -->
+<div class="bk-searchband">
+  <div class="bk-searchband__in">
+    <div class="bk-search" role="search">
+      <button class="bk-seg" type="button"><span class="lbl">Where</span><span class="val ph">Search destinations</span></button>
+      <button class="bk-seg" type="button"><span class="lbl">When</span><span class="val ph">Add dates</span></button>
+      <button class="bk-seg" type="button"><span class="lbl">Who</span><span class="val">2 guests</span></button>
+      <div class="bk-kw" role="button" tabindex="0" aria-label="Search by name or keyword">
+        <span class="bk-kw__mag"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M20.5 20.5l-4-4"></path></svg></span>
+        <span class="bk-kw__exp"><span class="lbl">Keyword</span><span class="bk-kw__iw"><input type="text" placeholder="Home name or feature"><button class="bk-kw__x" type="button" aria-label="Remove keyword"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></span></span>
+      </div>
+      <button class="bk-cta" type="button">Find your home <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+    </div>
+  </div>
+</div>
+
+<main class="page">
+
+  <!-- TITLE (sits above the gallery, matching the live markup) -->
+  <div class="titleblock">
+    <h1>Regueros&nbsp;I</h1>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery">
+    <figure class="g-hero"><img src="assets/reg-dining.jpg" alt="Living and dining room"></figure>
+    <figure><img src="assets/reg-living4.jpg" alt="Lounge with smart TV"></figure>
+    <figure><img src="assets/reg-bed.jpg" alt="Main bedroom"></figure>
+    <figure><img src="assets/reg-kitchen.jpg" alt="Kitchen"></figure>
+    <figure>
+      <img src="assets/reg-living.jpg" alt="Second bedroom">
+      <button class="show-all">Show all photos</button>
+    </figure>
+  </div>
+
+  <!-- LOCATION + FEATURES (small location label, navy icons) -->
+  <div class="loc-row">
+    <span class="loc"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg>Madrid, Spain</span>
+    <div class="features">
+      <span class="feat"><svg class="icon"><use href="#i-guests"/></svg>3 guests</span>
+      <span class="feat"><svg class="icon"><use href="#i-bed"/></svg>2 bedrooms</span>
+      <span class="feat"><svg class="icon"><use href="#i-bed"/></svg>2 beds</span>
+      <span class="feat"><svg class="icon"><use href="#i-bath"/></svg>1.5 bathrooms</span>
+    </div>
+  </div>
+
+  <!-- LAYOUT -->
+  <div class="layout">
+
+    <!-- DOSSIER -->
+    <section class="dossier">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="overview">Overview</button>
+        <button class="tab" data-tab="amenities">Amenities</button>
+        <button class="tab" data-tab="calendar">Calendar</button>
+        <button class="tab" data-tab="map">Map</button>
+      </div>
+
+      <!-- OVERVIEW -->
+      <div class="tabpanel active" data-panel="overview">
+        <div class="sect" style="border:none;padding-top:0;margin-top:0;">
+          <h2>Summary</h2>
+          <p>Welcome to the perfect refuge where comfort and elegance meet. This charming apartment of modern, functional design invites you to live a unique experience in the heart of Madrid.</p>
+        </div>
+
+        <div class="sect">
+          <h2>Description</h2>
+          <p>The home comprises a bright double bedroom and a cosy single room, ideal for rest and disconnection. It offers two full bathrooms — one with a bathtub to unwind after a long day, the other with a contemporary shower — both designed for your comfort.</p>
+        </div>
+
+        <div class="sect">
+          <h2>Space</h2>
+          <p>A spacious, sophisticated dressing area gives generous room to organise your clothes with style. The climate is assured year-round thanks to air conditioning and three ceiling fans that keep the atmosphere fresh and pleasant in any season.</p>
+          <p>The living area is anchored by two flat-screen televisions, perfect for your series and films, and a fully equipped kitchen with modern appliances opening to an elegant dining zone. High-speed internet makes it ideal to work from home, study, or simply browse without interruption.</p>
+        </div>
+
+        <div class="sect">
+          <h2>House Rules</h2>
+          <p>We provide basic amenities for the first days of the stay; these aren't replenished. Any late or early check-in (between 21h and 9h) has an extra cost of 25€, paid in cash at the moment of check-in.</p>
+        </div>
+
+        <div class="sect">
+          <h2>Cancellation Policy</h2>
+          <p>If cancelled 0 to 14 days before arrival, the guest will be charged 100% of the total booking amount.</p>
+        </div>
+      </div>
+
+      <!-- AMENITIES -->
+      <div class="tabpanel" data-panel="amenities">
+        <div class="sect" style="border:none;padding:0;">
+          <p class="eyebrow">What's inside</p>
+          <h2>Everything you need to settle in</h2>
+          <div class="amen-grid" style="margin-top:24px;">
+            <div class="amen"><svg class="icon"><use href="#i-wifi"/></svg>High-speed Wi-Fi</div>
+            <div class="amen"><svg class="icon"><use href="#i-kitchen"/></svg>Fully equipped kitchen</div>
+            <div class="amen"><svg class="icon"><use href="#i-ac"/></svg>Air conditioning + 3 fans</div>
+            <div class="amen"><svg class="icon"><use href="#i-washer"/></svg>Washing machine</div>
+            <div class="amen"><svg class="icon"><use href="#i-tv"/></svg>Two smart TVs</div>
+            <div class="amen"><svg class="icon"><use href="#i-desk"/></svg>Heating</div>
+            <div class="amen"><svg class="icon"><use href="#i-balcony"/></svg>Two full bathrooms</div>
+            <div class="amen"><svg class="icon"><use href="#i-elevator"/></svg>Lift in building</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CALENDAR -->
+      <div class="tabpanel" data-panel="calendar">
+        <div class="sect" style="border:none;padding:0;">
+          <p class="eyebrow">Availability</p>
+          <h2>Plan your stay</h2>
+          <div class="placeholder" style="margin-top:22px;">[ availability calendar ]</div>
+          <div class="cal-note"><svg class="icon"><use href="#i-cal"/></svg>
+            <span>Minimum stay is 7 nights. Your selected dates are available.</span></div>
+        </div>
+      </div>
+
+      <!-- MAP -->
+      <div class="tabpanel" data-panel="map">
+        <div class="sect" style="border:none;padding:0;">
+          <p class="eyebrow">Neighbourhood</p>
+          <h2>Calle Regueros, Madrid</h2>
+          <div class="placeholder" style="margin-top:22px;">[ map of Calle Regueros + surroundings ]</div>
+          <div class="cal-note"><svg class="icon"><use href="#i-pin"/></svg>
+            <span>In Justicia, steps from Alonso Martínez and Chueca; Metro lines 4, 5 and 10 within easy reach.</span></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- BOOKING WIDGET (flat) -->
+    <aside class="booking" id="book">
+      <div class="booking__price">
+        <span class="booking__amount">€324.43 <small>EUR</small></span>
+        <span class="booking__min">Min stay: 7 nights</span>
+      </div>
+      <div class="booking__sub">per night</div>
+      <hr class="booking__rule">
+
+      <div class="grid2" style="margin-bottom:12px;">
+        <div class="datefield"><svg class="icon"><use href="#i-cal"/></svg><div><span>Check in</span><b>07/08/2026</b></div></div>
+        <div class="datefield"><svg class="icon"><use href="#i-cal"/></svg><div><span>Checkout</span><b>07/15/2026</b></div></div>
+      </div>
+      <div class="fgroup"><select class="field"><option>2 Guests</option><option>3 Guests</option></select></div>
+      <div class="fgroup"><input class="field" type="email" placeholder="Email *"></div>
+      <div class="fgroup"><input class="field" type="text" placeholder="Name *"></div>
+      <div class="fgroup phonegrp">
+        <span class="ccode">🇪🇸 +34</span>
+        <input class="field" type="tel" placeholder="Phone">
+      </div>
+      <div class="fgroup"><input class="field" type="text" placeholder="Promo code"></div>
+      <div class="fgroup"><textarea class="field" placeholder="Booking note"></textarea></div>
+
+      <div class="breakdown">
+        <div class="bd-head">Rent</div>
+        <div class="bd-row"><span>7 Nights</span><span>€2,066.59</span></div>
+        <div class="bd-row tot"><span>Total Rent</span><span>€2,066.59</span></div>
+        <div class="bd-head">Taxes</div>
+        <div class="bd-row"><span>Rent tax (10%)</span><span>€206.66</span></div>
+        <div class="bd-row tot"><span>Total Taxes</span><span>€206.66</span></div>
+        <div class="bd-head">Fees</div>
+        <div class="bd-row"><span>Cleaning</span><span>€150</span></div>
+        <div class="bd-row tot"><span>Total Fees</span><span>€150</span></div>
+        <div class="bd-total"><span>Total</span><span>€2,423.25</span></div>
+        <button class="bd-toggle">Hide Details</button>
+      </div>
+
+      <div class="recaptcha">
+        <span class="box"></span>
+        <span>I'm not a robot</span>
+        <span class="rc">reCAPTCHA<br>Privacy · Terms</span>
+      </div>
+
+      <a class="btn btn-primary btn-block" href="Checkout - Regueros I.html">Book now</a>
+      <div class="review-continue">Review and continue</div>
+    </aside>
+
+  </div>
+</main>
+
+<!-- FOOTER (matches the marketing homepage) -->
+<footer class="ak-footer-rich">
+  <div class="ak-footer-rich__in">
+    <div class="ak-footer-rich__brand">
+      <img src="assets/akora-logo.svg" alt="Akora">
+      <span class="tag">Living well</span>
+      <p>Fully furnished apartments and studios in Madrid's most desirable locations, designed for work, family and leisure.</p>
+    </div>
+    <div class="fcol"><h4>Explore</h4><ul>
+      <li><a href="Akora Booking Search.html">Find your home</a></li>
+      <li><a href="#">Book now</a></li>
+      <li><a href="#">The Guide</a></li>
+      <li><a href="#">Neighbourhoods</a></li>
+    </ul></div>
+    <div class="fcol"><h4>Professional</h4><ul>
+      <li><a href="#">Owners</a></li><li><a href="#">Partners</a></li><li><a href="#">Investors</a></li>
+    </ul></div>
+    <div class="fcol"><h4>About Akora</h4><ul>
+      <li><a href="#">Why Akora</a></li><li><a href="#">Contact us</a></li><li><a href="#">About us</a></li>
+    </ul></div>
+  </div>
+  <div class="ak-footer-rich__bar">
+    <small>© 2026 Akora · Piamonte 23, 28004 Madrid · Privacy · Cookies · Legal notice</small>
+    <div class="socials">
+      <a href="#" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M8 11v6M8 8v.01M12 17v-3.5a2 2 0 0 1 4 0V17"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script src="booking.js"></script>
+<script>
+  document.querySelectorAll('.tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var name = tab.getAttribute('data-tab');
+      document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('active', t===tab);});
+      document.querySelectorAll('.tabpanel').forEach(function(p){
+        p.classList.toggle('active', p.getAttribute('data-panel')===name);
+      });
+    });
+  });
+</script>
+<script src="akora-chat.js"></script>
+</body>
+</html>

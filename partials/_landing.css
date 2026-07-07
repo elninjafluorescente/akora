@@ -19,20 +19,30 @@
   width: 100% !important;
 }
 
-/* ---- Título de propiedad: display 40px + subrayado dorado ---- */
+/* ---- Título de propiedad (revisión jul-2026): clamp grande, SIN subrayado ---- */
 .hf-dbs [data-testid="information-name"] {
   font-family: var(--font-display) !important;
-  font-size: 40px !important;
+  font-size: clamp(40px, 5vw, 56px) !important;
+  line-height: 1.02 !important;
   color: var(--navy) !important;
-  position: relative !important;
-  display: inline-block !important;
-  padding-bottom: 10px !important;
 }
-.hf-dbs [data-testid="information-name"]::after {
+
+/* ---- Dirección: pin teal + texto pequeño ink-soft (revisión .loc) ---- */
+.hf-dbs [data-testid="information-address"] {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--ink-soft) !important;
+  letter-spacing: .01em !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+}
+.hf-dbs [data-testid="information-address"]::before {
   content: "" !important;
-  position: absolute; left: 0; bottom: 0;
-  width: 50px; height: 3px; border-radius: 2px;
-  background: var(--gold);
+  width: 15px !important;
+  height: 15px !important;
+  flex: none !important;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23468186' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'><path d='M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z'/><circle cx='12' cy='10' r='2.5'/></svg>") no-repeat center/contain !important;
 }
 
 /* ---- Galería: gap 10px, hero 1.5fr, radio 4px ---- */
@@ -84,40 +94,57 @@
 
 /* ================= CARD "DOSSIER" SIMULADA ================= */
 
-/* Techo: tabs en banda crema-2 con bordes y radio superior.
-   El margin-top separa el bloque info/specs de la card (mockup). */
+/* Techo: tabs sobre BLANCO con hairline inferior (revisión jul-2026;
+   antes banda crema-2 + activo dorado). El margin-top separa specs↔card. */
 .hf-dbs [data-testid="page-links"] {
   margin-top: 34px !important;
-  background: var(--cream-2) !important;
+  background: var(--surface) !important;
   border: 1px solid var(--line-cool) !important;
-  border-radius: 8px 8px 0 0 !important;
-  padding: 14px 20px 0 !important;
+  border-bottom: 1px solid var(--line) !important;
+  border-radius: 5px 5px 0 0 !important;
+  padding: 0 22px !important;
   box-shadow: var(--shadow-soft) !important;
 }
 .hf-dbs [data-testid="page-links"] ul {
-  display: flex !important; gap: 4px !important;
+  display: flex !important; gap: 6px !important;
   margin: 0 !important; padding: 0 !important; list-style: none !important;
 }
 .hf-dbs [data-testid="page-links"] li { list-style: none !important; margin: 0 !important; }
-.hf-dbs [data-testid^="page-link-"] {
+/* Base de tab. Especificidad alta (ul li) a propósito: el estado activo
+   nativo de Hostfully pinta el texto de amarillo con una regla que gana a
+   selectores de 2 niveles; así lo neutralizamos. */
+.hf-dbs [data-testid="page-links"] ul li [data-testid^="page-link-"] {
   display: inline-block !important;
   font-family: var(--font-body) !important;
   font-size: 13.5px !important; font-weight: 700 !important; letter-spacing: .04em !important;
-  padding: 13px 18px !important; margin-bottom: -1px !important;
+  color: var(--ink-soft) !important;
+  padding: 15px 12px !important; margin-bottom: 0 !important;
   background: none !important;
-  border-bottom: 2.5px solid transparent;
+  border-bottom: none !important;
   text-decoration: none !important;
+  position: relative !important;
 }
-.hf-dbs [data-testid^="page-link-"]:hover { color: var(--navy) !important; }
+.hf-dbs [data-testid="page-links"] ul li [data-testid^="page-link-"]::after {
+  content: "" !important;
+  position: absolute !important; left: 12px !important; right: 12px !important; bottom: -1px !important;
+  height: 1.5px !important; background: var(--teal) !important;
+  opacity: 0 !important; transition: opacity .15s !important;
+}
+.hf-dbs [data-testid="page-links"] ul li [data-testid^="page-link-"]:hover { color: var(--navy) !important; }
 
 /* Tab activa: el click pone el hash (#information...) y las secciones
-   tienen ese id → :target + :has(), sin JS. Subrayado DORADO del mockup. */
-.hf-dbs:has(#information:target) [data-testid="page-link-information"],
-.hf-dbs:has(#amenities:target) [data-testid="page-link-amenities"],
-.hf-dbs:has(#calendar:target) [data-testid="page-link-calendar"],
-.hf-dbs:has(#map:target) [data-testid="page-link-map"] {
-  color: var(--navy) !important;
-  border-bottom: 2.5px solid var(--gold) !important;
+   tienen ese id → :target + :has(), sin JS. Texto TEAL + subrayado teal fino. */
+.hf-dbs:has(#information:target) [data-testid="page-links"] ul li [data-testid="page-link-information"],
+.hf-dbs:has(#amenities:target) [data-testid="page-links"] ul li [data-testid="page-link-amenities"],
+.hf-dbs:has(#calendar:target) [data-testid="page-links"] ul li [data-testid="page-link-calendar"],
+.hf-dbs:has(#map:target) [data-testid="page-links"] ul li [data-testid="page-link-map"] {
+  color: var(--teal) !important;
+}
+.hf-dbs:has(#information:target) [data-testid="page-links"] ul li [data-testid="page-link-information"]::after,
+.hf-dbs:has(#amenities:target) [data-testid="page-links"] ul li [data-testid="page-link-amenities"]::after,
+.hf-dbs:has(#calendar:target) [data-testid="page-links"] ul li [data-testid="page-link-calendar"]::after,
+.hf-dbs:has(#map:target) [data-testid="page-links"] ul li [data-testid="page-link-map"]::after {
+  opacity: 1 !important;
 }
 
 /* Cuerpo: secciones blancas con bordes laterales, sin márgenes
@@ -143,7 +170,7 @@
 /* Cierre: el mapa redondea y cierra la card */
 .hf-dbs [data-testid="property-map"] {
   border-bottom: 1px solid var(--line-cool) !important;
-  border-radius: 0 0 8px 8px !important;
+  border-radius: 0 0 5px 5px !important;
   padding-bottom: 44px !important;
   margin-bottom: 64px !important;
 }

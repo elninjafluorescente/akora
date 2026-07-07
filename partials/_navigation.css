@@ -48,12 +48,12 @@
   color: var(--akora-header-fg) !important;
 }
 
-/* Botón Book Now (estaba en amarillo) */
+/* Botón Book Now (estaba en amarillo) — pill (revisión jul-2026) */
 .hf-dbs [data-testid="book-now-link"] {
   background: var(--akora-btn-bg) !important;
   color: var(--akora-btn-fg) !important;
   border: none !important;
-  border-radius: var(--akora-radius) !important;
+  border-radius: 999px !important;
   box-shadow: none !important;
 }
 .hf-dbs [data-testid="book-now-link"]:hover {

@@ -26,12 +26,13 @@
   color: var(--navy) !important;
 }
 .hf-dbs [data-testid="booking-widget-total-currency"],
-.hf-dbs [data-testid="booking-widget-nights-length"],
-.hf-dbs [data-testid="booking-widget-min-stay"] {
+.hf-dbs [data-testid="booking-widget-nights-length"] {
   font-size: 13px !important;
   color: var(--ink-soft) !important;
   font-weight: 400 !important;
 }
+/* "Min stay: X nights" oculto (revisión jul-2026: booking__min display:none) */
+.hf-dbs [data-testid="booking-widget-min-stay"] { display: none !important; }
 
 /* Campos del formulario: fondo crema, hairline, radio 3px */
 .hf-dbs [data-testid="property-details-widget"] input,
@@ -68,19 +69,29 @@
 }
 .hf-dbs [data-testid="promoCode"] { font-size: 12px !important; padding: 8px 10px !important; }
 
-/* Botón "Book now": teal, ancho completo */
+/* Botón "Book now": teal PILL ancho completo (revisión: .btn radius 999) */
 .hf-dbs [data-testid="app-button"] {
   background: var(--teal) !important;
   color: #fff !important;
   border: none !important;
-  border-radius: var(--radius) !important;
+  border-radius: 999px !important;
   font-family: var(--font-body) !important;
   font-weight: 700 !important;
-  letter-spacing: .02em !important;
-  padding: 13px 18px !important;
+  font-size: 15px !important;
+  letter-spacing: .01em !important;
+  height: 44px !important;
+  padding: 0 24px !important;
   width: 100% !important;
 }
 .hf-dbs [data-testid="app-button"]:hover { background: var(--teal-700) !important; }
+
+/* Focus de campos: borde teal + fondo blanco (revisión .field:focus) */
+.hf-dbs [data-testid="property-details-widget"] input:focus,
+.hf-dbs [data-testid="property-details-widget"] textarea:focus,
+.hf-dbs [data-testid="property-details-widget"] select:focus {
+  border-color: var(--teal) !important;
+  background: #fff !important;
+}
 
 /* Ayuda bajo el botón */
 .hf-dbs [data-testid="submit-help-text"] {

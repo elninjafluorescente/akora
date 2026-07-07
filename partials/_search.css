@@ -58,6 +58,6 @@
   background: var(--teal) !important;
   color: #fff !important;
   border: none !important;
-  border-radius: var(--radius) !important;
+  border-radius: 999px !important;
 }
 .hf-dbs [data-testid="toggle-view-button"]:hover { background: var(--teal-700) !important; }
