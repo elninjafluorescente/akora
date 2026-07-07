@@ -212,6 +212,7 @@
 /* ---- Reviews: ocultas (pactado). Va al FINAL para ganar a la regla
    display:inline-block de las tabs (mismo origen, mismo peso → orden). */
 .hf-dbs [data-testid="property-reviews"],
+.hf-dbs.hf-dbs [data-testid="page-links"] ul li a[data-testid="page-link-reviews"][href],
 .hf-dbs [data-testid="page-link-reviews"],
 .hf-dbs [data-testid="property-card-reviews"] {
   display: none !important;

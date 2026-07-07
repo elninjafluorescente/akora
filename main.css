@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.10.1  ·  Fecha: 2026-07-07
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.10.1
+   Version: v0.10.2  ·  Fecha: 2026-07-07
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.10.2
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;500;600;700;800&family=Sacramento&display=swap');
 
@@ -694,6 +694,7 @@ body.hf-dbs > div { background: var(--cream) !important; }
 /* ---- Reviews: ocultas (pactado). Va al FINAL para ganar a la regla
    display:inline-block de las tabs (mismo origen, mismo peso → orden). */
 .hf-dbs [data-testid="property-reviews"],
+.hf-dbs.hf-dbs [data-testid="page-links"] ul li a[data-testid="page-link-reviews"][href],
 .hf-dbs [data-testid="page-link-reviews"],
 .hf-dbs [data-testid="property-card-reviews"] {
   display: none !important;
