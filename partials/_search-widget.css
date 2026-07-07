@@ -56,10 +56,17 @@
 }
 .hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"],
 .hf-dbs [data-testid="search-filter-component"] [data-testid="who-field-container"] { position: relative !important; }
-.hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"]::before,
-.hf-dbs [data-testid="search-filter-component"] [data-testid="who-field-container"]::before {
+.hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"]::before,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="who-field-container"]::before {
   content: "" !important;
-  position: absolute !important; left: 0 !important; top: 13px !important; bottom: 13px !important;
+  position: absolute !important;
+  left: 0 !important;
+  /* altura FIJA centrada: no depende del alto del contenedor (en Firefox
+     la geometria difiere y las lineas se derramaban fuera del pill) */
+  top: 50% !important;
+  bottom: auto !important;
+  transform: translateY(-50%) !important;
+  height: 24px !important;
   width: 1px !important;
   background: var(--line-2) !important;
 }
