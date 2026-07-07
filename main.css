@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.11.4  ·  Fecha: 2026-07-07
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.11.4
+   Version: v0.11.5  ·  Fecha: 2026-07-07
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.11.5
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;500;600;700;800&family=Sacramento&display=swap');
 
@@ -287,6 +287,15 @@ body.hf-dbs > div { background: var(--cream) !important; }
   font-size: 9.5px !important;
   font-weight: 700 !important;
   letter-spacing: .15em !important;
+}
+/* Valores de los campos ("Search destinations", "Add dates", "Huésped")
+   a 13px (petición del cliente, jul-2026) */
+.hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="where"],
+.hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="when"],
+.hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="who"],
+.hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="when"] *,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="who"] * {
+  font-size: 13px !important;
 }
 .hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"],
 .hf-dbs [data-testid="search-filter-component"] [data-testid="who-field-container"] { position: relative !important; }
