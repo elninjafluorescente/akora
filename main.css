@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.10.0  ·  Fecha: 2026-07-07
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.10.0
+   Version: v0.10.1  ·  Fecha: 2026-07-07
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.10.1
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;500;600;700;800&family=Sacramento&display=swap');
 
@@ -206,14 +206,14 @@ body.hf-dbs > div { background: var(--cream) !important; }
 }
 
 /* Botón Book Now (estaba en amarillo) — pill (revisión jul-2026) */
-.hf-dbs [data-testid="book-now-link"] {
+.hf-dbs.hf-dbs.hf-dbs [data-testid="book-now-link"] {
   background: var(--akora-btn-bg) !important;
   color: var(--akora-btn-fg) !important;
   border: none !important;
   border-radius: 999px !important;
   box-shadow: none !important;
 }
-.hf-dbs [data-testid="book-now-link"]:hover {
+.hf-dbs.hf-dbs.hf-dbs [data-testid="book-now-link"]:hover {
   background: var(--akora-teal-dark) !important;
 }
 
@@ -255,7 +255,7 @@ body.hf-dbs > div { background: var(--cream) !important; }
 /* Botón de buscar → CTA dorado "Find your home" (revisión jul-2026 .bk-cta:
    pill dorado, texto navy 13px/700, lupa navy). El texto se inyecta con
    ::after porque el botón nativo solo trae el icono. */
-.hf-dbs [data-testid="icon-submit-button"] {
+.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] {
   width: auto !important;
   height: 44px !important;
   border-radius: 999px !important;
@@ -266,13 +266,13 @@ body.hf-dbs > div { background: var(--cream) !important; }
   padding: 0 18px !important;
   box-shadow: 0 6px 16px -8px rgba(24,30,58,.34) !important;
 }
-.hf-dbs [data-testid="icon-submit-button"] svg,
-.hf-dbs [data-testid="icon-submit-button"] path {
+.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] svg,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] path {
   color: var(--navy) !important;
   stroke: var(--navy) !important;
   fill: none !important;
 }
-.hf-dbs [data-testid="icon-submit-button"]::after {
+.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]::after {
   content: "Find your home" !important;
   font-family: var(--font-body) !important;
   font-weight: 700 !important;
@@ -281,7 +281,7 @@ body.hf-dbs > div { background: var(--cream) !important; }
   color: var(--navy) !important;
   white-space: nowrap !important;
 }
-.hf-dbs [data-testid="icon-submit-button"]:hover { background: #EAC400 !important; }
+.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]:hover { background: #EAC400 !important; }
 
 /* Botón "Buscar" (bg amarillo → teal): ÚNICO <button> SIN data-testid
    del buscador. NO usar `button` a secas (taparía los campos). El
@@ -366,7 +366,7 @@ body.hf-dbs > div { background: var(--cream) !important; }
 .hf-dbs [data-testid="promoCode"] { font-size: 12px !important; padding: 8px 10px !important; }
 
 /* Botón "Book now": teal PILL ancho completo (revisión: .btn radius 999) */
-.hf-dbs [data-testid="app-button"] {
+.hf-dbs.hf-dbs.hf-dbs [data-testid="app-button"] {
   background: var(--teal) !important;
   color: #fff !important;
   border: none !important;
@@ -379,7 +379,7 @@ body.hf-dbs > div { background: var(--cream) !important; }
   padding: 0 24px !important;
   width: 100% !important;
 }
-.hf-dbs [data-testid="app-button"]:hover { background: var(--teal-700) !important; }
+.hf-dbs.hf-dbs.hf-dbs [data-testid="app-button"]:hover { background: var(--teal-700) !important; }
 
 /* Focus de campos: borde teal + fondo blanco (revisión .field:focus) */
 .hf-dbs [data-testid="property-details-widget"] input:focus,
@@ -595,7 +595,7 @@ body.hf-dbs > div { background: var(--cream) !important; }
 /* Base de tab. Especificidad alta (ul li) a propósito: el estado activo
    nativo de Hostfully pinta el texto de amarillo con una regla que gana a
    selectores de 2 niveles; así lo neutralizamos. */
-.hf-dbs [data-testid="page-links"] ul li [data-testid^="page-link-"] {
+.hf-dbs.hf-dbs [data-testid="page-links"] ul li a[data-testid^="page-link-"][href] {
   display: inline-block !important;
   font-family: var(--font-body) !important;
   font-size: 13.5px !important; font-weight: 700 !important; letter-spacing: .04em !important;
@@ -606,26 +606,26 @@ body.hf-dbs > div { background: var(--cream) !important; }
   text-decoration: none !important;
   position: relative !important;
 }
-.hf-dbs [data-testid="page-links"] ul li [data-testid^="page-link-"]::after {
+.hf-dbs.hf-dbs [data-testid="page-links"] ul li a[data-testid^="page-link-"][href]::after {
   content: "" !important;
   position: absolute !important; left: 12px !important; right: 12px !important; bottom: -1px !important;
   height: 1.5px !important; background: var(--teal) !important;
   opacity: 0 !important; transition: opacity .15s !important;
 }
-.hf-dbs [data-testid="page-links"] ul li [data-testid^="page-link-"]:hover { color: var(--navy) !important; }
+.hf-dbs.hf-dbs [data-testid="page-links"] ul li a[data-testid^="page-link-"][href]:hover { color: var(--navy) !important; }
 
 /* Tab activa: el click pone el hash (#information...) y las secciones
    tienen ese id → :target + :has(), sin JS. Texto TEAL + subrayado teal fino. */
-.hf-dbs:has(#information:target) [data-testid="page-links"] ul li [data-testid="page-link-information"],
-.hf-dbs:has(#amenities:target) [data-testid="page-links"] ul li [data-testid="page-link-amenities"],
-.hf-dbs:has(#calendar:target) [data-testid="page-links"] ul li [data-testid="page-link-calendar"],
-.hf-dbs:has(#map:target) [data-testid="page-links"] ul li [data-testid="page-link-map"] {
+.hf-dbs.hf-dbs:has(#information:target) [data-testid="page-links"] ul li a[data-testid="page-link-information"][href],
+.hf-dbs.hf-dbs:has(#amenities:target) [data-testid="page-links"] ul li a[data-testid="page-link-amenities"][href],
+.hf-dbs.hf-dbs:has(#calendar:target) [data-testid="page-links"] ul li a[data-testid="page-link-calendar"][href],
+.hf-dbs.hf-dbs:has(#map:target) [data-testid="page-links"] ul li a[data-testid="page-link-map"][href] {
   color: var(--teal) !important;
 }
-.hf-dbs:has(#information:target) [data-testid="page-links"] ul li [data-testid="page-link-information"]::after,
-.hf-dbs:has(#amenities:target) [data-testid="page-links"] ul li [data-testid="page-link-amenities"]::after,
-.hf-dbs:has(#calendar:target) [data-testid="page-links"] ul li [data-testid="page-link-calendar"]::after,
-.hf-dbs:has(#map:target) [data-testid="page-links"] ul li [data-testid="page-link-map"]::after {
+.hf-dbs.hf-dbs:has(#information:target) [data-testid="page-links"] ul li a[data-testid="page-link-information"][href]::after,
+.hf-dbs.hf-dbs:has(#amenities:target) [data-testid="page-links"] ul li a[data-testid="page-link-amenities"][href]::after,
+.hf-dbs.hf-dbs:has(#calendar:target) [data-testid="page-links"] ul li a[data-testid="page-link-calendar"][href]::after,
+.hf-dbs.hf-dbs:has(#map:target) [data-testid="page-links"] ul li a[data-testid="page-link-map"][href]::after {
   opacity: 1 !important;
 }
 

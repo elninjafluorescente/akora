@@ -23,7 +23,7 @@
 /* Botón de buscar → CTA dorado "Find your home" (revisión jul-2026 .bk-cta:
    pill dorado, texto navy 13px/700, lupa navy). El texto se inyecta con
    ::after porque el botón nativo solo trae el icono. */
-.hf-dbs [data-testid="icon-submit-button"] {
+.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] {
   width: auto !important;
   height: 44px !important;
   border-radius: 999px !important;
@@ -34,13 +34,13 @@
   padding: 0 18px !important;
   box-shadow: 0 6px 16px -8px rgba(24,30,58,.34) !important;
 }
-.hf-dbs [data-testid="icon-submit-button"] svg,
-.hf-dbs [data-testid="icon-submit-button"] path {
+.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] svg,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] path {
   color: var(--navy) !important;
   stroke: var(--navy) !important;
   fill: none !important;
 }
-.hf-dbs [data-testid="icon-submit-button"]::after {
+.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]::after {
   content: "Find your home" !important;
   font-family: var(--font-body) !important;
   font-weight: 700 !important;
@@ -49,7 +49,7 @@
   color: var(--navy) !important;
   white-space: nowrap !important;
 }
-.hf-dbs [data-testid="icon-submit-button"]:hover { background: #EAC400 !important; }
+.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]:hover { background: #EAC400 !important; }
 
 /* Botón "Buscar" (bg amarillo → teal): ÚNICO <button> SIN data-testid
    del buscador. NO usar `button` a secas (taparía los campos). El

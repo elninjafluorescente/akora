@@ -70,7 +70,7 @@
 .hf-dbs [data-testid="promoCode"] { font-size: 12px !important; padding: 8px 10px !important; }
 
 /* Botón "Book now": teal PILL ancho completo (revisión: .btn radius 999) */
-.hf-dbs [data-testid="app-button"] {
+.hf-dbs.hf-dbs.hf-dbs [data-testid="app-button"] {
   background: var(--teal) !important;
   color: #fff !important;
   border: none !important;
@@ -83,7 +83,7 @@
   padding: 0 24px !important;
   width: 100% !important;
 }
-.hf-dbs [data-testid="app-button"]:hover { background: var(--teal-700) !important; }
+.hf-dbs.hf-dbs.hf-dbs [data-testid="app-button"]:hover { background: var(--teal-700) !important; }
 
 /* Focus de campos: borde teal + fondo blanco (revisión .field:focus) */
 .hf-dbs [data-testid="property-details-widget"] input:focus,
