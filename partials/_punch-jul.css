@@ -130,3 +130,30 @@
 .hf-dbs [data-testid="widgetPayToday-value"],
 .hf-dbs [data-testid="widgetDates"],
 .hf-dbs [data-testid="widgetPropertyName"]{font-weight:400 !important;}
+
+/* ============ AFINADO TIPOGRÁFICO (jul-2026) ============
+   Marcellus no tiene versión light → los TITULARES grandes pasan a
+   'Tenor Sans' (Google), el stand-in fino más cercano a Optima/URW
+   Classico. El cuerpo afinado usa Mulish Light 300.
+   Para revertir a Marcellus: eliminar este bloque. */
+/* Titulares grandes finos */
+.hf-dbs [data-testid="agency-headline"],
+.hf-dbs:has([data-testid="hero-container"]) h2:not([data-testid]),
+.hf-dbs [data-testid="property-details-name"],
+.hf-dbs [data-testid$="-info"] h2,
+.hf-dbs [data-testid="overview-header-title"],
+.hf-dbs [data-testid="overview-header-title"] * {
+  font-family: 'Tenor Sans', 'Marcellus', 'URW Classico', serif !important;
+  font-weight: 400 !important;
+}
+/* Cuerpo fino (Mulish Light) en lo señalado sin negrita */
+.hf-dbs [data-testid="agency-sub-headline"],
+.hf-dbs [data-testid="property-details-location-info"] p,
+.hf-dbs [data-testid="booking-widget-from-price"],
+.hf-dbs [data-testid="booking-widget-from-price"] *,
+.hf-dbs [data-testid="widgetTotalAmount-label"],
+.hf-dbs [data-testid="widgetTotalAmount-value"],
+.hf-dbs [data-testid="widgetDates"],
+.hf-dbs [data-testid="widgetPropertyName"] {
+  font-weight: 300 !important;
+}

@@ -1,10 +1,10 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.12.0  ·  Fecha: 2026-07-09
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.12.0
+   Version: v0.12.1  ·  Fecha: 2026-07-09
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.12.1
    ============================================= */
-@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@400;500;600;700;800&family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@300;400;500;600;700;800&family=Tenor+Sans&family=Sacramento&display=swap');
 
 /* ===== _variables ===== */
 /* =============================================
@@ -1338,4 +1338,31 @@ body.hf-dbs > div { background: var(--cream) !important; }
 .hf-dbs [data-testid="widgetPayToday-value"],
 .hf-dbs [data-testid="widgetDates"],
 .hf-dbs [data-testid="widgetPropertyName"]{font-weight:400 !important;}
+
+/* ============ AFINADO TIPOGRÁFICO (jul-2026) ============
+   Marcellus no tiene versión light → los TITULARES grandes pasan a
+   'Tenor Sans' (Google), el stand-in fino más cercano a Optima/URW
+   Classico. El cuerpo afinado usa Mulish Light 300.
+   Para revertir a Marcellus: eliminar este bloque. */
+/* Titulares grandes finos */
+.hf-dbs [data-testid="agency-headline"],
+.hf-dbs:has([data-testid="hero-container"]) h2:not([data-testid]),
+.hf-dbs [data-testid="property-details-name"],
+.hf-dbs [data-testid$="-info"] h2,
+.hf-dbs [data-testid="overview-header-title"],
+.hf-dbs [data-testid="overview-header-title"] * {
+  font-family: 'Tenor Sans', 'Marcellus', 'URW Classico', serif !important;
+  font-weight: 400 !important;
+}
+/* Cuerpo fino (Mulish Light) en lo señalado sin negrita */
+.hf-dbs [data-testid="agency-sub-headline"],
+.hf-dbs [data-testid="property-details-location-info"] p,
+.hf-dbs [data-testid="booking-widget-from-price"],
+.hf-dbs [data-testid="booking-widget-from-price"] *,
+.hf-dbs [data-testid="widgetTotalAmount-label"],
+.hf-dbs [data-testid="widgetTotalAmount-value"],
+.hf-dbs [data-testid="widgetDates"],
+.hf-dbs [data-testid="widgetPropertyName"] {
+  font-weight: 300 !important;
+}
 
