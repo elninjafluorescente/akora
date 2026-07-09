@@ -1,0 +1,132 @@
+/* =============================================
+   _punch-jul.css — Punch list del cliente (jul-2026) + re-port DOM nuevo
+   Depende de: _variables.css · scope: .hf-dbs · VA AL FINAL del build
+   ---------------------------------------------
+   ⚠ Hostfully desplegó una versión nueva del DBS que RENOMBRA testids.
+   A fecha de hoy solo la FICHA DE PROPIEDAD usa el DOM nuevo
+   (white-label-header/footer, tabs Bootstrap .nav-link con aria-selected,
+   secciones property-details-*-info, precio booking-widget-from-price,
+   SIN barra de búsqueda). Home/search/checkout siguen en el DOM viejo:
+   cuando les llegue el redeploy habrá que re-anclarlas igual.
+   Este partial re-ancla la ficha Y aplica la punch list en las 4 vistas.
+   ============================================= */
+
+/* ============ FICHA (DOM NUEVO) ============ */
+.hf-dbs [data-testid="white-label-header"]{background:var(--cream) !important;box-shadow:none !important;border-bottom:1px solid var(--line) !important;}
+.hf-dbs [data-testid="white-label-footer"]{background:var(--cream-2) !important;color:var(--ink) !important;}
+
+.hf-dbs [data-testid="property-details-name"]{font-family:var(--font-display) !important;font-size:clamp(40px,5vw,56px) !important;line-height:1.02 !important;color:var(--navy) !important;font-weight:400 !important;}
+
+.hf-dbs [data-testid="property-details-guests-tag"],
+.hf-dbs [data-testid="property-details-bedrooms-tag"],
+.hf-dbs [data-testid="property-details-bathrooms-tag"]{color:var(--ink) !important;font-size:14.5px !important;}
+.hf-dbs [data-testid="property-details-guests-tag"] svg,
+.hf-dbs [data-testid="property-details-bedrooms-tag"] svg,
+.hf-dbs [data-testid="property-details-bathrooms-tag"] svg{color:var(--navy) !important;fill:var(--navy) !important;}
+
+/* Tabs Bootstrap: base blanca + activo teal subrayado (mata el pill amarillo) */
+.hf-dbs .nav-tabs{border-bottom:1px solid var(--line) !important;background:var(--surface) !important;}
+.hf-dbs .nav-tabs .nav-link{
+  background:transparent !important;border:none !important;border-radius:0 !important;
+  font-family:var(--font-body) !important;font-size:13.5px !important;font-weight:700 !important;letter-spacing:.04em !important;
+  color:var(--ink-soft) !important;padding:15px 12px !important;position:relative !important;
+}
+.hf-dbs .nav-tabs .nav-link::after{content:"" !important;position:absolute !important;left:12px !important;right:12px !important;bottom:-1px !important;height:1.5px !important;background:var(--teal) !important;opacity:0 !important;transition:opacity .15s !important;}
+.hf-dbs .nav-tabs .nav-link:hover{color:var(--navy) !important;}
+.hf-dbs .nav-tabs .nav-link.active,
+.hf-dbs .nav-tabs .nav-link[aria-selected="true"]{background:transparent !important;color:var(--teal) !important;}
+.hf-dbs .nav-tabs .nav-link.active::after,
+.hf-dbs .nav-tabs .nav-link[aria-selected="true"]::after{opacity:1 !important;}
+/* Opiniones ocultas (botón = último nav-item; panel y lista por testid) */
+.hf-dbs .nav-tabs .nav-item:last-child{display:none !important;}
+.hf-dbs [data-testid="property-details-review-tab"],
+.hf-dbs [data-testid="infinity-review-list"]{display:none !important;}
+
+/* 1) Dirección sin mayúsculas (CSS no puede recapitalizar "Spain":
+   queda "Madrid, spain"; alternativa estática documentada en chat) */
+.hf-dbs [data-testid="property-details-location-info"] p{
+  text-transform:lowercase !important;font-size:13px !important;font-weight:600 !important;color:var(--ink-soft) !important;
+}
+.hf-dbs [data-testid="property-details-location-info"] p::first-letter{text-transform:uppercase !important;}
+
+/* 2) Línea fina entre secciones de la descripción */
+.hf-dbs [data-testid$="-info"] + [data-testid$="-info"]{
+  border-top:1px solid var(--line-2) !important;padding-top:26px !important;margin-top:26px !important;
+}
+.hf-dbs [data-testid$="-info"] h2{font-size:25px !important;color:var(--navy) !important;font-weight:400 !important;}
+
+/* 3) Precio del widget sin negrita y más pequeño */
+.hf-dbs [data-testid="booking-widget-from-price"],
+.hf-dbs [data-testid="booking-widget-from-price"] *{font-weight:400 !important;font-size:18px !important;color:var(--navy) !important;}
+/* 4) hide details oculto (id conocido; verificar en DOM nuevo con desglose) */
+.hf-dbs [data-testid="price-details-toggle"]{display:none !important;}
+.hf-dbs [data-testid="booking-widget-min-stay"]{display:none !important;}
+
+.hf-dbs [data-testid="show-all-photos-button"]{
+  background:rgba(253,248,236,.94) !important;color:var(--navy) !important;
+  border:1px solid var(--line) !important;border-radius:4px !important;
+  font-family:var(--font-body) !important;font-size:13px !important;font-weight:700 !important;
+}
+
+/* ============ HOME (DOM viejo) ============ */
+/* 7) hero más corto */
+.hf-dbs [data-testid="hero-container"]{min-height:520px !important;height:520px !important;}
+/* 8) scrim más claro */
+.hf-dbs [data-testid="hero-container"]::after{background:linear-gradient(180deg,rgba(24,24,22,.16) 0%,rgba(24,24,22,.14) 40%,rgba(24,24,22,.26) 100%) !important;}
+/* 9-10) título y subtítulo sin negrita; subtítulo contenido (2 líneas) */
+.hf-dbs [data-testid="agency-headline"]{font-weight:400 !important;}
+.hf-dbs [data-testid="agency-sub-headline"]{font-weight:400 !important;max-width:52ch !important;margin-left:auto !important;margin-right:auto !important;}
+/* 11) sin lupa en el CTA del buscador */
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] svg{display:none !important;}
+/* 13) sin línea amarilla bajo el título de sección */
+.hf-dbs:has([data-testid="hero-container"]) h2:not([data-testid])::after{content:none !important;display:none !important;}
+/* 14) imágenes de tarjeta 4/3 */
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-banner"]{aspect-ratio:4/3 !important;height:auto !important;}
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-banner"] img{height:100% !important;object-fit:cover !important;}
+/* 15) cuadrícula y heading a 1120px */
+.hf-dbs:has([data-testid="hero-container"]) div:has(> [data-testid="property-card"]){max-width:1120px !important;margin-left:auto !important;margin-right:auto !important;}
+.hf-dbs:has([data-testid="hero-container"]) h2:not([data-testid]){max-width:1120px !important;margin-left:auto !important;margin-right:auto !important;}
+/* 16) logo con aire */
+.hf-dbs [data-testid="common-header"] > div{padding-left:40px !important;padding-right:40px !important;}
+/* 17) View More más largo */
+.hf-dbs [data-testid="view-more-or-less-button"]{padding:0 48px !important;height:44px !important;border-radius:999px !important;font-weight:700 !important;}
+
+/* ============ RESULTADOS (DOM viejo) ============ */
+/* 19) sin iconos en los listados */
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="property-card-guests-tag"]::before,
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="property-card-bedrooms-tag"]::before,
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="property-card-beds-tag"]::before,
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="property-card-bathrooms-tag"]::before{content:none !important;display:none !important;}
+/* 20) precio más pequeño */
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="property-card-price"],
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="property-card-price"] *{font-size:17px !important;}
+/* 21) Where más estrecho, Who con aire */
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="where-field-container"]{flex:0.8 1 0 !important;}
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="who-field-container"]{flex:1.3 1 0 !important;}
+/* 23) Botón Filters (handoff: pill blanco, borde teal, hover relleno) */
+.hf-dbs main.hf-dbs-content > div > div > button:not([data-testid]){
+  display:inline-flex !important;align-items:center !important;gap:9px !important;
+  height:44px !important;padding:0 22px !important;border-radius:999px !important;
+  font-family:var(--font-body) !important;font-weight:700 !important;font-size:14px !important;letter-spacing:.01em !important;
+  background:#fff !important;color:var(--teal) !important;border:1.5px solid var(--teal) !important;
+  box-shadow:none !important;transition:background .15s,color .15s !important;
+}
+.hf-dbs main.hf-dbs-content > div > div > button:not([data-testid]) svg{width:16px !important;height:16px !important;fill:none !important;stroke:currentColor !important;stroke-width:2 !important;}
+.hf-dbs main.hf-dbs-content > div > div > button:not([data-testid]):hover{background:var(--teal) !important;color:#fff !important;}
+
+/* ============ CHECKOUT (DOM viejo) ============ */
+/* 25) tarjeta más estrecha + 28) aire antes del footer */
+.hf-dbs [data-testid="payment-overview"]{max-width:860px !important;margin-bottom:96px !important;}
+/* 26) concepto y precio juntos en la misma línea */
+.hf-dbs [data-testid="booking-info-section"] > div,
+.hf-dbs [data-testid="rent-section"] > div,
+.hf-dbs [data-testid="taxes-section"] > div,
+.hf-dbs [data-testid="fees-section"] > div,
+.hf-dbs [data-testid="balance-payment-section"] > div,
+.hf-dbs [data-testid="total-amount-row"]{display:flex !important;justify-content:flex-start !important;gap:12px !important;}
+/* 27) tarjeta derecha sin negritas */
+.hf-dbs [data-testid="widgetTotalAmount-label"],
+.hf-dbs [data-testid="widgetTotalAmount-value"],
+.hf-dbs [data-testid="widgetPayToday-value"],
+.hf-dbs [data-testid="widgetDates"],
+.hf-dbs [data-testid="widgetPropertyName"]{font-weight:400 !important;}
