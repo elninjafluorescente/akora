@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.12.3  ·  Fecha: 2026-07-13
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.12.3
+   Version: v0.12.4  ·  Fecha: 2026-07-13
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.12.4
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@300;400;500;600;700;800&family=Tenor+Sans&family=Sacramento&display=swap');
 
@@ -1314,6 +1314,15 @@ body.hf-dbs > div { background: var(--cream) !important; }
 /* 15) cuadrícula y heading a 1120px */
 .hf-dbs:has([data-testid="hero-container"]) div:has(> [data-testid="property-card"]){max-width:1120px !important;margin-left:auto !important;margin-right:auto !important;}
 .hf-dbs:has([data-testid="hero-container"]) h2:not([data-testid]){max-width:1120px !important;margin-left:auto !important;margin-right:auto !important;}
+/* Columnas IGUALES: Hostfully codifica anchos fijos desiguales
+   (368px 346px 346px) → la 1ª columna salía más ancha. Se fuerzan 3
+   columnas iguales SOLO en desktop (≥900px) para no romper el apilado
+   móvil nativo. Con esto todas las tarjetas comparten mismo ancho. */
+@media (min-width:900px){
+  .hf-dbs:has([data-testid="hero-container"]) div:has(> [data-testid="property-card"]){
+    grid-template-columns:repeat(3, minmax(0,1fr)) !important;
+  }
+}
 /* 16) logo con aire */
 .hf-dbs [data-testid="common-header"] > div{padding-left:40px !important;padding-right:40px !important;}
 /* 17) View More más largo */
