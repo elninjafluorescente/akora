@@ -28,10 +28,26 @@
 .hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="where-field-container"] { border-radius: 999px 0 0 999px !important; }
 .hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="who-field-container"]   { border-radius: 0 999px 999px 0 !important; }
 
-/* ---- Grid de resultados: 2 columnas (tarjetas más grandes, como el mockup) ---- */
+/* ---- Grid de resultados: 2 columnas IGUALES (tarjetas como el mockup).
+   minmax(0,1fr) en vez de 1fr: con 1fr (=minmax(auto,1fr)) el ancho
+   natural de una imagen empujaba una columna y quedaban desiguales; el
+   mínimo 0 mantiene las 2 columnas exactamente iguales. grid-auto-rows
+   auto + align-items:start evita que las filas estiren/solapen tarjetas. */
 .hf-dbs [data-testid="search-properties-grid"] {
-  grid-template-columns: repeat(2, 1fr) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-auto-rows: auto !important;
+  grid-template-rows: none !important;
+  align-items: start !important;
   gap: 34px 26px !important;
+}
+/* Tarjeta en flex-columna con altura libre: la nativa es un grid de
+   altura fija (350px) y con la imagen 4/3 (más alta) el nombre quedaba
+   TAPADO/solapado por la foto. Apilada, banner y datos fluyen sin pisarse. */
+.hf-dbs:has([data-testid="search-properties-grid"]) [data-testid="property-card"] {
+  display: flex !important;
+  flex-direction: column !important;
+  height: auto !important;
+  min-height: 0 !important;
 }
 
 /* ---- Mapa real: redondeado, hairline, sombra suave, sticky ---- */
