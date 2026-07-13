@@ -80,9 +80,29 @@
 .hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] svg{display:none !important;}
 /* 13) sin línea amarilla bajo el título de sección */
 .hf-dbs:has([data-testid="hero-container"]) h2:not([data-testid])::after{content:none !important;display:none !important;}
-/* 14) imágenes de tarjeta 4/3 */
-.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-banner"]{aspect-ratio:4/3 !important;height:auto !important;}
-.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-banner"] img{height:100% !important;object-fit:cover !important;}
+/* 14) imágenes de tarjeta: TODAS mismo ancho y alto (caja 4/3 fija).
+   Clave: el banner es un carrusel con divs anidados SIN altura definida;
+   si la imagen usa height:100% contra un padding auto, colapsa a su alto
+   natural → cada foto quedaba de distinto tamaño. Solución: caja del
+   banner en aspect-ratio 4/3 y TODA la cadena de divs internos a
+   height:100% para que el 100% de la imagen resuelva; la imagen recorta
+   con object-fit:cover (sin distorsión). Ver bloque de re-flow abajo. */
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-banner"]{
+  aspect-ratio:4/3 !important;
+  height:auto !important;
+  min-height:0 !important;
+  overflow:hidden !important;
+  position:relative !important;
+}
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-banner"] div{
+  height:100% !important;
+}
+.hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-banner"] img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  display:block !important;
+}
 /* 15) cuadrícula y heading a 1120px */
 .hf-dbs:has([data-testid="hero-container"]) div:has(> [data-testid="property-card"]){max-width:1120px !important;margin-left:auto !important;margin-right:auto !important;}
 .hf-dbs:has([data-testid="hero-container"]) h2:not([data-testid]){max-width:1120px !important;margin-left:auto !important;margin-right:auto !important;}
@@ -161,7 +181,9 @@
 /* ---- Tarjetas home: el 4/3 desbordaba porque la FILA del grid y el
    propio card llevan alturas fijas (350px) y el card es un grid interno
    de filas fijas. Se libera todo y el card apila en flex-column;
-   aire imagen→nombre 14-15px (mockup .lcard__body). ---- */
+   aire imagen→nombre 14-15px (mockup .lcard__body). align-items:start
+   evita que la fila estire tarjetas; grid-auto-rows:auto deja que cada
+   fila mida por su contenido (las imagenes ya son 4/3 identicas). ---- */
 .hf-dbs:has([data-testid="hero-container"]) div:has(> [data-testid="property-card"]) {
   grid-auto-rows: auto !important;
   grid-template-rows: none !important;
