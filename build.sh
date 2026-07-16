@@ -10,10 +10,10 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-VER="0.12.5"
+VER="0.13.0"
 FECHA="$(date +%Y-%m-%d 2>/dev/null || echo 2026-06-11)"
 
-ORDER=(_variables _typography _utilities _navigation _search-widget _booking-widget _landing _checkout _home _search _punch-jul)
+ORDER=(_variables _typography _utilities _navigation _search-widget _booking-widget _landing _checkout _home _search _punch-jul _responsive)
 
 {
   printf '/* =============================================\n'

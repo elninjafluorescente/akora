@@ -1,0 +1,126 @@
+/* =============================================
+   _responsive.css — Móvil/tablet (<900px) para las 4 vistas
+   Depende de: _variables.css · scope: .hf-dbs · VA AL FINAL del build
+   ---------------------------------------------
+   Los overrides de escritorio (cápsula 64px en fila, grids con columnas
+   en px fijos de Hostfully, dossier 1fr/372px, tarjetas del checkout en
+   fila) desbordaban o aplastaban el contenido bajo 900px. Auditado EN
+   VIVO (2026-07-16, viewport ~606px CSS): cada bloque de aquí corrige
+   un desborde/solape medido, no es decorativo. Hostfully NO adapta sus
+   anchos fijos (p.ej. grid home 368px 368px, wrapper del hero 1094px)
+   por debajo de ~900 → los forzamos fluidos.
+   ============================================= */
+
+@media (max-width: 899px) {
+
+  /* ---- CÁPSULA DEL BUSCADOR: apilada a ancho completo ----
+     El form desktop (64px de alto, campos en fila nowrap, 880px) generaba
+     180px de scroll horizontal. Campos al 100% con hairlines horizontales
+     y CTA dorado a fila completa. */
+  .hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] form {
+    height: auto !important;
+    flex-wrap: wrap !important;
+    max-width: calc(100% - 32px) !important;
+    border-radius: 20px !important;
+    padding: 6px 10px !important;
+  }
+  .hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="where-field-container"],
+  .hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"],
+  .hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="who-field-container"] {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    height: 46px !important;
+    padding: 0 12px !important;
+  }
+  .hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="where-field-container"],
+  .hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"] {
+    border-bottom: 1px solid var(--line-2) !important;
+  }
+  /* separadores verticales de escritorio: fuera */
+  .hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="when-field-container"]::before,
+  .hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] [data-testid="who-field-container"]::before { content: none !important; }
+  /* CTA: el nativo lo posiciona ABSOLUTE (top 50% del pill) y tapaba el
+     campo WHEN al apilar → static y a fila completa */
+  .hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"] {
+    position: static !important;
+    transform: none !important;
+    width: 100% !important;
+    margin: 6px 0 4px !important;
+    padding: 0 !important;
+  }
+  .hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="icon-submit-button"]::after {
+    flex: 1 1 100% !important;
+    text-align: center !important;
+  }
+  /* wrappers con width FIJO de escritorio (hero: 1094/1054px) */
+  .hf-dbs.hf-dbs [data-testid="search-filter-component"],
+  .hf-dbs.hf-dbs [data-testid="hero-container"] div:has(> [data-testid="search-filter-component"]) {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  /* banda del buscador: estática (apilada mide ~240px; sticky taparía
+     media pantalla móvil) */
+  .hf-dbs .is-sticky,
+  .hf-dbs [data-testid="search-filter-component"] { position: static !important; }
+
+  /* ---- HOME ---- */
+  /* hero con altura libre para la cápsula apilada */
+  .hf-dbs [data-testid="hero-container"] {
+    height: auto !important;
+    min-height: 520px !important;
+    padding-bottom: 26px !important;
+  }
+  /* grid de tarjetas: el nativo trae 368px 368px FIJOS también en móvil
+     (desbordaba 180px) → fluido */
+  .hf-dbs:has([data-testid="hero-container"]) div:has(> [data-testid="property-card"]) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 26px 18px !important;
+    max-width: 100% !important;
+  }
+
+  /* ---- RESULTADOS (/search): 1 columna (el mapa lo oculta el nativo) ---- */
+  .hf-dbs.hf-dbs [data-testid="search-properties-grid"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* ---- FICHA (DOM viejo): dossier a 1 columna ----
+     El grid 1fr/372px dejaba el contenido en 130px. Además los hijos
+     llevan grid-column nativo (creaban columna implícita) → todos a la
+     única columna y el widget AL FINAL, sin sticky. */
+  .hf-dbs main div:has(> nav[data-testid="page-links"]) {
+    grid-template-columns: minmax(0, 1fr) !important;
+    column-gap: 0 !important;
+    row-gap: 22px !important;
+  }
+  .hf-dbs main div:has(> nav[data-testid="page-links"]) > * {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
+  .hf-dbs main div:has(> nav[data-testid="page-links"]) > [data-testid="property-details-widget"] { order: 99 !important; }
+  .hf-dbs [data-testid="property-details-widget"] {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .hf-dbs [data-testid="page-links"] { top: 0 !important; }
+
+  /* ---- CHECKOUT: tarjetas apiladas ----
+     Los grids internos de payment-overview ponían foto|resumen en fila
+     (foto aplastada a 144px) → bloque y ancho completo. */
+  .hf-dbs [data-testid="payment-overview"] > div {
+    display: block !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .hf-dbs [data-testid="payment-overview"] > div > * {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Móvil estrecho: tarjetas home a 1 columna */
+@media (max-width: 699px) {
+  .hf-dbs:has([data-testid="hero-container"]) div:has(> [data-testid="property-card"]) {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
