@@ -57,7 +57,7 @@
 
 /* 3) Precio del widget sin negrita y más pequeño */
 .hf-dbs [data-testid="booking-widget-from-price"],
-.hf-dbs [data-testid="booking-widget-from-price"] *{font-weight:400 !important;font-size:18px !important;color:var(--navy) !important;}
+.hf-dbs [data-testid="booking-widget-from-price"] *{font-weight:400 !important;font-size:18px !important;color:var(--teal) !important;}
 /* 4) hide details oculto (id conocido; verificar en DOM nuevo con desglose) */
 .hf-dbs [data-testid="price-details-toggle"]{display:none !important;}
 .hf-dbs [data-testid="booking-widget-min-stay"]{display:none !important;}
@@ -210,3 +210,33 @@
 }
 .hf-dbs:has([data-testid="property-card"]) *:has(> [data-testid="property-card-guests-tag"]) { margin-top: 7px !important; }
 .hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-price-line"] { margin-top: 9px !important; }
+
+/* ============ CHECKOUT (cliente jul-2026, 2ª ronda) ============
+   Aplica a AMBAS fases del checkout (overview y pago final): mismos
+   testids. Verificado en overview; la fase final comparte anclas. */
+/* 4) fuera las líneas repetidas del desglose (los hr del desglose son
+   styled-components hr[class*="sc-"]; los 2 estructurales de la tarjeta
+   derecha van SIN clase y se conservan) */
+.hf-dbs [data-testid="payment-overview"] hr[class*="sc-"] { display: none !important; }
+/* 5) precio de la tarjeta derecha en teal */
+.hf-dbs.hf-dbs.hf-dbs [data-testid="widgetTotalAmount-value"],
+.hf-dbs.hf-dbs.hf-dbs [data-testid="widgetPayToday-value"] { color: var(--teal) !important; }
+/* 6) botón Confirmar & continuar: pill dorado con sombra (como el resto de CTA) */
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="payment-overview"] button {
+  background: var(--gold) !important;
+  color: var(--navy) !important;
+  border: none !important;
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 6px 16px -8px rgba(24,30,58,.34) !important;
+}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="payment-overview"] button:hover { background: #EAC400 !important; }
+/* 9) sombra en las tarjetas (el bloque del título h1 NO es tarjeta) */
+.hf-dbs [data-testid="payment-overview"] > div {
+  box-shadow: var(--shadow-card) !important;
+  border-radius: 8px !important;
+}
+.hf-dbs [data-testid="payment-overview"] > div:has(h1) {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}

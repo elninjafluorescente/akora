@@ -68,3 +68,16 @@
   border-radius: 999px !important;
 }
 .hf-dbs [data-testid="toggle-view-button"]:hover { background: var(--teal-700) !important; }
+
+/* ---- Popup del mapa (cliente jul-2026: "la curva no está bien") ----
+   El popup nativo es una caja blanca con radius 15px y overflow VISIBLE
+   y dentro va una property-card con radius 4px: la imagen (recta)
+   sobresalía de la curva. Se unifica a 5px de marca con recorte real. */
+.hf-dbs [data-testid="map"] div:has(> [data-testid="property-card"]) {
+  border-radius: 5px !important;
+  overflow: hidden !important;
+}
+.hf-dbs [data-testid="map"] [data-testid="property-card"] {
+  border-radius: 5px !important;
+  overflow: hidden !important;
+}

@@ -23,7 +23,7 @@
   font-family: var(--font-display) !important;
   font-size: 34px !important;
   line-height: 1.1 !important;
-  color: var(--navy) !important;
+  color: var(--teal) !important;
 }
 .hf-dbs [data-testid="booking-widget-total-currency"],
 .hf-dbs [data-testid="booking-widget-nights-length"] {
@@ -61,18 +61,19 @@
   color: var(--navy) !important;
 }
 
-/* Booking Note y Promo Code: reducidos (pactado) */
+/* Booking Note: OCULTA (cliente jul-2026: alarga demasiado la página).
+   Promo Code se queda, reducido. */
 .hf-dbs [data-testid="notes-field-container"],
+.hf-dbs [data-testid="notes"],
+.hf-dbs div:has(> [data-testid="notes"]) { display: none !important; }
 .hf-dbs [data-testid="promoCode-field-container"] { font-size: 12px !important; }
-.hf-dbs [data-testid="notes"] {
-  font-size: 12px !important; min-height: 56px !important; padding: 8px 10px !important;
-}
 .hf-dbs [data-testid="promoCode"] { font-size: 12px !important; padding: 8px 10px !important; }
 
-/* Botón "Book now": teal PILL ancho completo (revisión: .btn radius 999) */
+/* Botón "Book now": DORADO pill con sombra (petición cliente jul-2026) */
 .hf-dbs.hf-dbs.hf-dbs [data-testid="app-button"] {
-  background: var(--teal) !important;
-  color: #fff !important;
+  background: var(--gold) !important;
+  color: var(--navy) !important;
+  box-shadow: 0 6px 16px -8px rgba(24,30,58,.34) !important;
   border: none !important;
   border-radius: 999px !important;
   font-family: var(--font-body) !important;
@@ -83,7 +84,7 @@
   padding: 0 24px !important;
   width: 100% !important;
 }
-.hf-dbs.hf-dbs.hf-dbs [data-testid="app-button"]:hover { background: var(--teal-700) !important; }
+.hf-dbs.hf-dbs.hf-dbs [data-testid="app-button"]:hover { background: #EAC400 !important; }
 
 /* Focus de campos: borde teal + fondo blanco (revisión .field:focus) */
 .hf-dbs [data-testid="property-details-widget"] input:focus,

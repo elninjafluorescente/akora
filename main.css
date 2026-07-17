@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.13.0  ·  Fecha: 2026-07-16
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.13.0
+   Version: v0.14.0  ·  Fecha: 2026-07-17
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.14.0
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@300;400;500;600;700;800&family=Tenor+Sans&family=Sacramento&display=swap');
 
@@ -264,6 +264,8 @@ body.hf-dbs > div { background: var(--cream) !important; }
   margin: 0 auto !important;
   border: none !important;
   border-radius: 999px !important;
+  /* sombra de la cápsula (cliente jul-2026; la home usa la suya propia) */
+  box-shadow: 0 10px 28px -18px rgba(24,30,58,.4) !important;
   /* cápsula FINA (mockup .bk-search: 64px, campos de 50px centrados) */
   height: 64px !important;
   align-items: center !important;
@@ -392,7 +394,7 @@ body.hf-dbs > div { background: var(--cream) !important; }
   font-family: var(--font-display) !important;
   font-size: 34px !important;
   line-height: 1.1 !important;
-  color: var(--navy) !important;
+  color: var(--teal) !important;
 }
 .hf-dbs [data-testid="booking-widget-total-currency"],
 .hf-dbs [data-testid="booking-widget-nights-length"] {
@@ -430,18 +432,19 @@ body.hf-dbs > div { background: var(--cream) !important; }
   color: var(--navy) !important;
 }
 
-/* Booking Note y Promo Code: reducidos (pactado) */
+/* Booking Note: OCULTA (cliente jul-2026: alarga demasiado la página).
+   Promo Code se queda, reducido. */
 .hf-dbs [data-testid="notes-field-container"],
+.hf-dbs [data-testid="notes"],
+.hf-dbs div:has(> [data-testid="notes"]) { display: none !important; }
 .hf-dbs [data-testid="promoCode-field-container"] { font-size: 12px !important; }
-.hf-dbs [data-testid="notes"] {
-  font-size: 12px !important; min-height: 56px !important; padding: 8px 10px !important;
-}
 .hf-dbs [data-testid="promoCode"] { font-size: 12px !important; padding: 8px 10px !important; }
 
-/* Botón "Book now": teal PILL ancho completo (revisión: .btn radius 999) */
+/* Botón "Book now": DORADO pill con sombra (petición cliente jul-2026) */
 .hf-dbs.hf-dbs.hf-dbs [data-testid="app-button"] {
-  background: var(--teal) !important;
-  color: #fff !important;
+  background: var(--gold) !important;
+  color: var(--navy) !important;
+  box-shadow: 0 6px 16px -8px rgba(24,30,58,.34) !important;
   border: none !important;
   border-radius: 999px !important;
   font-family: var(--font-body) !important;
@@ -452,7 +455,7 @@ body.hf-dbs > div { background: var(--cream) !important; }
   padding: 0 24px !important;
   width: 100% !important;
 }
-.hf-dbs.hf-dbs.hf-dbs [data-testid="app-button"]:hover { background: var(--teal-700) !important; }
+.hf-dbs.hf-dbs.hf-dbs [data-testid="app-button"]:hover { background: #EAC400 !important; }
 
 /* Focus de campos: borde teal + fondo blanco (revisión .field:focus) */
 .hf-dbs [data-testid="property-details-widget"] input:focus,
@@ -1221,6 +1224,19 @@ body.hf-dbs > div { background: var(--cream) !important; }
 }
 .hf-dbs [data-testid="toggle-view-button"]:hover { background: var(--teal-700) !important; }
 
+/* ---- Popup del mapa (cliente jul-2026: "la curva no está bien") ----
+   El popup nativo es una caja blanca con radius 15px y overflow VISIBLE
+   y dentro va una property-card con radius 4px: la imagen (recta)
+   sobresalía de la curva. Se unifica a 5px de marca con recorte real. */
+.hf-dbs [data-testid="map"] div:has(> [data-testid="property-card"]) {
+  border-radius: 5px !important;
+  overflow: hidden !important;
+}
+.hf-dbs [data-testid="map"] [data-testid="property-card"] {
+  border-radius: 5px !important;
+  overflow: hidden !important;
+}
+
 /* ===== _punch-jul ===== */
 /* =============================================
    _punch-jul.css — Punch list del cliente (jul-2026) + re-port DOM nuevo
@@ -1281,7 +1297,7 @@ body.hf-dbs > div { background: var(--cream) !important; }
 
 /* 3) Precio del widget sin negrita y más pequeño */
 .hf-dbs [data-testid="booking-widget-from-price"],
-.hf-dbs [data-testid="booking-widget-from-price"] *{font-weight:400 !important;font-size:18px !important;color:var(--navy) !important;}
+.hf-dbs [data-testid="booking-widget-from-price"] *{font-weight:400 !important;font-size:18px !important;color:var(--teal) !important;}
 /* 4) hide details oculto (id conocido; verificar en DOM nuevo con desglose) */
 .hf-dbs [data-testid="price-details-toggle"]{display:none !important;}
 .hf-dbs [data-testid="booking-widget-min-stay"]{display:none !important;}
@@ -1434,6 +1450,36 @@ body.hf-dbs > div { background: var(--cream) !important; }
 }
 .hf-dbs:has([data-testid="property-card"]) *:has(> [data-testid="property-card-guests-tag"]) { margin-top: 7px !important; }
 .hf-dbs:has([data-testid="property-card"]) [data-testid="property-card-price-line"] { margin-top: 9px !important; }
+
+/* ============ CHECKOUT (cliente jul-2026, 2ª ronda) ============
+   Aplica a AMBAS fases del checkout (overview y pago final): mismos
+   testids. Verificado en overview; la fase final comparte anclas. */
+/* 4) fuera las líneas repetidas del desglose (los hr del desglose son
+   styled-components hr[class*="sc-"]; los 2 estructurales de la tarjeta
+   derecha van SIN clase y se conservan) */
+.hf-dbs [data-testid="payment-overview"] hr[class*="sc-"] { display: none !important; }
+/* 5) precio de la tarjeta derecha en teal */
+.hf-dbs.hf-dbs.hf-dbs [data-testid="widgetTotalAmount-value"],
+.hf-dbs.hf-dbs.hf-dbs [data-testid="widgetPayToday-value"] { color: var(--teal) !important; }
+/* 6) botón Confirmar & continuar: pill dorado con sombra (como el resto de CTA) */
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="payment-overview"] button {
+  background: var(--gold) !important;
+  color: var(--navy) !important;
+  border: none !important;
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 6px 16px -8px rgba(24,30,58,.34) !important;
+}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="payment-overview"] button:hover { background: #EAC400 !important; }
+/* 9) sombra en las tarjetas (el bloque del título h1 NO es tarjeta) */
+.hf-dbs [data-testid="payment-overview"] > div {
+  box-shadow: var(--shadow-card) !important;
+  border-radius: 8px !important;
+}
+.hf-dbs [data-testid="payment-overview"] > div:has(h1) {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
 
 /* ===== _responsive ===== */
 /* =============================================

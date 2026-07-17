@@ -30,6 +30,8 @@
   margin: 0 auto !important;
   border: none !important;
   border-radius: 999px !important;
+  /* sombra de la cápsula (cliente jul-2026; la home usa la suya propia) */
+  box-shadow: 0 10px 28px -18px rgba(24,30,58,.4) !important;
   /* cápsula FINA (mockup .bk-search: 64px, campos de 50px centrados) */
   height: 64px !important;
   align-items: center !important;
