@@ -60,7 +60,7 @@ docs/notas.md             ← cuaderno interno (selectores, decisiones abiertas)
    `https://elninjafluorescente.github.io/akora/main.css`
 2. **Hostfully:** Configuración de Agencia → **White Labelling** y rellenar:
    - **Custom Domain Name:** `booking.akora.com`
-   - **CSS URL:** la URL de Pages **con versión** → `…/main.css?v=0.14.0`
+   - **CSS URL:** la URL de Pages **con versión** → `…/main.css?v=0.15.0`
    - **Favicon**, **Header HTML** ([`header.html`](header.html)),
      **Footer HTML** ([`footer.html`](footer.html)),
      **Google Analytics** ([`tracking/ga4.html`](tracking/ga4.html)),

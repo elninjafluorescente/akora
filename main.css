@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.14.0  ·  Fecha: 2026-07-17
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.14.0
+   Version: v0.15.0  ·  Fecha: 2026-07-22
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.15.0
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@300;400;500;600;700;800&family=Tenor+Sans&family=Sacramento&display=swap');
 
@@ -1298,6 +1298,17 @@ body.hf-dbs > div { background: var(--cream) !important; }
 /* 3) Precio del widget sin negrita y más pequeño */
 .hf-dbs [data-testid="booking-widget-from-price"],
 .hf-dbs [data-testid="booking-widget-from-price"] *{font-weight:400 !important;font-size:18px !important;color:var(--teal) !important;}
+/* precio en VERDE DEGRADADO (Victoria jul-2026): teal claro -> profundo */
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-total"],
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-total"] *,
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-from-price"],
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-from-price"] *{
+  background:linear-gradient(135deg, #5FA3A9 0%, #468186 45%, #2C5458 100%) !important;
+  -webkit-background-clip:text !important;
+  background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  color:var(--teal) !important;   /* fallback si background-clip:text no esta soportado */
+}
 /* 4) hide details oculto (id conocido; verificar en DOM nuevo con desglose) */
 .hf-dbs [data-testid="price-details-toggle"]{display:none !important;}
 .hf-dbs [data-testid="booking-widget-min-stay"]{display:none !important;}
@@ -1357,8 +1368,13 @@ body.hf-dbs > div { background: var(--cream) !important; }
 }
 /* 16) logo con aire */
 .hf-dbs [data-testid="common-header"] > div{padding-left:40px !important;padding-right:40px !important;}
-/* 17) View More más largo */
-.hf-dbs [data-testid="view-more-or-less-button"]{padding:0 48px !important;height:44px !important;border-radius:999px !important;font-weight:700 !important;}
+/* 17) View More mas largo + DORADO (Victoria jul-2026) */
+.hf-dbs.hf-dbs.hf-dbs [data-testid="view-more-or-less-button"]{
+  padding:0 48px !important;height:44px !important;border-radius:999px !important;font-weight:700 !important;
+  background:var(--gold) !important;color:var(--navy) !important;border:none !important;
+  box-shadow:0 6px 16px -8px rgba(24,30,58,.34) !important;
+}
+.hf-dbs.hf-dbs.hf-dbs [data-testid="view-more-or-less-button"]:hover{background:#EAC400 !important;}
 
 /* ============ RESULTADOS (DOM viejo) ============ */
 /* 19) sin iconos en los listados */
@@ -1380,7 +1396,10 @@ body.hf-dbs > div { background: var(--cream) !important; }
   background:#fff !important;color:var(--teal) !important;border:1.5px solid var(--teal) !important;
   box-shadow:none !important;transition:background .15s,color .15s !important;
 }
-.hf-dbs main.hf-dbs-content > div > div > button:not([data-testid]) svg{width:16px !important;height:16px !important;fill:none !important;stroke:currentColor !important;stroke-width:2 !important;}
+/* el svg nativo del boton Filters es de FILL (path solido sin atributos):
+   con fill:none quedaba invisible (aviso de Victoria, jul-2026) */
+.hf-dbs main.hf-dbs-content > div > div > button:not([data-testid]) svg,
+.hf-dbs main.hf-dbs-content > div > div > button:not([data-testid]) svg path{width:16px !important;height:16px !important;fill:currentColor !important;stroke:none !important;}
 .hf-dbs main.hf-dbs-content > div > div > button:not([data-testid]):hover{background:var(--teal) !important;color:#fff !important;}
 
 /* ============ CHECKOUT (DOM viejo) ============ */
@@ -1458,9 +1477,15 @@ body.hf-dbs > div { background: var(--cream) !important; }
    styled-components hr[class*="sc-"]; los 2 estructurales de la tarjeta
    derecha van SIN clase y se conservan) */
 .hf-dbs [data-testid="payment-overview"] hr[class*="sc-"] { display: none !important; }
-/* 5) precio de la tarjeta derecha en teal */
+/* 5) precio de la tarjeta derecha en VERDE DEGRADADO (Victoria jul-2026) */
 .hf-dbs.hf-dbs.hf-dbs [data-testid="widgetTotalAmount-value"],
-.hf-dbs.hf-dbs.hf-dbs [data-testid="widgetPayToday-value"] { color: var(--teal) !important; }
+.hf-dbs.hf-dbs.hf-dbs [data-testid="widgetPayToday-value"] {
+  background: linear-gradient(135deg, #5FA3A9 0%, #468186 45%, #2C5458 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: var(--teal) !important;
+}
 /* 6) botón Confirmar & continuar: pill dorado con sombra (como el resto de CTA) */
 .hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="payment-overview"] button {
   background: var(--gold) !important;
