@@ -165,13 +165,25 @@
 /* ============ CHECKOUT (DOM viejo) ============ */
 /* 25) tarjeta más estrecha + 28) aire antes del footer */
 .hf-dbs [data-testid="payment-overview"]{max-width:860px !important;margin-bottom:96px !important;}
-/* 26) concepto y precio juntos en la misma línea */
-.hf-dbs [data-testid="booking-info-section"] > div,
-.hf-dbs [data-testid="rent-section"] > div,
-.hf-dbs [data-testid="taxes-section"] > div,
-.hf-dbs [data-testid="fees-section"] > div,
-.hf-dbs [data-testid="balance-payment-section"] > div,
-.hf-dbs [data-testid="total-amount-row"]{display:flex !important;justify-content:flex-start !important;gap:12px !important;}
+/* 26→mockup Victoria: filas concepto IZQUIERDA / importe DERECHA.
+   El concepto y el importe viven en UN hijo interno de cada fila →
+   el space-between se aplica ahí, estirado al 100%. */
+.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-info-section"] > div,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="rent-section"] > div,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="taxes-section"] > div,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="fees-section"] > div,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="balance-payment-section"] > div,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="total-amount-row"]{display:flex !important;justify-content:space-between !important;gap:12px !important;}
+.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-info-section"] > div > div,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="rent-section"] > div > div,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="taxes-section"] > div > div,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="fees-section"] > div > div,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="balance-payment-section"] > div > div,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="total-amount-row"] > div{
+  display:flex !important;justify-content:space-between !important;
+  flex:1 1 auto !important;width:100% !important;gap:12px !important;
+}
+.hf-dbs [data-testid="balance-payment-section"] > div > div > *:last-child{white-space:nowrap !important;}
 /* 27) tarjeta derecha sin negritas */
 .hf-dbs [data-testid="widgetTotalAmount-label"],
 .hf-dbs [data-testid="widgetTotalAmount-value"],
@@ -237,14 +249,29 @@
    styled-components hr[class*="sc-"]; los 2 estructurales de la tarjeta
    derecha van SIN clase y se conservan) */
 .hf-dbs [data-testid="payment-overview"] hr[class*="sc-"] { display: none !important; }
-/* 5) precio de la tarjeta derecha en VERDE DEGRADADO (Victoria jul-2026) */
-.hf-dbs.hf-dbs.hf-dbs [data-testid="widgetTotalAmount-value"],
-.hf-dbs.hf-dbs.hf-dbs [data-testid="widgetPayToday-value"] {
-  background: linear-gradient(135deg, #5FA3A9 0%, #468186 45%, #2C5458 100%) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  color: var(--teal) !important;
+/* 5→mockup Victoria: la banda PAY TODAY entera en degradado verde con
+   texto BLANCO; el Total de arriba en navy normal (sin degradado). */
+.hf-dbs.hf-dbs.hf-dbs div:has(> [data-testid="widgetPayToday-label"]) {
+  background: linear-gradient(90deg, #2C5458 0%, #468186 55%, #5FA3A9 100%) !important;
+  border-radius: 6px !important;
+  padding: 14px 16px !important;
+}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="widgetPayToday-label"] { color: #fff !important; letter-spacing: .08em !important; }
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="widgetPayToday-value"] {
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: #fff !important;
+  color: #fff !important;
+  font-size: 22px !important;
+}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="widgetTotalAmount-value"] {
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: var(--navy) !important;
+  color: var(--navy) !important;
+  font-weight: 400 !important;
 }
 /* 6) botón Confirmar & continuar: pill dorado con sombra (como el resto de CTA) */
 .hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="payment-overview"] button {
