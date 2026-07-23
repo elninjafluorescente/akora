@@ -292,3 +292,8 @@
   box-shadow: none !important;
   border-radius: 0 !important;
 }
+
+/* ---- Código de licencia turística OCULTO (petición jul-2026) ----
+   El sufijo cubre el DOM viejo (information-rental-license) y el nuevo
+   (property-details-*-rental-license) cuando Hostfully lo despliegue. */
+.hf-dbs [data-testid$="rental-license"] { display: none !important; }

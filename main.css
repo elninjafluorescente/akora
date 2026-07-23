@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.16.0  ·  Fecha: 2026-07-22
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.16.0
+   Version: v0.16.1  ·  Fecha: 2026-07-23
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.16.1
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@300;400;500;600;700;800&family=Tenor+Sans&family=Sacramento&display=swap');
 
@@ -1532,6 +1532,11 @@ body.hf-dbs > div { background: var(--cream) !important; }
   box-shadow: none !important;
   border-radius: 0 !important;
 }
+
+/* ---- Código de licencia turística OCULTO (petición jul-2026) ----
+   El sufijo cubre el DOM viejo (information-rental-license) y el nuevo
+   (property-details-*-rental-license) cuando Hostfully lo despliegue. */
+.hf-dbs [data-testid$="rental-license"] { display: none !important; }
 
 /* ===== _responsive ===== */
 /* =============================================
