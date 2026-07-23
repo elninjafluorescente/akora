@@ -58,17 +58,31 @@
 /* 3) Precio del widget sin negrita y más pequeño */
 .hf-dbs [data-testid="booking-widget-from-price"],
 .hf-dbs [data-testid="booking-widget-from-price"] *{font-weight:400 !important;font-size:18px !important;color:var(--teal) !important;}
-/* precio en VERDE DEGRADADO (Victoria jul-2026): teal claro -> profundo */
-.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-total"],
-.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-total"] *,
-.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-from-price"],
-.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-from-price"] *{
-  background:linear-gradient(135deg, #5FA3A9 0%, #468186 45%, #2C5458 100%) !important;
-  -webkit-background-clip:text !important;
-  background-clip:text !important;
-  -webkit-text-fill-color:transparent !important;
-  color:var(--teal) !important;   /* fallback si background-clip:text no esta soportado */
+/* Precio de la ficha como BANDA degradada, igual que PAY TODAY del
+   checkout (feedback jul-2026; sustituye el degradado de texto). El
+   bloque nativo es div > [span(precio+EUR), span(per night)]. */
+.hf-dbs.hf-dbs.hf-dbs div:has(> span > [data-testid="booking-widget-total"]),
+.hf-dbs.hf-dbs.hf-dbs div:has(> [data-testid="booking-widget-from-price"]){
+  background:linear-gradient(90deg, #2C5458 0%, #468186 55%, #5FA3A9 100%) !important;
+  border-radius:6px !important;
+  padding:14px 16px !important;
 }
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-total"],
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-total"] *,
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-from-price"],
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-from-price"] *{
+  background:none !important;
+  -webkit-background-clip:border-box !important;
+  background-clip:border-box !important;
+  -webkit-text-fill-color:#fff !important;
+  color:#fff !important;
+}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-total-currency"]{
+  -webkit-text-fill-color:rgba(255,255,255,.85) !important;color:rgba(255,255,255,.85) !important;
+}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs div:has(> span > [data-testid="booking-widget-total"]) span{color:#fff !important;}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs div:has(> span > [data-testid="booking-widget-total"]) > span:last-child,
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-nights-length"]{color:rgba(255,255,255,.85) !important;}
 /* 4) hide details oculto (id conocido; verificar en DOM nuevo con desglose) */
 .hf-dbs [data-testid="price-details-toggle"]{display:none !important;}
 .hf-dbs [data-testid="booking-widget-min-stay"]{display:none !important;}
@@ -297,3 +311,23 @@
    El sufijo cubre el DOM viejo (information-rental-license) y el nuevo
    (property-details-*-rental-license) cuando Hostfully lo despliegue. */
 .hf-dbs [data-testid$="rental-license"] { display: none !important; }
+
+
+/* ============ CHECKOUT (feedback jul-2026, 3ª ronda) ============ */
+/* La fila Rental salia con una "pildora amarilla" (highlight nativo que
+   aparece segun el lead): NINGUN fondo dentro de las secciones de filas;
+   el amarillo deseado vive solo en total-amount-row. */
+.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-info-section"] *,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="rent-section"] *,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="taxes-section"] *,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="fees-section"] *,
+.hf-dbs.hf-dbs.hf-dbs [data-testid="balance-payment-section"] *{
+  background: transparent !important;
+}
+/* Sublineas unificadas: fuera las filas padre "Taxes"/"Fee(s)"; quedan
+   "Rent tax (10%)" y "Cleaning fee" como filas unicas, sin indentar.
+   Especificidad x4: nuestra propia regla de filas (x3) las pone flex. */
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="taxes-section-header"],
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="fees-section-header"]{display:none !important;}
+.hf-dbs [data-testid^="taxes-section-"]:not([data-testid="taxes-section-header"]),
+.hf-dbs [data-testid^="fees-section-"]:not([data-testid="fees-section-header"]){padding-left:0 !important;}
