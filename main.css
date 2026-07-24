@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.18.0  ·  Fecha: 2026-07-24
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.18.0
+   Version: v0.18.1  ·  Fecha: 2026-07-24
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.18.1
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@300;400;500;600;700;800&family=Tenor+Sans&family=Sacramento&display=swap');
 
@@ -1308,11 +1308,13 @@ body.hf-dbs > div { background: var(--cream) !important; }
 }
 .hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-total"],
 .hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-from-price"]{
-  background:linear-gradient(135deg, #5FA3A9 0%, #468186 45%, #2C5458 100%) !important;
-  -webkit-background-clip:text !important;
-  background-clip:text !important;
-  -webkit-text-fill-color:transparent !important;
-  color:var(--teal) !important;   /* fallback */
+  /* teal PLANO (Victoria: sin degradado arriba; el degradado queda en el
+     Total de abajo) */
+  background:none !important;
+  -webkit-background-clip:border-box !important;
+  background-clip:border-box !important;
+  -webkit-text-fill-color:var(--teal) !important;
+  color:var(--teal) !important;
 }
 .hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-total-currency"]{
   background:none !important;
@@ -1563,8 +1565,15 @@ body.hf-dbs > div { background: var(--cream) !important; }
 
 /* ============ CHECKOUT (feedback jul-2026, 3ª ronda) ============ */
 /* La fila Rental salia con una "pildora amarilla" (highlight nativo que
-   aparece segun el lead): NINGUN fondo dentro de las secciones de filas;
-   el amarillo deseado vive solo en total-amount-row. */
+   aparece segun el lead — confirmado por Victoria que sobrevivia a la
+   regla por secciones): NINGUN fondo NI radio dentro de TODO el desglose
+   (payment-order-details); el amarillo deseado vive solo en la banda
+   total-amount-row, que queda excluida. La tarjeta derecha (banda PAY
+   TODAY degradada y boton dorado) esta fuera de payment-order-details. */
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="payment-order-details"] *:not([data-testid="total-amount-row"]):not([data-testid="total-amount-row"] *){
+  background: transparent !important;
+  border-radius: 0 !important;
+}
 .hf-dbs.hf-dbs.hf-dbs [data-testid="booking-info-section"] *,
 .hf-dbs.hf-dbs.hf-dbs [data-testid="rent-section"] *,
 .hf-dbs.hf-dbs.hf-dbs [data-testid="taxes-section"] *,
