@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.17.0  ·  Fecha: 2026-07-23
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.17.0
+   Version: v0.18.0  ·  Fecha: 2026-07-24
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.18.0
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@300;400;500;600;700;800&family=Tenor+Sans&family=Sacramento&display=swap');
 
@@ -1298,31 +1298,39 @@ body.hf-dbs > div { background: var(--cream) !important; }
 /* 3) Precio del widget sin negrita y más pequeño */
 .hf-dbs [data-testid="booking-widget-from-price"],
 .hf-dbs [data-testid="booking-widget-from-price"] *{font-weight:400 !important;font-size:18px !important;color:var(--teal) !important;}
-/* Precio de la ficha como BANDA degradada, igual que PAY TODAY del
-   checkout (feedback jul-2026; sustituye el degradado de texto). El
-   bloque nativo es div > [span(precio+EUR), span(per night)]. */
-.hf-dbs.hf-dbs.hf-dbs div:has(> span > [data-testid="booking-widget-total"]),
-.hf-dbs.hf-dbs.hf-dbs div:has(> [data-testid="booking-widget-from-price"]){
+/* Precio de la ficha (correccion Victoria 2ª): la zona de ARRIBA va SIN
+   banda teal — texto con degradado fino sobre fondo transparente. La
+   banda degradada va en el TOTAL del desglose de abajo (grand-total),
+   como el PAY TODAY del checkout. */
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs div:has(> span > [data-testid="booking-widget-total"]),
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs div:has(> [data-testid="booking-widget-from-price"]){
+  background:none !important;border-radius:0 !important;padding:0 !important;
+}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-total"],
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-from-price"]{
+  background:linear-gradient(135deg, #5FA3A9 0%, #468186 45%, #2C5458 100%) !important;
+  -webkit-background-clip:text !important;
+  background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  color:var(--teal) !important;   /* fallback */
+}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-total-currency"]{
+  background:none !important;
+  -webkit-text-fill-color:var(--ink-soft) !important;color:var(--ink-soft) !important;
+}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs div:has(> span > [data-testid="booking-widget-total"]) span{color:var(--ink-soft) !important;}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs div:has(> span > [data-testid="booking-widget-total"]) > span:last-child,
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-nights-length"]{color:var(--ink-soft) !important;}
+/* TOTAL del desglose del widget: banda degradada teal, texto blanco
+   (pisa el pill dorado de _booking-widget). */
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="grand-total"]{
   background:linear-gradient(90deg, #2C5458 0%, #468186 55%, #5FA3A9 100%) !important;
   border-radius:6px !important;
-  padding:14px 16px !important;
 }
-.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-total"],
-.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-total"] *,
-.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-from-price"],
-.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-from-price"] *{
-  background:none !important;
-  -webkit-background-clip:border-box !important;
-  background-clip:border-box !important;
-  -webkit-text-fill-color:#fff !important;
-  color:#fff !important;
-}
-.hf-dbs.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-total-currency"]{
-  -webkit-text-fill-color:rgba(255,255,255,.85) !important;color:rgba(255,255,255,.85) !important;
-}
-.hf-dbs.hf-dbs.hf-dbs.hf-dbs div:has(> span > [data-testid="booking-widget-total"]) span{color:#fff !important;}
-.hf-dbs.hf-dbs.hf-dbs.hf-dbs div:has(> span > [data-testid="booking-widget-total"]) > span:last-child,
-.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="booking-widget-nights-length"]{color:rgba(255,255,255,.85) !important;}
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="grand-total"] span,
+.hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="grand-total"] *{color:#fff !important;}
+/* caret amarillo del toggle del desglose -> teal */
+.hf-dbs [data-testid="price-details"] svg{color:var(--teal) !important;fill:var(--teal) !important;}
 /* 4) hide details oculto (id conocido; verificar en DOM nuevo con desglose) */
 .hf-dbs [data-testid="price-details-toggle"]{display:none !important;}
 .hf-dbs [data-testid="booking-widget-min-stay"]{display:none !important;}
