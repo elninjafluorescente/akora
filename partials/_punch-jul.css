@@ -348,3 +348,25 @@
 .hf-dbs.hf-dbs.hf-dbs.hf-dbs [data-testid="fees-section-header"]{display:none !important;}
 .hf-dbs [data-testid^="taxes-section-"]:not([data-testid="taxes-section-header"]),
 .hf-dbs [data-testid^="fees-section-"]:not([data-testid="fees-section-header"]){padding-left:0 !important;}
+
+/* ============ RONDA jul-2026 (4ª) ============ */
+/* Nav: solo el logo, sin el texto "AKORA" duplicado al lado */
+.hf-dbs [data-testid="logo-link"] span { display: none !important; }
+
+/* Botón de pago del checkout FINAL: dorado y redondo como el resto de
+   CTAs. Candidatos por testid + genérico: el único button[type=submit]
+   sin testid visible del sitio es el de pago (el "Buscar" del buscador
+   está oculto en desktop por Hostfully y en móvil por _responsive). */
+.hf-dbs [data-testid="pay-button"],
+.hf-dbs [data-testid="payment-button"],
+.hf-dbs [data-testid="submit-payment-button"],
+.hf-dbs.hf-dbs main button[type="submit"]:not([data-testid]) {
+  background: var(--gold) !important;
+  color: var(--navy) !important;
+  border: none !important;
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 6px 16px -8px rgba(24,30,58,.34) !important;
+}
+.hf-dbs [data-testid="pay-button"]:hover,
+.hf-dbs.hf-dbs main button[type="submit"]:not([data-testid]):hover { background: #EAC400 !important; }

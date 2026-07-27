@@ -124,3 +124,71 @@
     grid-template-columns: minmax(0, 1fr) !important;
   }
 }
+
+/* ============ RONDA jul-2026 (4ª) — móvil ============ */
+@media (max-width: 899px) {
+  /* un solo botón de buscar: fuera el "Buscar" verde nativo (queda el
+     CTA dorado "Find your home") */
+  .hf-dbs.hf-dbs.hf-dbs [data-testid="search-filter-component"] button:not([data-testid]) { display: none !important; }
+
+  /* specs de las tarjetas de búsqueda: juntos y alineados a la izquierda */
+  .hf-dbs.hf-dbs [data-testid="property-card"] *:has(> [data-testid="property-card-guests-tag"]) {
+    justify-content: flex-start !important;
+    gap: 4px 10px !important;
+  }
+  .hf-dbs.hf-dbs [data-testid="property-card"] [data-testid$="-tag"] { margin: 0 !important; padding: 0 !important; border: none !important; }
+
+  /* FICHA: sin barra de búsqueda en móvil (mejor fotos + descripción) */
+  .hf-dbs.hf-dbs:has([data-testid="information"]) [data-testid="search-filter-component"],
+  .hf-dbs.hf-dbs:has([data-testid="information"]) .is-sticky { display: none !important; }
+
+  /* FICHA: specs (guests/bedrooms/beds/bathrooms) en UNA línea */
+  .hf-dbs div:has(> [data-testid="information-guests-tag"]) {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    overflow: hidden !important;
+  }
+  .hf-dbs.hf-dbs [data-testid="information-guests-tag"],
+  .hf-dbs.hf-dbs [data-testid="information-bedrooms-tag"],
+  .hf-dbs.hf-dbs [data-testid="information-beds-tag"],
+  .hf-dbs.hf-dbs [data-testid="information-bathrooms-tag"] {
+    font-size: 12px !important;
+    white-space: nowrap !important;
+    gap: 5px !important;
+  }
+  .hf-dbs.hf-dbs [data-testid="information-guests-tag"] svg,
+  .hf-dbs.hf-dbs [data-testid="information-bedrooms-tag"] svg,
+  .hf-dbs.hf-dbs [data-testid="information-beds-tag"] svg,
+  .hf-dbs.hf-dbs [data-testid="information-bathrooms-tag"] svg { width: 14px !important; height: 14px !important; }
+  .hf-dbs.hf-dbs [data-testid="information-bedrooms-tag"],
+  .hf-dbs.hf-dbs [data-testid="information-beds-tag"],
+  .hf-dbs.hf-dbs [data-testid="information-bathrooms-tag"] {
+    margin-left: 10px !important;
+    padding-left: 10px !important;
+  }
+
+  /* FICHA: tabs todas visibles sin scroll (Information/Comodidades/
+     Calendario/Mapa repartidas a lo ancho) */
+  .hf-dbs.hf-dbs [data-testid="page-links"] { padding: 0 8px !important; }
+  .hf-dbs.hf-dbs [data-testid="page-links"] ul {
+    width: 100% !important;
+    justify-content: space-between !important;
+    gap: 0 !important;
+    flex-wrap: nowrap !important;
+  }
+  .hf-dbs.hf-dbs.hf-dbs [data-testid="page-links"] ul li a[data-testid^="page-link-"][href] {
+    font-size: 11.5px !important;
+    padding: 13px 5px !important;
+    letter-spacing: .01em !important;
+    white-space: nowrap !important;
+  }
+
+  /* CHECKOUT: nombre de la propiedad más pequeño (cabe en la tarjeta) */
+  .hf-dbs.hf-dbs [data-testid="overview-property-name"],
+  .hf-dbs.hf-dbs [data-testid="widgetPropertyName"] {
+    font-size: 17px !important;
+    line-height: 1.25 !important;
+    overflow-wrap: break-word !important;
+  }
+}
