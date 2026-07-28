@@ -91,7 +91,13 @@
   .hf-dbs main div:has(> nav[data-testid="page-links"]) {
     grid-template-columns: minmax(0, 1fr) !important;
     column-gap: 0 !important;
-    row-gap: 22px !important;
+    /* row-gap 0: con 22px quedaba un hueco crema entre las tabs y el
+       contenido (aviso de Victoria). El aire donde toca lo dan los
+       margenes propios (page-links margin-top y el widget de abajo). */
+    row-gap: 0 !important;
+  }
+  .hf-dbs main div:has(> nav[data-testid="page-links"]) > [data-testid="property-details-widget"] {
+    margin-top: 24px !important;
   }
   .hf-dbs main div:has(> nav[data-testid="page-links"]) > * {
     grid-column: 1 / -1 !important;

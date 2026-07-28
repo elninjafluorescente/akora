@@ -1,8 +1,8 @@
 /* =============================================
    Akora white-label — main.css (GENERADO por build.sh)
    NO editar a mano: editar partials/ y ejecutar ./build.sh
-   Version: v0.19.0  ·  Fecha: 2026-07-27
-   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.19.0
+   Version: v0.19.1  ·  Fecha: 2026-07-28
+   Se carga en Hostfully (White Labelling -> CSS URL) con ?v=0.19.1
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@300;400;500;600;700;800&family=Tenor+Sans&family=Sacramento&display=swap');
 
@@ -1705,7 +1705,13 @@ body.hf-dbs > div { background: var(--cream) !important; }
   .hf-dbs main div:has(> nav[data-testid="page-links"]) {
     grid-template-columns: minmax(0, 1fr) !important;
     column-gap: 0 !important;
-    row-gap: 22px !important;
+    /* row-gap 0: con 22px quedaba un hueco crema entre las tabs y el
+       contenido (aviso de Victoria). El aire donde toca lo dan los
+       margenes propios (page-links margin-top y el widget de abajo). */
+    row-gap: 0 !important;
+  }
+  .hf-dbs main div:has(> nav[data-testid="page-links"]) > [data-testid="property-details-widget"] {
+    margin-top: 24px !important;
   }
   .hf-dbs main div:has(> nav[data-testid="page-links"]) > * {
     grid-column: 1 / -1 !important;
